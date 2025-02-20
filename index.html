@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Her Guiding Light</title>
+        <style>
+            h1 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align: center;
+            }
+
+            p {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                text-align: center;
+            } 
+        </style>
+    </head>
+    <body>
+        <h1 id="header"></h1>
+        <div id="content"></div>
+        <a href="#" id="name"><p>Reveal her name!</p></a>
+
+        <script lang="javascript">
+            let timesClicked = 0;
+            let revealNameMessages = [
+                "I'm not telling her name!",
+                "Stop.",
+                "Nope!",
+                "She's not our in our section, is she?",
+                "I'm not giving any more hints...",
+                "Why? Because I don't want to!",
+                "Her first letter? That would make it obvious!",
+                ";(",
+                "Okay, I hope this wouldn't make it obvious...",
+                "She is in our section.",
+                "But I'm still not telling!"
+            ];
+            let revealNameMessageGeneric = "I'm not telling!"
+            function revealName() {
+                let message = revealNameMessageGeneric;
+                if (timesClicked < revealNameMessages.length) {
+                    message = revealNameMessages[timesClicked];
+                    timesClicked += 1;
+                }
+
+                alert(message);
+            }
+
+            function main() {
+                if (!confirm("Are you sure you really want to read this poem?") === true) {
+                    return;
+                }
+
+                if (!confirm("Are you sure I'm talking to the right person?") === true) {
+                    return;
+                }
+
+                let header = document.getElementById("header");
+                let content = document.getElementById("content");
+
+                header.textContent = "Her Guiding Light";
+                
+                let lines = [
+                    "A friend that saw the light in me,",
+                    "often spasmodic, sometimes a storm,",
+                    "I would have guided as a flickering lantern,",
+                    "in her storm, and in the complexities of life.",
+                    ";",
+                    "But trust cracked like fragile glass,",
+                    "another voice calls her name.",
+                    "The bird within me stirred,",
+                    "but I never dared open the cage.",
+                    ";",
+                ];
+                lines.forEach(line => {
+                    let lineElement = document.createElement("p");
+                    lineElement.textContent = line;
+                    content.appendChild(lineElement);
+                });
+
+                let nameLink = document.getElementById("name");
+                nameLink.onclick = revealName;
+            }
+
+            main();
+        </script>
+    </body>
+</html>

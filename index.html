@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Her Guiding Light</title>
+        <title id="title">???</title>
         <style>
             h1 {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -12,6 +12,11 @@
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 text-align: center;
             } 
+
+            body {
+                background-image: url('back.png');
+                background-repeat: repeat;
+            }
         </style>
     </head>
     <body>
@@ -20,22 +25,29 @@
         <a href="#" id="name"><p>Reveal her name!</p></a>
 
         <script lang="javascript">
+            let access = false;
             let timesClicked = 0;
             let revealNameMessages = [
                 "I'm not telling her name!",
                 "Stop.",
                 "Nope!",
                 "She's not our in our section, is she?",
-                "I'm not giving any more hints...",
+                "I'm not giving any hints...",
                 "Why? Because I don't want to!",
                 "Her first letter? That would make it obvious!",
                 ";(",
                 "Okay, I hope this wouldn't make it obvious...",
                 "She is in our section.",
-                "But I'm still not telling!"
+                "But I'm still not telling!",
+                "PLEASEE!!",
+                "Her favorite color is pink.",
+                "What more do you want?",
             ];
             let revealNameMessageGeneric = "I'm not telling!"
             function revealName() {
+                if (!access) {
+                    return;
+                }
                 let message = revealNameMessageGeneric;
                 if (timesClicked < revealNameMessages.length) {
                     message = revealNameMessages[timesClicked];
@@ -43,6 +55,32 @@
                 }
 
                 alert(message);
+            }
+
+            function createAlertLink(text, alertMessage) {
+                let link = document.createElement("a");
+                link.href = "#";
+                link.textContent = text;
+                link.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    alert(alertMessage);
+                });
+                return link;
+            }
+    
+            function replaceCustomSyntax(text) {
+                let parts = text.split(/(\{[^;]+;[^}]+\})/g);
+                let fragment = document.createDocumentFragment();
+                
+                parts.forEach(part => {
+                    let match = part.match(/\{([^;]+);([^}]+)\}/);
+                    if (match) {
+                        fragment.appendChild(createAlertLink(match[1], match[2]));
+                    } else {
+                        fragment.appendChild(document.createTextNode(part));
+                    }
+                });
+                return fragment;
             }
 
             function main() {
@@ -54,31 +92,37 @@
                     return;
                 }
 
+                alert("I hope this isn't one of you reading... \\(O_o)/");
+                access = true;
+
                 let header = document.getElementById("header");
                 let content = document.getElementById("content");
 
                 header.textContent = "Her Guiding Light";
                 
                 let lines = [
-                    "A friend that saw the light in me,",
+                    "A friend that saw the {light in me;\"Does she still trust me?\" I kept asking to myself.},",
                     "often spasmodic, sometimes a storm,",
                     "I would have guided as a flickering lantern,",
-                    "in her storm, and in the complexities of life.",
+                    "in her storm, and in the {complexities of life;We talked to each other... a lot, in one day. I just wish she hadn't... I don't know.}.",
                     ";",
-                    "But trust cracked like fragile glass,",
-                    "another voice calls her name.",
+                    "But the light broke like fragile glass,",
+                    "another {voice;I hope this isn't you reading this poem, and if you are, I'm sorry. I didn't mean for any of this to happen.} calls her name.",
                     "The bird within me stirred,",
-                    "but I never dared open the cage.",
+                    "but I never dared to {open;I'm moving on. She wouldn't notice a thing would she?} the cage.",
                     ";",
                 ];
                 lines.forEach(line => {
                     let lineElement = document.createElement("p");
-                    lineElement.textContent = line;
+                    lineElement.appendChild(replaceCustomSyntax(line));
                     content.appendChild(lineElement);
                 });
 
                 let nameLink = document.getElementById("name");
                 nameLink.onclick = revealName;
+
+                let title = document.getElementById("title")
+                title.textContent = "Her Guiding Light";
             }
 
             main();

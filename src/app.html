@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+	</head>
+	<script>
+		const theme = localStorage.theme;
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+		if (theme === 'dark' || (!theme && prefersDark)) {
+			document.documentElement.classList.add('dark');
+		}
+	</script>
+	<body data-sveltekit-preload-data="hover" class="m-2 p-2 bg-white dark:bg-gray-950 text-black dark:text-white">
+		<div class="contents m-2 p-2">%sveltekit.body%</div>
+	</body>
+</html>

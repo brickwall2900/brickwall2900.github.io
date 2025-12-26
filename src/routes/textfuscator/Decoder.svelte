@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { downloadBlob } from "$lib/common/downloadHelper";
-    import { decode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, decodeFromBinary } from "$lib/textfuscator/textfuscator";
+    import { downloadFile, uploadFile } from "$lib/common/downloadHelper";
+    import { decode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, decodeFromBinary, encodeBinaryToString } from "$lib/textfuscator/textfuscator";
 
     let key = $state("");
     let input = $state("");
@@ -30,11 +30,12 @@
         const output: string = await onRun();
         if (output !== null) {
             const blob: Blob = new Blob([ output ]);
-            downloadBlob(blob, "textfuscator" + Date.now() + ".txt");
+            downloadFile(blob, "textfuscator" + Date.now() + ".txt");
         }
     }
 
     function printFeedback(e: Error) {
+        console.error(e);
         if (e instanceof RangeError && e.message.includes("byte length is larger than maximum byte length")) {
             feedback = "Error: The operation exceeded the maximum memory buffer size of " + maxMemorySize + " bytes. Please increase the limit and try again.";
         } else if (e.message.includes("Failed to skip data stream")) {
@@ -54,6 +55,13 @@
             copyButtonDisabled = false;
             copyButtonText = "Copy";
         }, 1000);
+    }
+
+    async function onUploadFile() {
+        const buffer = await uploadFile(".tbf, .txt");
+        if (buffer !== null) {
+            input = encodeBinaryToString(buffer);
+        }
     }
 
     async function onRun(): Promise<string> {
@@ -84,7 +92,7 @@
 
 <div class="grid grid-cols-3 grid-flow-col auto-cols-auto gap-2">
     <!-- starting to understand that tailwind declarations are bigger than mt. fuji -->
-    <button class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800 col-start-1 col-end-3">Load from Binary</button>
+    <button onclick={() => onUploadFile().catch((e) => printFeedback(e))} class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800 col-start-1 col-end-3">Load from Binary</button>
     <button onclick={() => onRun().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 col-start-3 col-end-4 py-2">Run</button>
 </div>
 

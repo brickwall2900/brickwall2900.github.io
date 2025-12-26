@@ -2,14 +2,24 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
     import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
 
 	let { children } = $props();
-	let isDarkModeEnabled = $state(localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches));
-
+	
+	const browserLocalStorage = globalThis.localStorage;
+	let localStorage: any[any] = [];
+	let isDarkModeEnabled = false;
+	if (browser) {
+		localStorage = browserLocalStorage;
+		isDarkModeEnabled = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+	}
+	
 	function toggleDarkMode() {
-		isDarkModeEnabled = !isDarkModeEnabled;
-		document.documentElement.classList.toggle('dark', isDarkModeEnabled);
-		localStorage.theme = isDarkModeEnabled ? "dark" : "light";
+		if (browser) {
+			isDarkModeEnabled = !isDarkModeEnabled;
+			document.documentElement.classList.toggle('dark', isDarkModeEnabled);
+			localStorage.theme = isDarkModeEnabled ? "dark" : "light";
+		}
 	}
 </script>
 

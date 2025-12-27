@@ -2,7 +2,7 @@ export function downloadFile(blob: Blob, filename: string) {
     const url = URL.createObjectURL(blob);
 
     const link = document.createElement("a");
-    link.classList.add("display: hidden");
+    link.style.display = "none";
     link.href = url;
     link.download = filename || "textfuscator.txt";
 

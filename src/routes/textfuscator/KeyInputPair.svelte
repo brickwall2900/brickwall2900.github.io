@@ -16,7 +16,7 @@
     <textarea bind:value={input} class="bg-white dark:bg-gray-600 border border-black p-1" placeholder="Input"></textarea>
     <div class="grid grid-cols-3 grid-flow-col auto-cols-auto">
         <p class="col-start-1 col-end-2">Obfuscation mode:</p>
-        <select bind:value={mode} class="bg-white dark:bg-gray-600 border hover:bg-gray-500 border-black col-start-2 col-end-4 p-1">
+        <select bind:value={mode} class="bg-white dark:bg-gray-600 border hover:bg-gray-200 dark:hover:bg-gray-500 border-black col-start-2 col-end-4 p-1">
             <option value="XOR">XOR</option>
             <option value="AES_GCM">AES_GCM</option>
             <option value="AES_GCM_PBKDF2">AES_GCM_PBKDF2</option>

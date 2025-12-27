@@ -9,7 +9,8 @@ import { JavaRandom } from "../java/Random";
 const HEADER: string = "Tfr=";
 const B64_HEADER: string = "This data is encoded by Textfuscator. " +
  "Data here cannot be decoded unless decoded by Textfuscator.";
-export const VERSION: number = 0x01;
+export const MAJOR_VERSION: number = 0x01;
+export const MINOR_VERSION: number = 0x00;
 
 export type Mode = "XOR" | "AES_GCM" | "AES_GCM_PBKDF2";
 export interface IKeyInputPair {
@@ -57,12 +58,12 @@ function getModeByte(mode: Mode): number {
     }
 }
 
-function getModeFromByte(modeByte: number): Mode {
+function getModeFromByte(modeByte: number): (Mode | null) {
     switch (modeByte) {
         case 0: return "XOR";
         case 1: return "AES_GCM";
         case 2: return "AES_GCM_PBKDF2";
-        default: throw TypeError("Invalid mode: " + String(modeByte));
+        default: return null;
     }
 }
 
@@ -240,7 +241,8 @@ export async function encodeToBinary(keyInputPairs: Array<IKeyInputPair>): Promi
         const dataStream: JavaDataOutputStream = new JavaDataOutputStream(outputStream);
 
         dataStream.writeUTF(B64_HEADER);
-        dataStream.writeShort(VERSION);
+        dataStream.writeShort(MAJOR_VERSION);
+        dataStream.writeShort(MINOR_VERSION);
         dataStream.writeInt(keyInputPairs.length);
 
         for (let i = 0; i < keyInputPairs.length; i++) {
@@ -388,26 +390,28 @@ export async function decodeFromBinary(input: ArrayBuffer, key: string): Promise
     const dataStream = new JavaDataInputStream(inputStream);
 
     const header: string = dataStream.readUTF();
-    console.log(header);
     if (header !== B64_HEADER) {
-        throw new Error("Invalid internal header format");
+        throw new TypeError("Invalid internal header format");
     }
 
-    const version = dataStream.readShort();
-    if (version !== VERSION) {
-        throw new Error("Version mismatch: " + String(version) + " to running version " + String(VERSION));
+    const majorVersion = dataStream.readShort();
+    const minorVersion = dataStream.readShort();
+    if (majorVersion < MAJOR_VERSION) {
+        throw new TypeError("Version mismatch: major version " + String(majorVersion) + " to running major version " + String(MAJOR_VERSION));
     }
     const blocks = dataStream.readInt();
 
+    console.log("Decoding...");
     console.log("Key: " + key);
     console.log("Input: " + input);
-    console.log("Version: " + version);
+    console.log("Version: " + majorVersion);
     console.log("BlockCount: " + blocks);
 
     for (let i = 0; i < blocks; i++) {
         const seed1: bigint = dataStream.readLong();
         const seed2: bigint = dataStream.readLong();
-        const mode: Mode = getModeFromByte(dataStream.readByte());
+        const modeByte: number = dataStream.readByte();
+        const mode: Mode | null = getModeFromByte(modeByte);
         const compressed: boolean = dataStream.readBoolean();
         const dataLength: number = dataStream.readInt();
 
@@ -438,7 +442,8 @@ export async function decodeFromBinary(input: ArrayBuffer, key: string): Promise
             case "AES_GCM_PBKDF2": 
                 output = await decodeAesGcmPBKDF2(payloadBuffer, keyBufferView, key, compressed).catch((e) => { throw e; });
                 break;
-            default: throw TypeError("Invalid mode: " + mode);
+            default: 
+                throw new TypeError("Mode byte " + modeByte + " is not supported in this version of Textfuscator.");
         }
         return output;
     }

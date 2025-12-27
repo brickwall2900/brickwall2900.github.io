@@ -5,7 +5,7 @@
 <script lang="ts">
     import Encoder from "./Encoder.svelte";
     import Decoder from "./Decoder.svelte";
-    import { VERSION } from "$lib/textfuscator/textfuscator";
+    import { MAJOR_VERSION } from "$lib/textfuscator/textfuscator";
 </script>
 
 <div class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2">
@@ -69,7 +69,7 @@
         <details>
             <summary class="font-semibold">What version of Textfuscator is running?</summary>
             <div class="ml-8">
-                <p>The major file version Textfuscator is running on is <strong>{VERSION}</strong>. Future major versions may break compatibility with older major versions.</p>
+                <p>The major file version Textfuscator is running on is <strong>{MAJOR_VERSION}</strong>. Future major versions may break compatibility with older major versions.</p>
             </div>
             
         </details>

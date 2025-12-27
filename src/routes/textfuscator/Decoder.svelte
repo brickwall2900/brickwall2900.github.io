@@ -1,6 +1,6 @@
 <script lang="ts">
     import { downloadFile, uploadFile } from "$lib/common/downloadHelper";
-    import { decode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, decodeFromBinary, encodeBinaryToString } from "$lib/textfuscator/textfuscator";
+    import { decode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, decodeFromBinary, encodeBinaryToString, setDecodeVersionChecking } from "$lib/textfuscator/textfuscator";
 
     let key = $state("");
     let input = $state("");
@@ -10,6 +10,7 @@
     let copyButtonDisabled = $state(false);
     let copyButtonText = $state("Copy");
     let maxMemorySize = $state(DEFAULT_MAX_MEMORY_SIZE);
+    let skipVersionChecks = $state(false);
 
     function checkInputs(): boolean {
         if (key.trim() === "") {
@@ -38,6 +39,8 @@
         console.error(e);
         if (e instanceof RangeError && e.message.includes("byte length is larger than maximum byte length")) {
             feedback = "Error: The operation exceeded the maximum memory buffer size of " + maxMemorySize + " bytes. Please increase the limit and try again.";
+        } else if (e instanceof TypeError && e.message.includes("Version mismatch")) {
+            feedback = "Error: " + e.message + "; Try disabling version checking and try again.";
         } else if (e.message.includes("Failed to skip data stream")) {
             feedback = "Error: Reached End of File while reading.";
         } else if (e.message.includes("No matching key found")) {
@@ -69,7 +72,8 @@
         let successfulOutput: string = null as unknown as string;
         try {
             if (checkInputs()) {
-                setMaxMemoryBufferSize(maxMemorySize);
+                setMaxMemoryBufferSize(maxMemorySize); // is max memory size needed while decoding??
+                setDecodeVersionChecking(!skipVersionChecks);
                 const result = await decode(input, key);
                 output = successfulOutput = result;
             }
@@ -98,10 +102,14 @@
 
 <details>
     <summary>Advanced Options</summary>
-    <div>
+    <div class="flex flex-col gap-1 ml-8">
         <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
             <p>Maximum Memory Size (Bytes):</p>
             <input type="number" class="bg-white dark:bg-gray-600 border border-black" bind:value={maxMemorySize} />
+        </div>
+        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
+            <p>Skip version checking?</p>
+            <input type="checkbox" class="bg-white border col-start-2 col-end-4 object-right" bind:checked={skipVersionChecks} />
         </div>
     </div>
 </details>

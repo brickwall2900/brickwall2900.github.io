@@ -49,6 +49,11 @@ export function setMaxMemoryBufferSize(size: number): void {
     }
 }
 
+let decodeVersionChecking: boolean = true;
+export function setDecodeVersionChecking(value: boolean) {
+    decodeVersionChecking = value;
+}
+
 function getModeByte(mode: Mode): number {
     switch (mode) {
         case "XOR": return 0;
@@ -396,15 +401,17 @@ export async function decodeFromBinary(input: ArrayBuffer, key: string): Promise
 
     const majorVersion = dataStream.readShort();
     const minorVersion = dataStream.readShort();
-    if (majorVersion < MAJOR_VERSION) {
-        throw new TypeError("Version mismatch: major version " + String(majorVersion) + " to running major version " + String(MAJOR_VERSION));
+    if (decodeVersionChecking) {
+        if (majorVersion < MAJOR_VERSION) {
+            throw new TypeError("Version mismatch: major version " + String(majorVersion) + " to running major version " + String(MAJOR_VERSION));
+        }
     }
     const blocks = dataStream.readInt();
 
     console.log("Decoding...");
     console.log("Key: " + key);
     console.log("Input: " + input);
-    console.log("Version: " + majorVersion);
+    console.log("Version: " + majorVersion + "." + minorVersion);
     console.log("BlockCount: " + blocks);
 
     for (let i = 0; i < blocks; i++) {

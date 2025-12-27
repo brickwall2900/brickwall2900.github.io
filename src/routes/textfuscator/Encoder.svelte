@@ -103,7 +103,7 @@
 
 <details>
     <summary>Advanced Options</summary>
-    <div>
+    <div class="flex flex-col gap-1 ml-8">
         <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
             <p>Maximum Memory Size (Bytes):</p>
             <input type="number" class="bg-white dark:bg-gray-600 border border-black" bind:value={maxMemorySize} />

@@ -3,6 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
     import { browser } from '$app/environment';
     import { Lightbulb, LightbulbOff } from '@lucide/svelte';
+	import { resolve } from "$app/paths";
 
 	let { children } = $props();
 	
@@ -33,10 +34,10 @@
 		<div class="items-center justify-between flex w-auto md:order-1" id="navbar-cta">
 			<ul class="font-medium flex p-0 border-default rounded-base flex-row space-x-2 rtl:space-x-reverse mt-0">
 				<li>
-					<a href="/" class="block px-4 rounded bg-transparent h-full hover:bg-gray-400 dark:hover:bg-gray-500" aria-current="page">Home</a>
+					<a href={resolve("/")} class="block px-4 rounded bg-transparent h-full hover:bg-gray-400 dark:hover:bg-gray-500" aria-current="page">Home</a>
 				</li>
 				<li>
-					<a href="#" class="block px-4 rounded border-0 h-full hover:bg-gray-400 dark:hover:bg-gray-500">Projects</a>
+					<a href={resolve("/projects")} class="block px-4 rounded border-0 h-full hover:bg-gray-400 dark:hover:bg-gray-500">Projects</a>
 				</li>
 			</ul>
 		</div>

@@ -28,15 +28,35 @@
 	<title>brickwall2900</title>
 </svelte:head>
 
-<button 
-	onclick={() => toggleDarkMode()} 
-	title="Toggle Dark Mode" 
-	class="bg-amber-400 hover:bg-amber-500 active:bg-amber-700 text-black dark:text-black fixed right-0 top-0 p-2">
+<nav class="fixed left-0 top-0 p-2 bg-gray-300 dark:bg-gray-600 w-full">
+	<div class="flex flex-wrap items-center justify-between mx-auto">
+		<div class="items-center justify-between flex w-auto md:order-1" id="navbar-cta">
+			<ul class="font-medium flex p-0 border-default rounded-base flex-row space-x-2 rtl:space-x-reverse mt-0">
+				<li>
+					<a href="/" class="block px-4 rounded bg-transparent h-full hover:bg-gray-400 dark:hover:bg-gray-500" aria-current="page">Home</a>
+				</li>
+				<li>
+					<a href="#" class="block px-4 rounded border-0 h-full hover:bg-gray-400 dark:hover:bg-gray-500">Projects</a>
+				</li>
+			</ul>
+		</div>
+		<div class="md:order-2">
+			
+		</div>
+	</div>
+</nav>
+
+<button
+onclick={() => toggleDarkMode()}
+title="Toggle Dark Mode" 
+class="bg-amber-400 hover:bg-amber-500 active:bg-amber-700 text-black dark:text-black fixed top-0 right-0 p-4 rounded-bl-2xl">
 	{#if isDarkModeEnabled}
 		<Lightbulb class="w-full h-full" />
 	{:else}
 		<LightbulbOff class="w-full h-full" />
 	{/if}
 </button>
+
+<div class="p-4"></div>
 
 {@render children()}

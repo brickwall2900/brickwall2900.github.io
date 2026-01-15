@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>ROOT</title> 
+    <title>Home</title> 
     <meta name="google-site-verification" content="ft2V6Ak_UxJv8bkfeytbSQ3X4Q1NlqIe2ghcMLLT8Ss" />
 </svelte:head>
 <script lang="ts">

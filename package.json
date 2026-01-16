@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^0.562.0",
-		"java-random": "^0.4.0"
+		"java-random": "^0.4.0",
+		"svelte-image-viewer": "^6.0.0"
 	}
 }

@@ -39,7 +39,7 @@
             animate:flip={{ duration: 300 }}>
             <div class="flex flex-row gap-4">
                 <enhanced:img 
-                    class="relative h-12" 
+                    class="relative h-12 pointer-events-none" 
                     src={asset(BADGE_ASSET_URL + notif.id + ".png")} 
                     alt="Badge"/>
                 <div>

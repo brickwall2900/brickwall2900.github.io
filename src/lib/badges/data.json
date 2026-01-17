@@ -4,5 +4,11 @@
         "name": "Welcome!",
         "description": "Thanks for visiting! Here's a star!",
         "hint": "Visit this website for the first time."
+    },
+    {
+        "id": "test",
+        "name": "Test Badge!",
+        "description": "...",
+        "hint": "You cannot get this badge without hacking."
     }
 ]

@@ -10,7 +10,7 @@
 </script>
 
 <section class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2 max-w-7xl mx-auto">
-    <h2 class="text-4xl self-center font-bold w-full text-center mt-4 mb-1">Projects I Made</h2>
+    <h2 class="text-4xl self-center font-bold w-full text-center mb-1">Projects I Made</h2>
     <p class="self-center w-full text-center">These are the projects I actually MADE!!</p>
     <hr>
 

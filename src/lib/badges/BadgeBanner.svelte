@@ -31,7 +31,7 @@
     setBadgeNotifyHandler(onBadgeGotten);
 </script>
 
-<div class="fixed right-0 bottom-8 flex flex-col items-end gap-2 pr-4 pointer-events-none z-50">
+<div class="fixed right-0 bottom-8 flex flex-col items-end gap-2 pr-4 pointer-events-none z-100">
     {#each notifications as notif (notif.uid)}
         <div 
             class="flex flex-col p-3 pr-4 bg-amber-200 text-black shadow-lg shadow-amber-300/50 ring-2 ring-amber-600 rounded-tl-md rounded-bl-md pointer-events-auto"

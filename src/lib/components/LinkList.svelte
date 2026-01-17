@@ -15,10 +15,12 @@
 </script>
 
 {#if links.length > 0}
-    <div class="flex flex-row gap-2 mt-2 items-center">
+    <nav class="flex flex-row gap-2 mt-2 items-center">
         <p class="inline mr-2">Links:</p>
         {#each links as link}
-            <a href={link} class="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-2xl px-2 py-1">
+            <a 
+                href={link} 
+                class="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-2xl sm:text-base text-xs px-2 py-1">
                 {#if isHostNameSame("GitHub", link)}
                     <GithubIcon class="inline" />
                     <p class="inline">GitHub</p>    
@@ -28,5 +30,5 @@
                 {/if}
             </a>
         {/each}  
-    </div>
+    </nav>
 {/if}

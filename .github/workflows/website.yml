@@ -29,9 +29,18 @@ jobs:
       - name: Install dependencies
         run: npm i
 
+      - name: Compute BASE_PATH
+        run: |
+          REPO="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+
+          if [ "$REPO" = "$OWNER.github.io" ]; then
+            echo "BASE_PATH=" >> ${{ github.env }}
+          else
+            echo "BASE_PATH=/$REPO" >> ${{ github.env }}
+          fi
+
       - name: build
-        env:
-          BASE_PATH: '/${{ github.event.repository.name }}'
         run: npm run build
 
       - name: Upload Artifacts

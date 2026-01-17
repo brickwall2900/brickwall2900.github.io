@@ -15,8 +15,8 @@
     <Content title="Projects I Made" description="These are the projects I actually MADE!!">
         <hr>
         <ProjectItem name="Birthday Reminder" links={["https://github.com/brickwall2900/BirthdayReminder"]}>
-            <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-2">
+            <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
+                <div class="sm:col-span-2">
                     <p>quoted from README: "🍰🎉 Never forget any of your friends' birthdays with this one!"</p>
                     <p>A desktop app built in Java that simply stores birthdays and reminds you of upcoming ones.</p>
                     <p>I made this simply because I tend to forget my friends' birthdays. (Please don't take that the wrong way!)</p>
@@ -25,8 +25,8 @@
             </div>
         </ProjectItem>
         <ProjectItem name="1/10000 chance for Withered Foxy Jumpscare every second" links={["https://github.com/brickwall2900/Java-Foxy-Jumpscare"]}>
-            <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-2">
+            <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
+                <div class="sm:col-span-2">
                     <p class="inline">Inspired by </p>
                     <Link href="https://steamcommunity.com/sharedfiles/filedetails/?id=3481943642">this Terarria mod.</Link>
                     <p>For every second, a jumpscare might appear in your screen in every 1 in 10000 chance.</p>
@@ -41,8 +41,8 @@
             <p>Current built in Svelte and hosted on GitHub Pages.</p>
         </ProjectItem>
         <ProjectItem name="Textfuscator" links={["https://brickwall2900.github.io/textfuscator"]}>
-            <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-2">
+            <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
+                <div class="sm:col-span-2">
                     <p>A text obfuscation tool designed to obfuscate MULTIPLE texts onto a SINGLE text by a key-based retrival system.</p>
                     <p>It can obfuscate text by XOR and AES encryption.</p>
                 </div>
@@ -54,8 +54,8 @@
     <Content title="Projects I Helped" description="The following are the projects I have helped and contributed in!">
         <hr>
         <ProjectItem name="Sequestree" links={["https://sequestree.net", "https://sequestree.streamlit.app/"]}>
-            <div class="grid grid-cols-3 gap-2">
-                <div class="col-span-2">
+            <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
+                <div class="sm:col-span-2">
                     <p>A website I have helped made for my friend in their research and their science fair competition!</p>
                     <p>It is a website in Streamlit that visualizes the tree biomass, carbon stock, and carbon sequestration potential of Quezon City, Philippines.</p>
                 </div>

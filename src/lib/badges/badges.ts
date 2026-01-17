@@ -69,7 +69,7 @@ export function getBadgeInfo(id: string): Badge | undefined {
 }
 
 export function getBadgeIds(): Array<string> {
-    return BADGE_REGISTRY.keys().toArray();
+    return Array.from(BADGE_REGISTRY.keys());
 }
 
 export function revokeBadge(id: string) {

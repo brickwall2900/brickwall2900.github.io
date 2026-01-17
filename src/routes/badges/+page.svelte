@@ -3,18 +3,21 @@
 </svelte:head>
 
 <script lang="ts">
-    import { getBadgeIds, getBadgeInfo, hasBadge, type Badge } from "$lib/badges/badges";
+    import { getBadgeIds, getBadgeInfo, hasBadge, revokeBadge, type Badge } from "$lib/badges/badges";
     import { asset, resolve } from '$app/paths';
     import ModalDialog from "$lib/components/ModalDialog.svelte";
+    import Spoiler from "$lib/components/Spoiler.svelte";
 
     const BADGE_ASSET_URL = "/assets/badges/";
     let showingBadgeDetails = $state(false);
     let showingBadgeId = $state("");
+    let showingBadgeOwned = $state(false);
     let showingBadge = $state<Badge | undefined>(undefined);
 
     function showBadge(badgeId: string) {
         showingBadgeId = badgeId;
         showingBadge = getBadgeInfo(badgeId);
+        showingBadgeOwned = hasBadge(badgeId);
         showingBadgeDetails = true;
     }
 
@@ -22,6 +25,13 @@
         console.log(e.target + " " + e.currentTarget)
         if (e.target === e.currentTarget) {
             showingBadgeDetails = false;
+        }
+    }
+
+    function confirmRevokeBadge(badgeId: string) {
+        if (confirm("Are you sure? Revoking a badge removes it and you would have to complete it again.")) {
+            showingBadgeDetails = false;
+            revokeBadge(badgeId);
         }
     }
 </script>
@@ -40,14 +50,14 @@
         value={(getBadgeIds().filter((id) => hasBadge(id)).length / getBadgeIds().length) * 100} 
         max="100"></progress>
     
-    <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col gap-2 p-2">
-        {#each getBadgeIds() as badgeId, index}
+    <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col justify-center gap-2 p-2">
+        {#each getBadgeIds() as badgeId}
             <button 
                 class="cursor-pointer"
                 onclick={() => showBadge(badgeId)} 
                 title={badgeId}>
                 <enhanced:img 
-                    class={hasBadge(badgeId) ? "h-16" : "h-16 grayscale blur-xs"} 
+                    class={"h-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
                     src={asset(BADGE_ASSET_URL + badgeId + ".png")} 
                     alt={getBadgeInfo(badgeId)?.name}/>
             </button>
@@ -60,14 +70,24 @@
         <article class="p-2 flex flex-row gap-2">
             <aside>
                 <enhanced:img 
-                    class={"h-16 w-16 border dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 
+                    class={"h-16 w-16 m-2 border pointer-events-none dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 
                     src={asset(BADGE_ASSET_URL + showingBadgeId + ".png")} 
                     alt={showingBadge.name}/>
             </aside>
             <main>
                 <p>Name: <strong>{showingBadge.name}</strong></p>
-                <p>Description: {showingBadge.description}</p>
-                <p>Hint: <em>{showingBadge.hint}</em></p>
+                <p>{showingBadgeOwned ? showingBadge.description : "???"}</p>
+                <br>
+                <p>Hint: <Spoiler><em>{showingBadge.hint}</em></Spoiler></p>
+                <p>Owned? <strong class={showingBadgeOwned ? "text-green-500" : "text-red-500"}>{showingBadgeOwned ? "YES" : "NO"}</strong></p>
+                {#if showingBadgeOwned}
+                    <br>
+                    <button 
+                        class="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded w-full text-white font-bold" 
+                        onclick={() => confirmRevokeBadge(showingBadgeId)}>
+                        REVOKE BADGE
+                    </button>
+                {/if}
             </main>
         </article>
     </ModalDialog>

@@ -1,3 +1,8 @@
+<svelte:head>
+	<link rel="icon" href={favicon} />
+	<title>brickwall2900</title>
+</svelte:head>
+
 <script lang="ts">
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
@@ -23,11 +28,6 @@
 		}
 	}
 </script>
-
-<svelte:head>
-	<link rel="icon" href={favicon} />
-	<title>brickwall2900</title>
-</svelte:head>
 
 <nav class="fixed left-0 top-0 p-2 bg-gray-300 dark:bg-gray-600 w-full">
 	<div class="flex flex-wrap items-center justify-between mx-auto">

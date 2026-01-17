@@ -7,6 +7,7 @@
     import { asset } from "$app/paths";
     import Image from "$lib/components/Image.svelte";
     import Content from "$lib/components/Content.svelte";
+    import Link from "$lib/components/Link.svelte";
 
 </script>
 
@@ -27,7 +28,7 @@
             <div class="grid grid-cols-3 gap-2">
                 <div class="col-span-2">
                     <p class="inline">Inspired by </p>
-                    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3481943642" class="underline text-blue-700 dark:text-blue-300">this Terarria mod.</a>
+                    <Link href="https://steamcommunity.com/sharedfiles/filedetails/?id=3481943642">this Terarria mod.</Link>
                     <p>For every second, a jumpscare might appear in your screen in every 1 in 10000 chance.</p>
                     <p>In this application, there's only one built-in jumpscare: foxy himself. However, other jumpscares can be added via a configuration file.</p>
                 </div>

@@ -7,9 +7,10 @@
     import Decoder from "./Decoder.svelte";
     import { MAJOR_VERSION, MINOR_VERSION } from "$lib/textfuscator/textfuscator";
     import Dropdown from "$lib/components/Dropdown.svelte";
+    import Link from "$lib/components/Link.svelte";
 </script>
 
-<main class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2">
+<div class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2">
     <h1 class="text-5xl font-bold self-center">Textfuscator</h1>
     <p>
         Textfuscator is a tool to merge text strings together into a single output,
@@ -40,20 +41,20 @@
             <p>The choice of mode depends on your specific needs:</p>
             <ul class="list-disc ml-8"> 
                 <li>
-                    <strong>XOR:</strong> Uses <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/XOR_cipher">XOR bitwise operator</a> for obfuscation.
+                    <strong>XOR:</strong> Uses <Link href="https://en.wikipedia.org/wiki/XOR_cipher">XOR bitwise operator</Link> for obfuscation.
                     Best for fast encode/decode speed, small size, and non-secret messages.
                     Not recommended for sensitive content.
                 </li>
                 <li>
-                    <strong>AES-GCM:</strong> Uses the <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> algorithm 
-                    with <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">GCM</a> for obfuscation.
+                    <strong>AES-GCM:</strong> Uses the <Link href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</Link> algorithm 
+                    with <Link href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">GCM</Link> for obfuscation.
                     Best for protecting sensitive data when a secure random key is already available. 
                     Slower and larger than XOR.
                 </li>
                 <li>
-                    <strong>AES-GCM (PBKDF2):</strong> Uses the <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</a> algorithm 
-                    with <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">GCM</a> 
-                    deriving the key using <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/PBKDF2">PBKDF2</a> for obfuscation.
+                    <strong>AES-GCM (PBKDF2):</strong> Uses the <Link href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES</Link> algorithm 
+                    with <Link href="https://en.wikipedia.org/wiki/Galois/Counter_Mode">GCM</Link> 
+                    deriving the key using <Link href="https://en.wikipedia.org/wiki/PBKDF2">PBKDF2</Link> for obfuscation.
                     Best for password-based encryption, where users provide a passphrase and a strong key must be derived securely before encryption.
                     Larger than AES-GCM.
                 </li>
@@ -74,7 +75,7 @@
         </Dropdown>
 
         <Dropdown title="How effective is compression?">
-            <p>Textfuscator uses <a class="underline text-blue-700 dark:text-blue-300" href="https://en.wikipedia.org/wiki/Gzip">GZIP</a> for compression.</p>
+            <p>Textfuscator uses <Link href="https://en.wikipedia.org/wiki/Gzip">GZIP</Link> for compression.</p>
             <p>
                 Compression is most effective for <strong>large, repetitive, or human-readable text</strong>
                 (such as really long messages). In these cases, the final output size can be significantly reduced.
@@ -87,7 +88,7 @@
         </Dropdown>
 
         <Dropdown title="Why do I get a notification in Firefox about maximum memory usage?">
-            <p>When instantiating a resizable <code>ArrayBuffer</code> then <a class="underline text-blue-700 dark:text-blue-300" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer/resize">resizing</a> it:</p>
+            <p>When instantiating a resizable <code>ArrayBuffer</code> then <Link href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer/resize">resizing</Link> it:</p>
             <ul class="list-disc ml-8"> 
                 <li><strong>Chromium:</strong> It resizes up to the specified <code>newLength</code> parameter. This is normal behavior.</li>
                 <li><strong>Firefox:</strong> It resizes up to the specified <code>maxResizeLength</code>, which can result in high memory usage depending on <code>maxResizeLength</code>.
@@ -118,4 +119,4 @@
             <p class="italic">See (link) here for Textfuscator's binary block structure for more technical information.</p>
         </Dropdown>
     </section>
-</main>
+</div>

@@ -3,7 +3,7 @@
 </svelte:head>
 
 <script lang="ts">
-    import { getBadgeIds, getBadgeInfo, hasBadge, revokeBadge, type Badge } from "$lib/badges/badges";
+    import { getBadgeIds, getBadgeInfo, giveBadge, hasBadge, revokeBadge, type Badge } from "$lib/badges/badges";
     import { asset, resolve } from '$app/paths';
     import ModalDialog from "$lib/components/ModalDialog.svelte";
     import Spoiler from "$lib/components/Spoiler.svelte";
@@ -32,6 +32,7 @@
     function confirmRevokeBadge(badgeId: string) {
         if (confirm("Are you sure? Revoking a badge removes it and you would have to complete it again.")) {
             showingBadgeDetails = false;
+            giveBadge("revoked");
             revokeBadge(badgeId);
         }
     }
@@ -42,7 +43,7 @@
         title="Badges" 
         description="Badges are little special awards when you complete a task.
             There are currently {getBadgeIds().length} badge(s) and there will be more to come.
-            Can you get them all?">
+            There MIGHT be a badge for almost everything. Can you get them all?">
         <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
 
         <span>Badges completed:</span>

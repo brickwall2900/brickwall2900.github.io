@@ -22,5 +22,17 @@
         "name": "Light Switched",
         "description": "A light switch toggle... I wonder what it does?",
         "hint": "Toggle dark mode on/off"
+    },
+    {
+        "id": "spoiler",
+        "name": "Decoding the Files",
+        "description": "At least my content is less censored than someone's certain files.",
+        "hint": "Reveal a spoiler tag."
+    },
+    {
+        "id": "revoked",
+        "name": "Don't Need It",
+        "description": "Screw that badge in particular!",
+        "hint": "Revoke a badge."
     }
 ]

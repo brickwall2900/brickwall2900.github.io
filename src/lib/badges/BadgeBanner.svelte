@@ -31,10 +31,6 @@
     setBadgeNotifyHandler(onBadgeGotten);
 </script>
 
-<div class="fixed left-0 bottom-0">
-    <input type="checkbox" onclick={() => giveBadge("welcome")} />
-</div>
-
 <div class="fixed right-0 bottom-8 flex flex-col items-end gap-2 pr-4 pointer-events-none z-50">
     {#each notifications as notif (notif.uid)}
         <div 

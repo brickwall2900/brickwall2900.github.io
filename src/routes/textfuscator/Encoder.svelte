@@ -3,6 +3,7 @@
     import KeyInputPair from "./KeyInputPair.svelte";
     import { encode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, encodeToBinary, encodeBinaryToString } from "$lib/textfuscator/textfuscator";
     import { downloadFile } from "$lib/common/downloadHelper";
+    import { giveBadge } from "$lib/badges/badges";
 
     let pairs = $state<{id: string, pair: IKeyInputPair}[]>([]);
     let feedback = $state("");
@@ -73,6 +74,7 @@
                 const result = await encodeToBinary(arrayPairs);
                 successBuffer = result;
                 output = encodeBinaryToString(result);
+                setTimeout(() => giveBadge("textfuscator"));
             }
         } catch (e) {
             printFeedback(e as Error);

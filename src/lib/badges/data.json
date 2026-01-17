@@ -6,9 +6,21 @@
         "hint": "Visit this website for the first time."
     },
     {
-        "id": "test",
-        "name": "Test Badge!",
-        "description": "...",
-        "hint": "You cannot get this badge without hacking."
+        "id": "textfuscator",
+        "name": "Text Under Cover",
+        "description": "\"Textfuscate\" a text using Textfuscator.",
+        "hint": "Run Textfuscator for the first time."
+    },
+    {
+        "id": "img_viewer_boo",
+        "name": "Boo!!",
+        "description": "It's a little less... shocking than I thought.",
+        "hint": "Find a hidden ghost somewhere."
+    },
+    {
+        "id": "dark_mode_toggle",
+        "name": "Light Switched",
+        "description": "A light switch toggle... I wonder what it does?",
+        "hint": "Toggle dark mode on/off"
     }
 ]

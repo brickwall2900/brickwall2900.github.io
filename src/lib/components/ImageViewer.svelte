@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { giveBadge } from "$lib/badges/badges";
     import { Viewer } from "svelte-image-viewer";
 
     let { src, alt, closePopup, ...others } = $props();
@@ -7,7 +8,7 @@
 
 <dialog class="fixed w-full h-full mx-auto my-auto inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="relative w-full h-full flex items-center justify-center p-2">
-        <p class="absolute w-full text-center text-white p-2">boo! 👻</p>
+        <button class="absolute left-2 top-2 opacity-40 text-white p-2 z-30" onclick={() => {giveBadge("img_viewer_boo")}}>boo! 👻</button>
         <p class="absolute w-full top-1 text-center text-white mix-blend-exclusion p-2 z-20">Hello!! You're in an image viewer. Drag to pan the image around, pinch or mouse wheel to scroll.</p>
         <Viewer>
             <enhanced:img src={src} alt={alt} class="rounded shadow-lg max-w-full max-h-full z-10" {...others} />

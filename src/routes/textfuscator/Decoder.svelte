@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { giveBadge } from "$lib/badges/badges";
     import { downloadFile, uploadFile } from "$lib/common/downloadHelper";
     import { decode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, decodeFromBinary, encodeBinaryToString, setDecodeVersionChecking } from "$lib/textfuscator/textfuscator";
 
@@ -76,6 +77,7 @@
                 setDecodeVersionChecking(!skipVersionChecks);
                 const result = await decode(input, key);
                 output = successfulOutput = result;
+                setTimeout(() => giveBadge("textfuscator"));
             }
         } catch (e) {
             console.error(e);

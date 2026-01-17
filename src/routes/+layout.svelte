@@ -27,6 +27,7 @@
 			isDarkModeEnabled = !isDarkModeEnabled;
 			document.documentElement.classList.toggle('dark', isDarkModeEnabled);
 			localStorage.theme = isDarkModeEnabled ? "dark" : "light";
+			giveBadge("dark_mode_toggle");
 		}
 	}
 

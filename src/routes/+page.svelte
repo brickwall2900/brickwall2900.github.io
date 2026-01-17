@@ -23,6 +23,14 @@
     <p>I use Java as my main programming language, but I also use Python, JavaScript/TypeScript, Lua... maybe a bit of C.</p>
 </section>
 
+<section class="flex flex-col p-4 bg-gray-200 dark:bg-gray-800 m-4 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold w-full text-center">Hosted Projects</h2>
+    <p>so far i just have a few things here:</p>
+    <ul class="list-disc ml-8">
+        <li><a href={resolve("/textfuscator")}>Textfuscator</a></li>
+    </ul>
+</section>
+
 <section class="flex flex-col p-4 gap-4 bg-gray-200 dark:bg-gray-800 m-4 max-w-7xl mx-auto">
     <h2 class="text-3xl font-bold w-full text-center">Fun facts about me!</h2>
     <Dropdown title="What is my favorite color?">
@@ -91,12 +99,4 @@
         <!-- HAHAHAHAHAHAHAHAA yessir -->
     </Dropdown>
     <button class="rounded bg-red-600 text-white p-1 px-4 cursor-not-allowed" disabled>Okay, quiz me about the fun facts! (WIP)</button>
-</section>
-
-<section class="flex flex-col p-4 bg-gray-200 dark:bg-gray-800 m-4 max-w-7xl mx-auto">
-    <h2 class="text-3xl font-bold w-full text-center">Hosted Projects</h2>
-    <p>so far i just have a few things here:</p>
-    <ul class="list-disc ml-8">
-        <li><a href={resolve("/textfuscator")}>Textfuscator</a></li>
-    </ul>
 </section>

@@ -9,7 +9,7 @@
     import Dropdown from "$lib/components/Dropdown.svelte";
 </script>
 
-<div class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2">
+<main class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2">
     <h1 class="text-5xl font-bold self-center">Textfuscator</h1>
     <p>
         Textfuscator is a tool to merge text strings together into a single output,
@@ -118,4 +118,4 @@
             <p class="italic">See (link) here for Textfuscator's binary block structure for more technical information.</p>
         </Dropdown>
     </section>
-</div>
+</main>

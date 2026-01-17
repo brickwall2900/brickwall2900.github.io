@@ -7,6 +7,7 @@
     import { asset, resolve } from '$app/paths';
     import ModalDialog from "$lib/components/ModalDialog.svelte";
     import Spoiler from "$lib/components/Spoiler.svelte";
+    import Content from "$lib/components/Content.svelte";
 
     const BADGE_ASSET_URL = "/assets/badges/";
     let showingBadgeDetails = $state(false);
@@ -35,35 +36,36 @@
         }
     }
 </script>
-<section class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2 max-w-7xl mx-auto">
-    <h2 class="text-4xl self-center font-bold w-full text-center mb-1">Badges</h2>
-    <p class="self-center w-full text-center">
-        Badges are little special awards when you complete a task.
-        There are currently {getBadgeIds().length} badge(s) and there will be more to come.
-        Can you get them all?
-    </p>
-    <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
 
-    <span>Badges completed:</span>
-    <progress 
-        class="w-full bg-gray-400" 
-        value={(getBadgeIds().filter((id) => hasBadge(id)).length / getBadgeIds().length) * 100} 
-        max="100"></progress>
-    
-    <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col justify-center gap-2 p-2">
-        {#each getBadgeIds() as badgeId}
-            <button 
-                class="cursor-pointer"
-                onclick={() => showBadge(badgeId)} 
-                title={badgeId}>
-                <enhanced:img 
-                    class={"h-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
-                    src={asset(BADGE_ASSET_URL + badgeId + ".png")} 
-                    alt={getBadgeInfo(badgeId)?.name}/>
-            </button>
-        {/each}
-    </section>
-</section>
+<main>
+    <Content 
+        title="Badges" 
+        description="Badges are little special awards when you complete a task.
+            There are currently {getBadgeIds().length} badge(s) and there will be more to come.
+            Can you get them all?">
+        <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
+
+        <span>Badges completed:</span>
+        <progress 
+            class="w-full bg-gray-400" 
+            value={(getBadgeIds().filter((id) => hasBadge(id)).length / getBadgeIds().length) * 100} 
+            max="100"></progress>
+        
+        <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col justify-center gap-2 p-2">
+            {#each getBadgeIds() as badgeId}
+                <button 
+                    class="cursor-pointer"
+                    onclick={() => showBadge(badgeId)} 
+                    title={badgeId}>
+                    <enhanced:img 
+                        class={"h-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
+                        src={asset(BADGE_ASSET_URL + badgeId + ".png")} 
+                        alt={getBadgeInfo(badgeId)?.name}/>
+                </button>
+            {/each}
+        </section>
+    </Content>
+</main>
 
 {#if showingBadgeDetails && showingBadge !== undefined}
     <ModalDialog closeDialog={closeBadge} title="Badge Viewer">

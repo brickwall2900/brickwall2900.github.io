@@ -9,6 +9,8 @@
     import { browser } from '$app/environment';
     import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 	import { resolve } from "$app/paths";
+    import BadgeBanner from '$lib/badges/BadgeBanner.svelte';
+    import { giveBadge } from '$lib/badges/badges';
 
 	let { children } = $props();
 	
@@ -26,6 +28,11 @@
 			document.documentElement.classList.toggle('dark', isDarkModeEnabled);
 			localStorage.theme = isDarkModeEnabled ? "dark" : "light";
 		}
+	}
+
+	if (browser) {
+		// ermmmm
+		setTimeout(() => giveBadge("welcome"), 1000);
 	}
 </script>
 
@@ -57,6 +64,8 @@ class="bg-amber-400 hover:bg-amber-500 active:bg-amber-700 text-black dark:text-
 		<LightbulbOff class="w-full h-full" />
 	{/if}
 </button>
+
+<BadgeBanner />
 
 <div class="p-4"></div>
 

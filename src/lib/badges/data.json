@@ -9,7 +9,13 @@
         "id": "textfuscator",
         "name": "Text Under Cover",
         "description": "\"Textfuscate\" a text using Textfuscator.",
-        "hint": "Run Textfuscator for the first time."
+        "hint": "Encode with Textfuscator for the first time."
+    },
+    {
+        "id": "reverse_textfuscator",
+        "name": "Secrets Found",
+        "description": "Un-\"Textfuscate\" a text using Textfuscator.",
+        "hint": "Decode with Textfuscator for the first time."
     },
     {
         "id": "img_viewer_boo",

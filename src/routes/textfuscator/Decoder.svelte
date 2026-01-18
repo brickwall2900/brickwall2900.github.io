@@ -77,7 +77,7 @@
                 setDecodeVersionChecking(!skipVersionChecks);
                 const result = await decode(input, key);
                 output = successfulOutput = result;
-                setTimeout(() => giveBadge("textfuscator"));
+                setTimeout(() => giveBadge("reverse_textfuscator"));
             }
         } catch (e) {
             console.error(e);

@@ -40,5 +40,11 @@
         "name": "Don't Need It",
         "description": "Screw that badge in particular!",
         "hint": "Revoke a badge."
+    },
+    {
+        "id": "china",
+        "name": "Digging to China",
+        "description": "You could've used the scrollbar on the right? You did? You cheater!",
+        "hint": "Dig all the way to China."
     }
 ]

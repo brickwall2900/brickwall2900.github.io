@@ -36,6 +36,10 @@
             revokeBadge(badgeId);
         }
     }
+
+    function onChinaClick() {
+        giveBadge("china");
+    }
 </script>
 
 <main>
@@ -66,6 +70,19 @@
             {/each}
         </section>
     </Content>
+
+    <p class="mb-96000"></p>
+
+    <!-- china haha -->
+    <div class="bg-red-800 p-4">
+        <p class="self-center w-full text-center text-white"><strong>Welcome to China!</strong></p>
+        <button
+            class="self-center w-full text-center rounded bg-green-700 text-white"
+            tabindex="-1"
+            onclick={onChinaClick}>
+            Click on me to claim your award!
+        </button>
+    </div>
 </main>
 
 {#if showingBadgeDetails && showingBadge !== undefined}

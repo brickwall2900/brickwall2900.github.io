@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { GithubIcon, GlobeIcon } from "@lucide/svelte";
-
+    import Icon from '@iconify/svelte';
+    
     let { 
         links = []
     } = $props();
@@ -22,10 +22,10 @@
                 href={link} 
                 class="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-2xl sm:text-base text-xs px-2 py-1">
                 {#if isHostNameSame("GitHub", link)}
-                    <GithubIcon class="inline" />
+                    <Icon icon="mdi:github" class="inline" />
                     <p class="inline">GitHub</p>    
                 {:else}
-                    <GlobeIcon class="inline" />
+                    <Icon icon="mdi:globe" class="inline" />
                     <p class="inline">{link}</p>
                 {/if}
             </a>

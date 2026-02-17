@@ -7,10 +7,10 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
     import { browser } from '$app/environment';
-    import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 	import { resolve } from "$app/paths";
     import BadgeBanner from '$lib/badges/BadgeBanner.svelte';
     import { giveBadge } from '$lib/badges/badges';
+    import Icon from '@iconify/svelte';
 
 	let { children } = $props();
 	
@@ -63,9 +63,9 @@ onclick={() => toggleDarkMode()}
 title="Toggle Dark Mode" 
 class="bg-amber-400 hover:bg-amber-500 active:bg-amber-700 text-black dark:text-black fixed top-0 right-0 p-4 rounded-bl-2xl">
 	{#if isDarkModeEnabled}
-		<Lightbulb class="w-full h-full" />
+		<Icon icon="mdi:lightbulb" class="w-full h-full" />
 	{:else}
-		<LightbulbOff class="w-full h-full" />
+		<Icon icon="mdi:lightbulb-outline" class="w-full h-full" />
 	{/if}
 </button>
 

@@ -11,6 +11,10 @@
 
 </script>
 
+<!-- TODO: make data driven -->
+<!-- TODO: make data driven -->
+<!-- TODO: make data driven -->
+
 <main>
     <Content title="Projects I Made" description="These are the projects I actually MADE!!">
         <hr>
@@ -60,6 +64,15 @@
                     <p>It is a website in Streamlit that visualizes the tree biomass, carbon stock, and carbon sequestration potential of Quezon City, Philippines.</p>
                 </div>
                 <Image src={asset("/assets/projects/sequestree.png")} alt="Sequestree website in Streamlit." class="place-self-end" />
+            </div>
+        </ProjectItem>
+        <ProjectItem name="RMCHS Microsites" links={["https://rmchs.github.io/academics", "https://rmchs.github.io/facilities"]}>
+            <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
+                <div class="sm:col-span-2">
+                    <p>A website I made during our Work Immersion. Me and a team member was assigned to improve the website of Ramon Magsaysay (Cubao) High School.</p>
+                    <p>While I didn't make the entire website, I made parts of the website possible outsite Google Sites.</p>
+                </div>
+                <Image src={asset("/assets/projects/rmchs.png")} alt="Academics page showing the program of Science, Technology, and Engineering Program in RMCHS." class="place-self-end" />
             </div>
         </ProjectItem>
     </Content>

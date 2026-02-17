@@ -20,12 +20,12 @@
         {#each links as link}
             <a 
                 href={link} 
-                class="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-2xl sm:text-base text-xs px-2 py-1">
+                class="bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-2xl sm:text-base text-xs px-2 py-1 flex flex-row gap-2 items-center">
                 {#if isHostNameSame("GitHub", link)}
-                    <Icon icon="mdi:github" class="inline" />
+                    <Icon icon="mdi:github" class="inline size-6" />
                     <p class="inline">GitHub</p>    
                 {:else}
-                    <Icon icon="mdi:globe" class="inline" />
+                    <Icon icon="mdi:globe" class="inline size-6" />
                     <p class="inline">{link}</p>
                 {/if}
             </a>

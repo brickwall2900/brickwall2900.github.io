@@ -63,9 +63,9 @@ onclick={() => toggleDarkMode()}
 title="Toggle Dark Mode" 
 class="bg-amber-400 hover:bg-amber-500 active:bg-amber-700 text-black dark:text-black fixed top-0 right-0 p-4 rounded-bl-2xl">
 	{#if isDarkModeEnabled}
-		<Icon icon="mdi:lightbulb" class="w-full h-full" />
+		<Icon icon="mdi:lightbulb" class="size-8 mx-auto my-auto" />
 	{:else}
-		<Icon icon="mdi:lightbulb-outline" class="w-full h-full" />
+		<Icon icon="mdi:lightbulb-outline" class="size-8 mx-auto my-auto" />
 	{/if}
 </button>
 

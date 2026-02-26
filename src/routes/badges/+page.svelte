@@ -10,10 +10,13 @@
     import Content from "$lib/components/Content.svelte";
 
     const BADGE_ASSET_URL = "/assets/badges/";
+
+    let badges = $state(getBadgeIds());
     let showingBadgeDetails = $state(false);
     let showingBadgeId = $state("");
     let showingBadgeOwned = $state(false);
     let showingBadge = $state<Badge | undefined>(undefined);
+    let badgesCompleted = $state(getBadgeIds().filter((id) => hasBadge(id)).length);
 
     function showBadge(badgeId: string) {
         showingBadgeId = badgeId;
@@ -34,6 +37,8 @@
             showingBadgeDetails = false;
             giveBadge("revoked");
             revokeBadge(badgeId);
+            badges = getBadgeIds();
+            badgesCompleted = getBadgeIds().filter((id) => hasBadge(id)).length;
         }
     }
 
@@ -42,31 +47,35 @@
     }
 </script>
 
+{#snippet badgeRender(badgeId: string, badgeInfo: Badge | undefined)}
+    <button 
+        class="cursor-pointer"
+        onclick={() => showBadge(badgeId)} 
+        title={(!badgeInfo?.isSecret || hasBadge(badgeId)) ? badgeId : "secret!!"}>
+        <enhanced:img 
+            class={"h-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
+            src={(!badgeInfo?.isSecret || hasBadge(badgeId)) ? asset(BADGE_ASSET_URL + badgeId + ".png") : asset(BADGE_ASSET_URL + "mystery.png")} 
+            alt={(!badgeInfo?.isSecret || hasBadge(badgeId)) ? badgeInfo?.name : "secret!!"}/>
+    </button>
+{/snippet}
+
 <main>
     <Content 
         title="Badges" 
         description="Badges are little special awards when you complete a task.
-            There are currently {getBadgeIds().length} badge(s) and there will be more to come.
+            There are currently {badges.length} badge(s) and there will be more to come.
             There MIGHT be a badge for almost everything. Can you get them all?">
         <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
 
         <span>Badges completed:</span>
         <progress 
             class="w-full bg-gray-400" 
-            value={(getBadgeIds().filter((id) => hasBadge(id)).length / getBadgeIds().length) * 100} 
+            value={(badgesCompleted / badges.length) * 100} 
             max="100"></progress>
         
         <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col justify-center gap-2 p-2">
-            {#each getBadgeIds() as badgeId}
-                <button 
-                    class="cursor-pointer"
-                    onclick={() => showBadge(badgeId)} 
-                    title={badgeId}>
-                    <enhanced:img 
-                        class={"h-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
-                        src={asset(BADGE_ASSET_URL + badgeId + ".png")} 
-                        alt={getBadgeInfo(badgeId)?.name}/>
-                </button>
+            {#each badges as badgeId}
+                {@render badgeRender(badgeId, getBadgeInfo(badgeId))}
             {/each}
         </section>
     </Content>
@@ -85,7 +94,7 @@
     </div>
 </main>
 
-{#if showingBadgeDetails && showingBadge !== undefined}
+{#if showingBadgeDetails && (!showingBadge?.isSecret || showingBadgeOwned) && showingBadge !== undefined}
     <ModalDialog closeDialog={closeBadge} title="Badge Viewer">
         <article class="p-2 flex flex-row gap-2">
             <aside>

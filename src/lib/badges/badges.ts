@@ -5,14 +5,18 @@ export interface Badge {
     id: string,
     name: string,
     description: string,
-    hint: string
+    hint: string,
+    isSecret: boolean
 }
 export type BadgeNotifyHandler = (badge: Badge) => void;
 
-function readBadgeData(data: Array<Badge>): Map<string, Badge> {
+function readBadgeData(data: any): Map<string, Badge> {
     const registry = new Map<string, Badge>();
-    data.forEach((value) => {
+    data.forEach((value: Badge) => {
         registry.set(value.id, value);
+        if (value.isSecret === undefined) {
+            value.isSecret = false;
+        }
     });
     return registry;
 }

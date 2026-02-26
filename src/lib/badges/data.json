@@ -45,6 +45,7 @@
         "id": "china",
         "name": "Digging to China",
         "description": "You could've used the scrollbar on the right? You did? You cheater!",
-        "hint": "Dig all the way to China."
+        "hint": "Dig all the way to China.",
+        "isSecret": true
     }
 ]

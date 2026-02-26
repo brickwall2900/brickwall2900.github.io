@@ -3,7 +3,7 @@
         title = undefined,
         description = undefined,
         className = "",
-        children
+        children = undefined
     } = $props();
 </script>
 

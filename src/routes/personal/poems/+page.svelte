@@ -25,5 +25,6 @@
     <section>
         {@render poemEntry("🔒 her guiding light", "/personal/hyperpoetry")}
         {@render poemEntry("🌹 flower picking", "/personal/poems/flower-picking")}
+        {@render poemEntry("🌱 the gardener", "/personal/poems/the-gardener")}
     </section>
 </Content>

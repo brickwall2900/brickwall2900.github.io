@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Poetry</title> 
+</svelte:head>
+
 <script lang="ts">
     import Content from '$lib/components/Content.svelte';
     import { resolve } from "$app/paths";

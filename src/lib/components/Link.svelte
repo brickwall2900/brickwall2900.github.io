@@ -1,5 +1,5 @@
 <script lang="ts">
-    let { href, className, children }: { href: string, className: string, children?: any } = $props();
+    let { href, className, children }: { href: string, className?: string, children?: any } = $props();
 </script>
 
 <!-- amazing i have to use a component for consistent styles -->

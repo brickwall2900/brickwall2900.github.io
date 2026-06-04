@@ -107,5 +107,3 @@
 *.js     text
 *.css    text
 *.html   text
-*.json   text
-*.md     text diff=markdown

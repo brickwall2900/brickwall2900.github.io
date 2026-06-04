@@ -4,7 +4,8 @@
     <meta name="google-site-verification" content="ft2V6Ak_UxJv8bkfeytbSQ3X4Q1NlqIe2ghcMLLT8Ss" />
 </svelte:head>
 <script lang="ts">
-    import { asset, assets, base, resolve, resolveRoute } from '$app/paths';
+    import { doResolve } from '$lib/common/doresolve';
+    import Button from '$lib/components/Button.svelte';
     import Content from '$lib/components/Content.svelte';
     import Dropdown from '$lib/components/Dropdown.svelte';
     import Link from '$lib/components/Link.svelte';
@@ -17,15 +18,15 @@
     <h1 class="text-xl font-bold">six seven</h1>
 
     <Content>
-        <p>I am <code>brickwall2900</code>, someone who actively develops stuff... because they love it.</p>
+        <p>I am <code>Marsh (brickwall2900)</code>, someone who actively develops stuff... because they love it.</p>
         <!-- okay what the hell -->
 
-        <p>I use Java as my main programming language, but I also use Python, JavaScript/TypeScript, Lua... maybe a bit of C.</p>
+        <p>I use Java as my main programming language, but I also use Python, JavaScript/TypeScript, Lua... maybe even a bit of C if I feel like it.</p>
     </Content>
 
     <Content title="Hosted Projects" description="so far i just have a few things here...">
         <ul class="list-disc ml-8">
-            <li><Link href={resolve("/textfuscator")}>Textfuscator</Link></li>
+            <li><Link href={doResolve("/textfuscator")}>Textfuscator</Link></li>
         </ul>
     </Content>
 
@@ -160,6 +161,6 @@
                 <em><p>I never got past making the kernel though.</p></em>
             </Dropdown>
         </Dropdown>
-        <button class="rounded bg-red-600 text-white p-1 px-4 cursor-not-allowed" disabled>Okay, quiz me about the fun facts! (WIP)</button>
+        <Button class="rounded bg-red-600 text-white p-1 px-4 cursor-not-allowed" disabled>Okay, quiz me about the fun facts! (WIP)</Button>
     </Content>
 </main>

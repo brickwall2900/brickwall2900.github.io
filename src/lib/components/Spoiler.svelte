@@ -1,5 +1,6 @@
 <script lang="ts">
     import { giveBadge } from "$lib/badges/badges";
+    import Button from "./Button.svelte";
 
     let { children } = $props();
     let spoilerShown = $state(false);
@@ -12,12 +13,12 @@
 </script>
 
 {#if !spoilerShown}
-    <button 
-        class="blur-[6px] hover:blur-xs text-left" 
+    <Button 
+        class="blur-[6px] hover:blur-xs text-left cursor-pointer" 
         title="View spoiler"
         onclick={onSpoilerClicked}>
         {@render children?.()}
-    </button>
+    </Button>
 {:else}
     {@render children?.()}
 {/if}

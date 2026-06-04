@@ -1,13 +1,23 @@
 <script lang="ts">
+    import { appendClassname } from "$lib/common/classname";
+    import type { Snippet } from "svelte";
+
+    interface Props {
+        title?: string,
+        description?: string,
+        class?: string,
+        children?: Snippet
+    }
+
     let {
         title = undefined,
         description = undefined,
-        className = "",
+        class: className = undefined,
         children = undefined
-    } = $props();
+    }: Props = $props();
 </script>
 
-<section class={"flex flex-col bg-gray-200 dark:bg-gray-900 m-4 p-4 gap-2 max-w-7xl mx-auto " + className}>
+<section class={appendClassname("flex flex-col bg-gray-200 dark:bg-gray-900 m-4 p-4 gap-2 max-w-7xl mx-auto", className)}>
     {#if title !== undefined}
         <h2 class="text-4xl self-center font-bold w-full text-center mb-1">{title}</h2>
     {/if}

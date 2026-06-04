@@ -1,6 +1,11 @@
 <script lang="ts">
     import { giveBadge } from "$lib/badges/badges";
     import { downloadFile, uploadFile } from "$lib/common/downloadHelper";
+    import Button from "$lib/components/Button.svelte";
+    import CheckBox from "$lib/components/CheckBox.svelte";
+    import Spinner from "$lib/components/Spinner.svelte";
+    import TextBox from "$lib/components/TextBox.svelte";
+    import TextField from "$lib/components/TextField.svelte";
     import { decode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, decodeFromBinary, encodeBinaryToString, setDecodeVersionChecking } from "$lib/textfuscator/textfuscator";
 
     let key = $state("");
@@ -92,26 +97,26 @@
 <h2 class="text-3xl self-center font-bold">Decoder</h2>
 
 <div class="flex flex-col bg-gray-400 dark:bg-gray-700 p-4 gap-2">
-    <input bind:value={key} class="bg-white dark:bg-gray-600 border border-black p-1" placeholder="Key" type="text">
-    <textarea bind:value={input} class="bg-white dark:bg-gray-600 border border-black p-1" placeholder="Input"></textarea>
+    <TextField bind:value={key} placeholder="Key" type="text"></TextField>
+    <TextBox bind:value={input} placeholder="Input"></TextBox>
 </div>
 
 <div class="grid grid-cols-3 grid-flow-col auto-cols-auto gap-2">
     <!-- starting to understand that tailwind declarations are bigger than mt. fuji -->
-    <button onclick={() => onUploadFile().catch((e) => printFeedback(e))} class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800 col-start-1 col-end-3">Load from Binary</button>
-    <button onclick={() => onRun().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 col-start-3 col-end-4 py-2">Run</button>
+    <Button onclick={() => onUploadFile().catch((e) => printFeedback(e))} class="col-start-1 col-end-3">Load from Binary</Button>
+    <Button onclick={() => onRun().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 col-start-3 col-end-4 py-2">Run</Button>
 </div>
 
 <details>
     <summary>Advanced Options</summary>
     <div class="flex flex-col gap-1 ml-8">
-        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
+        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
             <p>Maximum Memory Size (Bytes):</p>
-            <input type="number" class="bg-white dark:bg-gray-600 border border-black" bind:value={maxMemorySize} />
+            <Spinner type="number" bind:value={maxMemorySize} />
         </div>
-        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
+        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
             <p>Skip version checking?</p>
-            <input type="checkbox" class="bg-white border col-start-2 col-end-4 object-right" bind:checked={skipVersionChecks} />
+            <CheckBox type="checkbox" bind:value={skipVersionChecks} />
         </div>
     </div>
 </details>
@@ -119,8 +124,8 @@
 <p class="text-red-600 font-bold">{feedback}</p>
 
 <p>Output:</p>
-<textarea readonly class="bg-white dark:bg-gray-600 border border-black p-1">{output}</textarea>
-<div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
-    <button onclick={() => onCopyText()} disabled={copyButtonDisabled} class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800 py-1">{copyButtonText}</button>
-    <button onclick={() => requestDownloadToFile().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="text-white bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 py-1">Run and Download to Binary</button>
+<TextBox readonly>{output}</TextBox>
+<div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
+    <Button onclick={() => onCopyText()} disabled={copyButtonDisabled} class="py-1">{copyButtonText}</Button>
+    <Button onclick={() => requestDownloadToFile().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="text-white bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 py-1">Run and Download to Binary</Button>
 </div>

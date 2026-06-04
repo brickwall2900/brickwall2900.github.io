@@ -25,7 +25,7 @@
                     <p>A desktop app built in Java that simply stores birthdays and reminds you of upcoming ones.</p>
                     <p>I made this simply because I tend to forget my friends' birthdays. (Please don't take that the wrong way!)</p>
                 </div>
-                <Image src={asset("/assets/projects/birthdayReminder.png")} alt="Birthday Reminder's window." class="place-self-end" />
+                <Image src={asset("/assets/projects/birthdayReminder.png")} alt="Birthday Reminder's window." requiresImageViewer class="place-self-end" />
             </div>
         </ProjectItem>
         <ProjectItem name="1/10000 chance for Withered Foxy Jumpscare every second" links={["https://github.com/brickwall2900/Java-Foxy-Jumpscare"]}>
@@ -36,7 +36,7 @@
                     <p>For every second, a jumpscare might appear in your screen in every 1 in 10000 chance.</p>
                     <p>In this application, there's only one built-in jumpscare: foxy himself. However, other jumpscares can be added via a configuration file.</p>
                 </div>
-                <Image src={asset("/assets/projects/foxy.png")} alt="Birthday Reminder's window." class="place-self-end" />
+                <Image src={asset("/assets/projects/foxy.png")} alt="Birthday Reminder's window." requiresImageViewer class="place-self-end" />
             </div>
         </ProjectItem>
         <ProjectItem name="brickwall2900.github.io" links={["https://github.com/brickwall2900/brickwall2900.github.io", "https://brickwall2900.github.io"]}>
@@ -50,7 +50,7 @@
                     <p>A text obfuscation tool designed to obfuscate MULTIPLE texts onto a SINGLE text by a key-based retrival system.</p>
                     <p>It can obfuscate text by XOR and AES encryption.</p>
                 </div>
-                <Image src={asset("/assets/projects/textfuscator.png")} alt="Textfuscator" class="place-self-end" />
+                <Image src={asset("/assets/projects/textfuscator.png")} alt="Textfuscator" requiresImageViewer class="place-self-end" />
             </div>
         </ProjectItem>
     </Content>
@@ -63,7 +63,7 @@
                     <p>A website I have helped made for my friend in their research and their science fair competition!</p>
                     <p>It is a website in Streamlit that visualizes the tree biomass, carbon stock, and carbon sequestration potential of Quezon City, Philippines.</p>
                 </div>
-                <Image src={asset("/assets/projects/sequestree.png")} alt="Sequestree website in Streamlit." class="place-self-end" />
+                <Image src={asset("/assets/projects/sequestree.png")} alt="Sequestree website in Streamlit." requiresImageViewer class="place-self-end" />
             </div>
         </ProjectItem>
         <ProjectItem name="RMCHS Microsites" links={["https://rmchs.github.io/academics", "https://rmchs.github.io/facilities"]}>
@@ -72,7 +72,7 @@
                     <p>A website I made during our Work Immersion. Me and a team member was assigned to improve the website of Ramon Magsaysay (Cubao) High School.</p>
                     <p>While I didn't make the entire website, I made parts of the website possible outsite Google Sites.</p>
                 </div>
-                <Image src={asset("/assets/projects/rmchs.png")} alt="Academics page showing the program of Science, Technology, and Engineering Program in RMCHS." class="place-self-end" />
+                <Image src={asset("/assets/projects/rmchs.png")} alt="Academics page showing the program of Science, Technology, and Engineering Program in RMCHS." requiresImageViewer class="place-self-end" />
             </div>
         </ProjectItem>
     </Content>

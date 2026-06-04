@@ -41,7 +41,7 @@ export function setMaxMemoryBufferSize(size: number): void {
         console.log("Resized Textfuscator memory buffer to " + String(size) + " bytes");
 
         if (isUsingFirefox && !warnedUsingFirefox) {
-            alert("You are using Firefox. " + 
+            console.warn("You are using Firefox. " + 
                 "Resizing may allocate the maximum buffer size instead of the minimum size, " + 
                 "which can affect performance or memory usage. To save memory, consider using Chrome or Edge.");
             warnedUsingFirefox = true;

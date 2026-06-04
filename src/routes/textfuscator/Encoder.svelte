@@ -4,6 +4,9 @@
     import { encode, setMaxMemoryBufferSize, DEFAULT_MAX_MEMORY_SIZE, encodeToBinary, encodeBinaryToString } from "$lib/textfuscator/textfuscator";
     import { downloadFile } from "$lib/common/downloadHelper";
     import { giveBadge } from "$lib/badges/badges";
+    import TextBox from "$lib/components/TextBox.svelte";
+    import Button from "$lib/components/Button.svelte";
+    import Spinner from "$lib/components/Spinner.svelte";
 
     let pairs = $state<{id: string, pair: IKeyInputPair}[]>([]);
     let feedback = $state("");
@@ -97,18 +100,18 @@
         onRemoveClicked={() => onRemovePair(pair.id)} />
 {/each}
 <div class="grid grid-cols-3 grid-flow-col auto-cols-auto gap-2">
-    <button onclick={() => onAddPair()} class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600">Add key/input pair</button>
+    <Button onclick={() => onAddPair()}>Add key/input pair</Button>
     <!-- UMMM WAIT I DON'T KNOW WHAT THIS BUTTON DOES ;-; -->
     <!-- <button class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800">Load from Binary</button> -->
-    <button onclick={() => onRun().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 col-start-3 col-end-4 py-2">Run</button>
+    <Button onclick={() => onRun().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="bg-green-600 text-white hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 col-start-3 col-end-4 py-2">Run</Button>
 </div>
 
 <details>
     <summary>Advanced Options</summary>
     <div class="flex flex-col gap-1 ml-8">
-        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
+        <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
             <p>Maximum Memory Size (Bytes):</p>
-            <input type="number" class="bg-white dark:bg-gray-600 border border-black" bind:value={maxMemorySize} />
+            <Spinner bind:value={maxMemorySize} />
         </div>
     </div>
 </details>
@@ -116,8 +119,8 @@
 <p class="text-red-600 font-bold">{feedback}</p>
 
 <p>Output:</p>
-<textarea readonly class="bg-white dark:bg-gray-600 border border-black p-1">{output}</textarea>
-<div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2">
-    <button onclick={() => onCopyText()} disabled={copyButtonDisabled} class="bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800 py-1">{copyButtonText}</button>
-    <button onclick={() => requestDownloadToFile().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="text-white bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 py-1">Run and Download as Binary</button>
+<TextBox readonly>{output}</TextBox>
+<div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
+    <Button onclick={() => onCopyText()} disabled={copyButtonDisabled} class="py-1">{copyButtonText}</Button>
+    <Button onclick={() => requestDownloadToFile().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="text-white bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 py-1">Run and Download as Binary</Button>
 </div>

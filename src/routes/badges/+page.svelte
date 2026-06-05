@@ -11,24 +11,25 @@
 
     const BADGE_ASSET_URL = "/assets/badges/";
 
-    let badges = $state(getBadgeIds());
+    let badges: string[] | null = $state(getBadgeIds());
     let showingBadgeDetails = $state(false);
     let showingBadgeId = $state("");
     let showingBadgeOwned = $state(false);
-    let showingBadge = $state<Badge | undefined>(undefined);
-    let badgesCompleted = $state(getBadgeIds().filter((id) => hasBadge(id)).length);
+    let showingBadge = $state<Badge>();
+    let badgesCompleted: number | null = $state<number | null>(getBadgeIds().filter((id) => hasBadge(id)).length);
 
     function showBadge(badgeId: string) {
         showingBadgeId = badgeId;
         showingBadge = getBadgeInfo(badgeId);
         showingBadgeOwned = hasBadge(badgeId);
-        showingBadgeDetails = true;
+        if (showingBadge !== undefined && !showingBadge?.isSecret || showingBadgeOwned) {
+            showingBadgeDetails = true;
+        }
     }
 
-    function closeBadge(e: Event) {
-        if (e.target === e.currentTarget) {
-            showingBadgeDetails = false;
-        }
+    function closeBadge(e: Event): boolean {
+        showingBadgeDetails = false;
+        return true;
     }
 
     function confirmRevokeBadge(badgeId: string) {
@@ -44,6 +45,14 @@
     function onChinaClick() {
         giveBadge("china");
     }
+
+    badges = null;
+    badgesCompleted = null;
+
+    $effect(() => {
+        badges = getBadgeIds();
+        badgesCompleted = getBadgeIds().filter((id) => hasBadge(id)).length;
+    });
 </script>
 
 {#snippet badgeRender(badgeId: string, badgeInfo: Badge | undefined)}
@@ -62,15 +71,17 @@
     <Content 
         title="Badges" 
         description="Badges are little special awards when you complete a task.
-            There are currently {badges.length} badge(s) and there will be more to come.
+            There are currently {badges?.length} badge(s) and there will be more to come.
             There MIGHT be a badge for almost everything. Can you get them all?">
         <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
 
         <span>Badges completed:</span>
-        <progress 
-            class="w-full bg-gray-400" 
-            value={(badgesCompleted / badges.length) * 100} 
-            max="100"></progress>
+        {#if badgesCompleted !== null && badges !== null}
+            <progress 
+                class="w-full bg-gray-400" 
+                value={(badgesCompleted / badges.length) * 100} 
+                max="100"></progress>
+        {/if}
         
         <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col justify-center gap-2 p-2">
             {#each badges as badgeId}
@@ -93,28 +104,26 @@
     </div>
 </main>
 
-{#if (!showingBadge?.isSecret || showingBadgeOwned) && showingBadge !== undefined}
-    <ModalDialog bind:showing={showingBadgeDetails} ondialogclosed={closeBadge} title="Badge Viewer">
-        <aside>
-            <enhanced:img 
-                class={"h-16 w-16 m-2 border pointer-events-none dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 
-                src={asset(BADGE_ASSET_URL + showingBadgeId + ".png")} 
-                alt={showingBadge.name}/>
-        </aside>
-        <main>
-            <p>Name: <strong>{showingBadge.name}</strong></p>
-            <p>{showingBadgeOwned ? showingBadge.description : "???"}</p>
+<ModalDialog bind:showing={showingBadgeDetails} ondialogclosed={closeBadge} title="Badge Viewer">
+    <aside>
+        <enhanced:img 
+            class={"h-16 w-16 m-2 border pointer-events-none dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 
+            src={asset(BADGE_ASSET_URL + showingBadgeId + ".png")} 
+            alt={showingBadge?.name}/>
+    </aside>
+    <main>
+        <p>Name: <strong>{showingBadge?.name}</strong></p>
+        <p>{showingBadgeOwned ? showingBadge?.description : "???"}</p>
+        <br>
+        <p>Hint: <Spoiler><em>{showingBadge?.hint}</em></Spoiler></p>
+        <p>Owned? <strong class={showingBadgeOwned ? "text-green-500" : "text-red-500"}>{showingBadgeOwned ? "YES" : "NO"}</strong></p>
+        {#if showingBadgeOwned}
             <br>
-            <p>Hint: <Spoiler><em>{showingBadge.hint}</em></Spoiler></p>
-            <p>Owned? <strong class={showingBadgeOwned ? "text-green-500" : "text-red-500"}>{showingBadgeOwned ? "YES" : "NO"}</strong></p>
-            {#if showingBadgeOwned}
-                <br>
-                <button 
-                    class="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded w-full text-white font-bold" 
-                    onclick={() => confirmRevokeBadge(showingBadgeId)}>
-                    REVOKE BADGE
-                </button>
-            {/if}
-        </main>
-    </ModalDialog>
-{/if}
+            <button 
+                class="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded w-full text-white font-bold" 
+                onclick={() => confirmRevokeBadge(showingBadgeId)}>
+                REVOKE BADGE
+            </button>
+        {/if}
+    </main>
+</ModalDialog>

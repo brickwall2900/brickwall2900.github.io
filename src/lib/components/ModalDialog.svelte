@@ -4,7 +4,7 @@
     import type { Snippet } from "svelte";
 
     interface Props {
-        ondialogclosed?: ((e: Event) => void),
+        ondialogclosed?: ((e: Event) => boolean),
         title?: string,
         showing?: boolean,
         children: Snippet
@@ -18,9 +18,16 @@
     }: Props = $props();
 
     function tryClosingTheDamnDialog(e: Event) {
-        if (ondialogclosed && e.target === e.currentTarget) {
-            ondialogclosed(e);
+        if (e.target !== e.currentTarget) {
+            return;
         }
+
+        if (ondialogclosed) {
+            if (!ondialogclosed(e)) {
+                return;
+            }
+        }
+        
         showing = false;
     }
 </script>

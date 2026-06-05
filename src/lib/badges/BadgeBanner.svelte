@@ -3,6 +3,7 @@
     import { flip } from "svelte/animate";
     import { asset, resolve } from '$app/paths';
     import { giveBadge, setBadgeNotifyHandler, type Badge } from "./badges";
+    import { settings } from "$lib/common/settings";
 
     const BADGE_ASSET_URL = "assets/badges/";
     type ActiveNotification = Badge & { uid: number };
@@ -12,16 +13,18 @@
     let uidCounter = 0;
 
     function onBadgeGotten(badge: Badge) {
-        const currentUid = uidCounter++;
-        const newNotification: ActiveNotification = { 
-            ...badge, 
-            uid: currentUid 
-        };
-        notifications = [...notifications, newNotification];
+        if (settings.bagdeNotifications) {
+            const currentUid = uidCounter++;
+            const newNotification: ActiveNotification = { 
+                ...badge, 
+                uid: currentUid 
+            };
+            notifications = [...notifications, newNotification];
 
-        setTimeout(() => {
-            removeNotification(currentUid);
-        }, 5000);
+            setTimeout(() => {
+                removeNotification(currentUid);
+            }, 5000);
+        }
     }
 
     function removeNotification(uid: number) {

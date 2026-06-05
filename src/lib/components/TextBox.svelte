@@ -19,4 +19,4 @@
     // and i gotta paste this shit 50 times bruh moments
 </script>
 
-<textarea bind:value={value} class={appendClassname("bg-white dark:bg-gray-600 border border-black p-1", className)} placeholder={placeholder} {...others}></textarea>
+<textarea bind:value={value} class={appendClassname("bg-input-bg border border-input-border p-1", className)} placeholder={placeholder} {...others}>{value}</textarea>

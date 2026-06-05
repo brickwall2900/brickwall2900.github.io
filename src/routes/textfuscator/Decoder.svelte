@@ -96,7 +96,7 @@
 
 <h2 class="text-3xl self-center font-bold">Decoder</h2>
 
-<div class="flex flex-col bg-gray-400 dark:bg-gray-700 p-4 gap-2">
+<div class="flex flex-col bg-gray-400 dark:bg-gray-900 p-4 gap-2">
     <TextField bind:value={key} placeholder="Key" type="text"></TextField>
     <TextBox bind:value={input} placeholder="Input"></TextBox>
 </div>
@@ -124,7 +124,7 @@
 <p class="text-red-600 font-bold">{feedback}</p>
 
 <p>Output:</p>
-<TextBox readonly>{output}</TextBox>
+<TextBox bind:value={output} readonly></TextBox>
 <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
     <Button onclick={() => onCopyText()} disabled={copyButtonDisabled} class="py-1">{copyButtonText}</Button>
     <Button onclick={() => requestDownloadToFile().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="text-white bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 py-1">Run and Download to Binary</Button>

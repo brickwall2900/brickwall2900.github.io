@@ -26,7 +26,7 @@
 
 <button onclick={onActualClick} 
         disabled={disabled}
-        class={appendClassname("bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-600 disabled:bg-gray-800", className)}
+        class={appendClassname("bg-button border-2 border-button-border hover:bg-button-hover active:bg-button-active disabled:bg-button-disabled", className)}
         {...others}>
         {@render children?.()}
 </button>

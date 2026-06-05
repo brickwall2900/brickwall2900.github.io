@@ -119,7 +119,7 @@
 <p class="text-red-600 font-bold">{feedback}</p>
 
 <p>Output:</p>
-<TextBox readonly>{output}</TextBox>
+<TextBox bind:value={output} readonly></TextBox>
 <div class="grid grid-cols-2 grid-flow-col auto-cols-auto gap-2 items-center">
     <Button onclick={() => onCopyText()} disabled={copyButtonDisabled} class="py-1">{copyButtonText}</Button>
     <Button onclick={() => requestDownloadToFile().catch((e) => printFeedback(e))} disabled={runButtonDisabled} class="text-white bg-green-600 hover:bg-green-700 active:bg-green-800 disabled:bg-green-300 py-1">Run and Download as Binary</Button>

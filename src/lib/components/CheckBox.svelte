@@ -18,4 +18,4 @@
     }: Props = $props();
 </script>
 
-<input bind:checked={value} class={appendClassname("bg-white dark:bg-gray-600 border border-black p-1", className)} placeholder={placeholder} type="checkbox" {...others}>
+<input bind:checked={value} class={appendClassname("bg-input-bg hover:bg-input-hover active:bg-input-active border border-input-border p-1", className)} placeholder={placeholder} type="checkbox" {...others}>

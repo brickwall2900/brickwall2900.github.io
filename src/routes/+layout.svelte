@@ -19,13 +19,14 @@
 	let isDarkModeEnabled = $state(false);
 	if (browser) {
 		localStorage = browserLocalStorage;
-		isDarkModeEnabled = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+		isDarkModeEnabled = localStorage.theme === 'dark' || 
+			(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
 	}
 	
 	function toggleDarkMode() {
 		if (browser) {
 			isDarkModeEnabled = !isDarkModeEnabled;
-			document.documentElement.classList.toggle('dark', isDarkModeEnabled);
+			document.documentElement.setAttribute("data-theme", isDarkModeEnabled ? "dark" : "light");
 			localStorage.theme = isDarkModeEnabled ? "dark" : "light";
 			giveBadge("dark_mode_toggle");
 		}

@@ -3,6 +3,7 @@
     <!-- google SEO verification heheheheehhe -->
     <meta name="google-site-verification" content="ft2V6Ak_UxJv8bkfeytbSQ3X4Q1NlqIe2ghcMLLT8Ss" />
 </svelte:head>
+
 <script lang="ts">
     import { doResolve } from '$lib/common/doresolve';
     import Button from '$lib/components/Button.svelte';

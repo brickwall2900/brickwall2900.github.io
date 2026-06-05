@@ -1,4 +1,43 @@
 @plugin '@tailwindcss/typography';
 @import 'tailwindcss';
+@import 'themes';
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+    --color-content: var(--content-bg-col);
+    --color-content-border: var(--content-border-col);
+
+    --color-content-text: var(--text-main);
+
+    --color-button: var(--button-bg-col);
+    --color-button-hover: var(--button-bg-hover-col);
+    --color-button-active: var(--button-bg-active-col);
+    --color-button-disabled: var(--button-bg-disabled-col);
+    --color-button-border: var(--button-border-col);
+
+    --color-input-bg: var(--input-bg-col);
+    --color-input-border: var(--input-border-col);
+    --color-input-hover: var(--input-bg-hover-col);
+    --color-input-active: var(--input-bg-active-col);
+}
+
+@layer components {
+    .combobox {
+        background-color: var(--color-white);
+
+        border-color: var(--color-black);
+        border-style: var(--tw-border-style);
+        border-width: 1px;
+
+        padding: calc(var(--spacing) * 1);
+
+        @variant dark {
+            background-color: var(--color-gray-800);
+
+            @variant hover, focus {
+                background-color: var(--color-gray-900);
+            }
+        }
+    }
+}

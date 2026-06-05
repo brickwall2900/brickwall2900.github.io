@@ -18,4 +18,4 @@
     }: Props = $props();
 </script>
 
-<input bind:value={value} class={appendClassname("bg-white dark:bg-gray-600 border border-black p-1", className)} placeholder={placeholder} type="text" {...others}>
+<input bind:value={value} class={appendClassname("bg-input-bg border border-input-border p-1", className)} placeholder={placeholder} type="text" {...others}>

@@ -8,10 +8,10 @@
     import { MAJOR_VERSION, MINOR_VERSION } from "$lib/textfuscator/textfuscator";
     import Dropdown from "$lib/components/Dropdown.svelte";
     import Link from "$lib/components/Link.svelte";
+    import Content from "$lib/components/Content.svelte";
 </script>
 
-<div class="flex flex-col bg-gray-200 dark:bg-gray-800 m-4 p-4 gap-2">
-    <h1 class="text-5xl font-bold self-center">Textfuscator</h1>
+<Content title="Textfuscator">
     <p>
         Textfuscator is a tool to merge text strings together into a single output,
         given a pair of "keys" and "inputs".
@@ -119,4 +119,4 @@
             <p class="italic">See (link) here for Textfuscator's binary block structure for more technical information.</p>
         </Dropdown>
     </section>
-</div>
+</Content>

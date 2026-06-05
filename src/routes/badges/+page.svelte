@@ -26,7 +26,6 @@
     }
 
     function closeBadge(e: Event) {
-        console.log(e.target + " " + e.currentTarget)
         if (e.target === e.currentTarget) {
             showingBadgeDetails = false;
         }
@@ -94,30 +93,28 @@
     </div>
 </main>
 
-{#if showingBadgeDetails && (!showingBadge?.isSecret || showingBadgeOwned) && showingBadge !== undefined}
-    <ModalDialog closeDialog={closeBadge} title="Badge Viewer">
-        <article class="p-2 flex flex-row gap-2">
-            <aside>
-                <enhanced:img 
-                    class={"h-16 w-16 m-2 border pointer-events-none dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 
-                    src={asset(BADGE_ASSET_URL + showingBadgeId + ".png")} 
-                    alt={showingBadge.name}/>
-            </aside>
-            <main>
-                <p>Name: <strong>{showingBadge.name}</strong></p>
-                <p>{showingBadgeOwned ? showingBadge.description : "???"}</p>
+{#if (!showingBadge?.isSecret || showingBadgeOwned) && showingBadge !== undefined}
+    <ModalDialog bind:showing={showingBadgeDetails} ondialogclosed={closeBadge} title="Badge Viewer">
+        <aside>
+            <enhanced:img 
+                class={"h-16 w-16 m-2 border pointer-events-none dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 
+                src={asset(BADGE_ASSET_URL + showingBadgeId + ".png")} 
+                alt={showingBadge.name}/>
+        </aside>
+        <main>
+            <p>Name: <strong>{showingBadge.name}</strong></p>
+            <p>{showingBadgeOwned ? showingBadge.description : "???"}</p>
+            <br>
+            <p>Hint: <Spoiler><em>{showingBadge.hint}</em></Spoiler></p>
+            <p>Owned? <strong class={showingBadgeOwned ? "text-green-500" : "text-red-500"}>{showingBadgeOwned ? "YES" : "NO"}</strong></p>
+            {#if showingBadgeOwned}
                 <br>
-                <p>Hint: <Spoiler><em>{showingBadge.hint}</em></Spoiler></p>
-                <p>Owned? <strong class={showingBadgeOwned ? "text-green-500" : "text-red-500"}>{showingBadgeOwned ? "YES" : "NO"}</strong></p>
-                {#if showingBadgeOwned}
-                    <br>
-                    <button 
-                        class="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded w-full text-white font-bold" 
-                        onclick={() => confirmRevokeBadge(showingBadgeId)}>
-                        REVOKE BADGE
-                    </button>
-                {/if}
-            </main>
-        </article>
+                <button 
+                    class="bg-red-600 hover:bg-red-700 active:bg-red-800 rounded w-full text-white font-bold" 
+                    onclick={() => confirmRevokeBadge(showingBadgeId)}>
+                    REVOKE BADGE
+                </button>
+            {/if}
+        </main>
     </ModalDialog>
 {/if}

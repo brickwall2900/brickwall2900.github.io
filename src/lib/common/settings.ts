@@ -28,7 +28,8 @@ export function loadSettings() {
     let theme: string = browser ? getFromLocalStorage("theme") || 
 		(!(isInLocalStorage("theme")) && window.matchMedia('(prefers-color-scheme: dark)').matches) && "dark" : "dark";
     settings.theme = theme;
-    settings.bagdeNotifications = getFromLocalStorage("badgeNotifications") === "true";
+    let badgeNotifs: string | undefined = getFromLocalStorage("badgeNotifications");
+    settings.bagdeNotifications = badgeNotifs !== undefined ? badgeNotifs === "true" : true;
 }
 
 function applyTheme() {

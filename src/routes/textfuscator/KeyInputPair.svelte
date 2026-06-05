@@ -1,8 +1,9 @@
 <script lang="ts">
     import Button from "$lib/components/Button.svelte";
     import CheckBox from "$lib/components/CheckBox.svelte";
-import TextBox from "$lib/components/TextBox.svelte";
-import TextField from "$lib/components/TextField.svelte";
+    import ComboBox from "$lib/components/ComboBox.svelte";
+    import TextBox from "$lib/components/TextBox.svelte";
+    import TextField from "$lib/components/TextField.svelte";
 
     let { 
         key = $bindable(), 
@@ -21,11 +22,7 @@ import TextField from "$lib/components/TextField.svelte";
     <TextBox bind:value={input} placeholder="Input"></TextBox>
     <div class="grid grid-cols-3 grid-flow-col auto-cols-auto items-center">
         <p class="col-start-1 col-end-2">Obfuscation mode:</p>
-        <select bind:value={mode} class="bg-input-bg border hover:bg-input-hover active:bg-input-active border-input-border col-start-2 col-end-4 p-1">
-            <option value="XOR">XOR</option>
-            <option value="AES_GCM">AES_GCM</option>
-            <option value="AES_GCM_PBKDF2">AES_GCM_PBKDF2</option>
-        </select>
+        <ComboBox bind:value={mode} options={["XOR", "AES_GCM", "AES_GCM_PBKDF2"]} />
     </div>
     <div class="grid grid-cols-3 grid-flow-col auto-cols-auto items-center">
         <p class="col-start-1 col-end-2">Compressed:</p>

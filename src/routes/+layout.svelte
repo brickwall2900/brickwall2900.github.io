@@ -5,11 +5,12 @@
 
 <script lang="ts">
 	import './layout.css';
+	import IconLightbulb from '~icons/mdi/lightbulb'
+	import IconLightbulbOutline from '~icons/mdi/lightbulb-outline'
 	import favicon from '$lib/assets/favicon.svg';
     import { browser } from '$app/environment';
     import BadgeBanner from '$lib/badges/BadgeBanner.svelte';
     import { giveBadge } from '$lib/badges/badges';
-    import Icon from '@iconify/svelte';
     import { doResolve } from '$lib/common/doresolve';
 
 	let { children } = $props();
@@ -65,9 +66,9 @@ onclick={() => toggleDarkMode()}
 title="Toggle Dark Mode" 
 class="bg-amber-400 hover:bg-amber-500 active:bg-amber-700 text-black dark:text-black fixed top-0 right-0 p-4 rounded-bl-2xl">
 	{#if isDarkModeEnabled}
-		<Icon icon="mdi:lightbulb" class="size-8 mx-auto my-auto" />
+		<IconLightbulb class="size-8 mx-auto my-auto" />
 	{:else}
-		<Icon icon="mdi:lightbulb-outline" class="size-8 mx-auto my-auto" />
+		<IconLightbulbOutline class="size-8 mx-auto my-auto" />
 	{/if}
 </button>
 

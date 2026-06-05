@@ -12,7 +12,6 @@
     import { giveBadge } from '$lib/badges/badges';
     import { doResolve } from '$lib/common/doresolve';
     import SettingsDialog from './SettingsDialog.svelte';
-    import { getFromLocalStorage, isInLocalStorage } from '$lib/common/localstorage';
     import { loadSettings } from '$lib/common/settings';
 
 	let { children } = $props();
@@ -32,6 +31,10 @@
 			giveBadge("window_resize");
 		}
 	}
+
+	// load settings early step;
+	// i do this so that SettingsDialog's effect() will save the loaded settings
+	// without this, everything will go back to the default settings in settings.ts
 	loadSettings();
 
 	$effect(() => {

@@ -1,16 +1,19 @@
 <script lang="ts">
 	import { fade, fly, slide } from "svelte/transition";
     import Button from "./Button.svelte";
+    import type { Snippet } from "svelte";
+
+    interface Props {
+        closeDialog: ((e: Event) => void),
+        title?: string,
+        children: Snippet
+    }
 
     let { 
         closeDialog,
         title = "Dialog",
         children
-    }: {
-        closeDialog: ((e: Event) => void),
-        title: string,
-        children: any
-    } = $props();
+    }: Props = $props();
 
     function tryClosingTheDamnDialog(e: Event) {
         if (e.target === e.currentTarget) {

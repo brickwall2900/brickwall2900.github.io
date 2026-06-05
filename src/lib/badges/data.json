@@ -42,6 +42,12 @@
         "hint": "Revoke a badge."
     },
     {
+        "id": "window_resize",
+        "name": "Resize the Window",
+        "description": "Mobile users can't get this! Wait- please don't shrink me to atoms!!!",
+        "hint": "Resize the browser window."
+    },
+    {
         "id": "china",
         "name": "Digging to China",
         "description": "You could've used the scrollbar on the right? You did? You cheater!",

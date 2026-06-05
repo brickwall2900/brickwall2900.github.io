@@ -37,6 +37,12 @@
 		// ermmmm
 		setTimeout(() => giveBadge("welcome"), 1000);
 	}
+
+	if (browser) {
+		window.onresize = function (e: UIEvent) {
+			giveBadge("window_resize");
+		}
+	}
 </script>
 
 {#snippet newNavItem(link: string, name: string)}

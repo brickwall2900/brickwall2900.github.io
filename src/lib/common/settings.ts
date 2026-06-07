@@ -36,7 +36,7 @@ function applyTheme() {
     let theme: ThemeDef = THEMES_DEF[settings.theme];
     let finalDataTheme = theme ? theme.dataName : "light";
     document.documentElement.setAttribute("data-theme", finalDataTheme);
-    if (finalDataTheme !== getFromLocalStorage("theme")) {
+    if (getFromLocalStorage("theme") && finalDataTheme !== getFromLocalStorage("theme")) {
         giveBadge("dark_mode_toggle");
     }
     putToLocalStorage("theme", finalDataTheme);

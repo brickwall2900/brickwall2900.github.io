@@ -1,7 +1,6 @@
 export function uint8ArrayToBase64(uint8: Uint8Array): string {
     let binary = '';
     const len = uint8.byteLength;
-    console.log(uint8);
     for (let i = 0; i < len; i++) {
         binary += String.fromCharCode(uint8[i]);
     }

@@ -18,6 +18,10 @@
     --codeblock-bg-col: var(--color-gray-300);
     --codeblock-tag-bg-col: var(--color-gray-200);
     --codeblock-border-col: var(--color-gray-400);
+
+    --navbar-bg-col: var(--color-gray-300);
+    --navbar-button-bg-col: var(--color-gray-300);
+    --navbar-button-bg-hover-col: var(--color-gray-400);
 }
 
 [data-theme="dark"] {
@@ -39,4 +43,8 @@
     --codeblock-bg-col: var(--color-gray-900);
     --codeblock-tag-bg-col: var(--color-gray-800);
     --codeblock-border-col: var(--color-gray-600);
+
+    --navbar-bg-col: var(--color-gray-800);
+    --navbar-button-bg-col: var(--color-gray-800);
+    --navbar-button-bg-hover-col: var(--color-gray-600);
 }

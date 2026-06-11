@@ -44,11 +44,11 @@
 
 {#snippet newNavItem(link: string, name: string)}
 	<li>
-		<a href={doResolve(link)} class="block px-3 rounded bg-transparent h-full hover:bg-gray-400 dark:hover:bg-gray-500">{name}</a>
+		<a href={doResolve(link)} class="block px-3 rounded h-full select-none bg-navbar-button hover:bg-navbar-button-hover">{name}</a>
 	</li>
 {/snippet}
 
-<nav class="fixed left-0 top-0 p-2 bg-gray-300 dark:bg-gray-600 w-full">
+<nav class="fixed left-0 top-0 p-2 bg-navbar w-full">
 	<div class="flex flex-wrap items-center justify-between mx-auto">
 		<div class="items-center justify-between flex w-auto md:order-1" id="navbar-cta">
 			<ul class="font-medium flex p-0 border-default rounded-base flex-row space-x-2 rtl:space-x-reverse mt-0">

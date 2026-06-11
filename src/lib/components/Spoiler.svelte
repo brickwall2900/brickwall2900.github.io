@@ -8,7 +8,7 @@
     function onSpoilerClicked(e: Event) {
         spoilerShown = true;
         giveBadge("spoiler");
-        e.stopPropagation();
+        e.preventDefault();
     }
 </script>
 

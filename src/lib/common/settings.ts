@@ -25,7 +25,7 @@ export let settings: Settings = {
 };
 
 function getBoolean(propertyval: string | undefined, fallback: boolean): boolean {
-    return propertyval !== undefined ? propertyval === "true" : true;
+    return propertyval !== undefined ? propertyval === "true" : fallback;
 }
 
 export function loadSettings() {

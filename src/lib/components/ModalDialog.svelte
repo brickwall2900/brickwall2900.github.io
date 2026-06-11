@@ -7,6 +7,7 @@
         ondialogclosed?: ((e: Event) => boolean),
         title?: string,
         showing?: boolean,
+        hasCloseButton?: boolean,
         children: Snippet
     }
 
@@ -14,6 +15,7 @@
         ondialogclosed,
         title = "Dialog",
         showing = $bindable(false),
+        hasCloseButton = $bindable(true),
         children
     }: Props = $props();
 
@@ -44,11 +46,13 @@
             out:fly={{duration: 250, y: 100}}>
             <nav class="w-full bg-gray-300 dark:bg-gray-600 px-2 py-1 rounded-tl rounded-tr flex flex-row justify-between">
                 <p class="font-bold text-lg">{title}</p>
-                <Button 
-                    class="rounded-full bg-red-500 hover:bg-red-700 active:bg-red-800 text-white px-2"
-                    onclick={tryClosingTheDamnDialog}>
-                    Close
-                </Button>
+                {#if hasCloseButton}
+                    <Button 
+                        class="rounded-full bg-red-500 hover:bg-red-700 active:bg-red-800 text-white px-2"
+                        onclick={tryClosingTheDamnDialog}>
+                        Close
+                    </Button>
+                {/if}
             </nav>
             <article class="p-2 flex flex-row gap-2">
                 {@render children?.()}

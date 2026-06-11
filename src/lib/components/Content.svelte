@@ -22,7 +22,7 @@
         <h2 class="text-4xl self-center font-bold w-full text-center mb-1">{title}</h2>
     {/if}
     {#if description !== undefined}
-        <p class="self-center w-full text-center">{description}</p>
+        <p class="self-center w-full text-center whitespace-pre-wrap">{description}</p>
     {/if}
     {@render children?.()}
 </section>

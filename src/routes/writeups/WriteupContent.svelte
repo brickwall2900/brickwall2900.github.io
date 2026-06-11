@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { giveBadge } from "$lib/badges/badges";
+
     import CheckBox from "$lib/components/CheckBox.svelte";
     import Content from "$lib/components/Content.svelte";
     import type { Snippet } from "svelte";
@@ -28,6 +30,13 @@
 
     let actualDescription = $derived(description + "\n" + `Created on ${dateCreated.toDateString()}`);
     let optionsToModify: number = $derived(hasSwearing ? 1 : 0);
+
+
+    $effect(() => {
+        if (hasSwearing && canSwear) {
+            giveBadge("swear_word");
+        }
+    });
 </script>
 
 <script module>

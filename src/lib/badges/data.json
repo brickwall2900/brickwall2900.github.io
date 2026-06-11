@@ -48,6 +48,12 @@
         "hint": "Resize the browser window."
     },
     {
+        "id": "swear_word",
+        "name": "You Can't Say THAT!",
+        "description": "What did you say? Since when and where did you learn that word??",
+        "hint": "Toggle the swearing option in one of my writeups."
+    },
+    {
         "id": "china",
         "name": "Digging to China",
         "description": "You could've used the scrollbar on the right? You did? You cheater!",

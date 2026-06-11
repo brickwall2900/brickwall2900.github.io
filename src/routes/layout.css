@@ -20,6 +20,10 @@
     --color-input-border: var(--input-border-col);
     --color-input-hover: var(--input-bg-hover-col);
     --color-input-active: var(--input-bg-active-col);
+
+    --color-codeblock: var(--codeblock-bg-col);
+    --color-codeblock-tab: var(--codeblock-tab-bg-col);
+    --color-codeblock-border: var(--codeblock-border-col);
 }
 
 @layer components {

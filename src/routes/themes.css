@@ -14,6 +14,10 @@
     --input-border-col: var(--color-black);
     --input-bg-hover-col: var(--color-white);
     --input-bg-active-col: var(--color-white);
+
+    --codeblock-bg-col: var(--color-gray-300);
+    --codeblock-tag-bg-col: var(--color-gray-200);
+    --codeblock-border-col: var(--color-gray-400);
 }
 
 [data-theme="dark"] {
@@ -31,4 +35,8 @@
     --input-bg-col: var(--color-gray-800);
     --input-bg-hover-col: var(--color-gray-900);
     --input-bg-active-col: var(--color-black);
+
+    --codeblock-bg-col: var(--color-gray-900);
+    --codeblock-tag-bg-col: var(--color-gray-800);
+    --codeblock-border-col: var(--color-gray-600);
 }

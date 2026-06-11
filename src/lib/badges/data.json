@@ -59,5 +59,12 @@
         "description": "You could've used the scrollbar on the right? You did? You cheater!",
         "hint": "Dig all the way to China.",
         "isSecret": true
+    },
+    {
+        "id": "mari_my_beloved",
+        "name": "Mari My Beloved",
+        "description": "Hello MARI!!!",
+        "hint": "Click a name 143 times.",
+        "isSecret": true
     }
 ]

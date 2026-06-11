@@ -4,16 +4,6 @@
     <meta name="google-site-verification" content="ft2V6Ak_UxJv8bkfeytbSQ3X4Q1NlqIe2ghcMLLT8Ss" />
 </svelte:head>
 
-<script lang="ts">
-    import { doResolve } from '$lib/common/doresolve';
-    import Button from '$lib/components/Button.svelte';
-    import Content from '$lib/components/Content.svelte';
-    import Dropdown from '$lib/components/Dropdown.svelte';
-    import Link from '$lib/components/Link.svelte';
-    import LinkList from '$lib/components/LinkList.svelte';
-    import Spoiler from '$lib/components/Spoiler.svelte';
-</script>
-
 <!-- lowkey TODO: make this more professional for smth like a j*b -->
 <main>
     <h1 class="text-xl font-bold">six seven</h1>
@@ -59,7 +49,7 @@
                 </Spoiler>
             </Dropdown>
             <Dropdown title="Who is your favorite character?">
-                <p><strong>MARI!</strong></p>
+                <button onclick={onMariClick}><strong>MARI!</strong></button>
                 <p>
                     She's a kind, nurturing figure that holds everyone together in the friend group.
                     We never see her in the real world but based on Sunny's headspace, she was really caring about him.
@@ -165,3 +155,21 @@
         <Button class="rounded bg-red-600 text-white p-1 px-4 cursor-not-allowed" disabled>Okay, quiz me about the fun facts! (WIP)</Button>
     </Content>
 </main>
+
+<script lang="ts">
+    import { giveBadge } from '$lib/badges/badges';
+    import { doResolve } from '$lib/common/doresolve';
+    import Button from '$lib/components/Button.svelte';
+    import Content from '$lib/components/Content.svelte';
+    import Dropdown from '$lib/components/Dropdown.svelte';
+    import Link from '$lib/components/Link.svelte';
+    import LinkList from '$lib/components/LinkList.svelte';
+    import Spoiler from '$lib/components/Spoiler.svelte';
+
+    let mari = $state(0);
+    function onMariClick() {
+        if (++mari >= 143) {
+            giveBadge("mari_my_beloved");
+        }
+    }
+</script>

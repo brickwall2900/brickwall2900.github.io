@@ -24,6 +24,6 @@
 <a 
 class={appendClassname("underline text-blue-700 dark:text-blue-300 visited:text-purple-800 dark:visited:text-purple-300", className)} 
 href={href}
-target={actuallyOpenInNewTab ? "_blank" : "_self"}>
+target={actuallyOpenInNewTab ? "_blank" : undefined}>
     {@render children?.()}
 </a>

@@ -26,10 +26,8 @@
 		setTimeout(() => giveBadge("welcome"), 1000);
 	}
 
-	if (browser) {
-		window.onresize = function (e: UIEvent) {
-			giveBadge("window_resize");
-		}
+	function onResize(e: UIEvent) {
+		giveBadge("window_resize");
 	}
 
 	// load settings early step;
@@ -41,6 +39,8 @@
 		loadSettings();
 	});
 </script>
+
+<svelte:window onresize={onResize} />
 
 {#snippet newNavItem(link: string, name: string)}
 	<li>

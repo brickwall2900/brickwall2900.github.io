@@ -14,13 +14,19 @@ export const THEMES_DEF: {[key: string]: ThemeDef} = {
 
 export interface Settings {
     theme: string,
-    bagdeNotifications: boolean
+    bagdeNotifications: boolean,
+    alwaysOpenLinksInNewTab: boolean
 };
 
 export let settings: Settings = {
     theme: "dark",
-    bagdeNotifications: true
+    bagdeNotifications: true,
+    alwaysOpenLinksInNewTab: false,
 };
+
+function getBoolean(propertyval: string | undefined, fallback: boolean): boolean {
+    return propertyval !== undefined ? propertyval === "true" : true;
+}
 
 export function loadSettings() {
     //console.log(getFromLocalStorage("badgeNotifications"));
@@ -28,8 +34,12 @@ export function loadSettings() {
     let theme: string = browser ? getFromLocalStorage("theme") || 
 		(!(isInLocalStorage("theme")) && window.matchMedia('(prefers-color-scheme: dark)').matches) && "dark" : "dark";
     settings.theme = theme;
+
     let badgeNotifs: string | undefined = getFromLocalStorage("badgeNotifications");
-    settings.bagdeNotifications = badgeNotifs !== undefined ? badgeNotifs === "true" : true;
+    let alwaysOpenLinksInNewTab: string | undefined = getFromLocalStorage("alwaysOpenLinksInNewTab");
+
+    settings.bagdeNotifications = getBoolean(badgeNotifs, true);
+    settings.alwaysOpenLinksInNewTab = getBoolean(alwaysOpenLinksInNewTab, false);
 }
 
 function applyTheme() {
@@ -42,11 +52,8 @@ function applyTheme() {
     putToLocalStorage("theme", finalDataTheme);
 }
 
-function applyBadgeNotifications() {
-    putToLocalStorage("badgeNotifications", settings.bagdeNotifications);
-}
-
 export function applySettings() {
     applyTheme();
-    applyBadgeNotifications();
+    putToLocalStorage("badgeNotifications", settings.bagdeNotifications);
+    putToLocalStorage("alwaysOpenLinksInNewTab", settings.alwaysOpenLinksInNewTab);
 };

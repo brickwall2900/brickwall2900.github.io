@@ -7,6 +7,7 @@
 
     let theme = $state(settings.theme);
     let badgeNotifs = $state(settings.bagdeNotifications);
+    let alwaysOpenLinksInNewTab = $state(settings.alwaysOpenLinksInNewTab);
 
     interface Props {
         showing: boolean
@@ -19,17 +20,21 @@
     $effect(() => {
         settings.theme = theme;
         settings.bagdeNotifications = badgeNotifs;
+        settings.alwaysOpenLinksInNewTab = alwaysOpenLinksInNewTab;
         applySettings();
     });
 </script>
 
 <ModalDialog bind:showing={showing} title="Settings">
     <main class="flex flex-col gap-2">
-        <div class="grid grid-cols-2 grid-rows-2 grid-flow-col gap-2 items-center">
+        <div class="grid grid-cols-2 grid-rows-4 gap-2 items-center">
             <p>Theme:</p>
             <ComboBox bind:value={theme} options={Object.keys(THEMES_DEF)} />
-            <p>Badge Notifications:</p>
-            <CheckBox bind:value={badgeNotifs} />
+            <p class="row-start-2">Badge Notifications:</p>
+            <CheckBox class="row-start-2" bind:value={badgeNotifs} />
+            <p class="row-start-3">ALWAYS open new links in new tab*:</p>
+            <CheckBox class="row-start-3" bind:value={alwaysOpenLinksInNewTab} />
+            <p class="row-start-4 row-end-4 col-span-2 text-center">(*): please refresh the page to take effect</p>
         </div>
     </main>
 </ModalDialog>

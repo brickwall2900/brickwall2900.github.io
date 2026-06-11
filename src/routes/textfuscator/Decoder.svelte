@@ -69,7 +69,7 @@
     async function onUploadFile() {
         const buffer = await uploadFile(".tbf, .txt");
         if (buffer !== null) {
-            input = encodeBinaryToString(buffer);
+            input = encodeBinaryToString(await buffer.arrayBuffer());
         }
     }
 

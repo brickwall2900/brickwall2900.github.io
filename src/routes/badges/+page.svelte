@@ -70,9 +70,7 @@
 <main>
     <Content 
         title="Badges" 
-        description="Badges are little special awards when you complete a task.
-            There are currently {badges?.length} badge(s) and there will be more to come.
-            There MIGHT be a badge for almost everything. Can you get them all?">
+        description="Badges are little special awards when you complete a task. There are currently {badges?.length} badge(s) and there will be more to come. There MIGHT be a badge for almost everything. Can you get them all?">
         <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
 
         <span>Badges completed:</span>

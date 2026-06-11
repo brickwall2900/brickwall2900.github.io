@@ -4,7 +4,7 @@ export function downloadFile(blob: Blob, filename: string) {
     const link = document.createElement("a");
     link.style.display = "none";
     link.href = url;
-    link.download = filename || "textfuscator.txt";
+    link.download = filename || "file.txt";
 
     document.body.appendChild(link);
     link.click();
@@ -23,7 +23,7 @@ function getPromiseFromEvent(item: HTMLElement, event: keyof HTMLElementEventMap
   })
 }
 
-export async function uploadFile(allowedFiles: string): Promise<ArrayBuffer | null> {
+export async function uploadFile(allowedFiles: string): Promise<File | null> {
     const input = document.createElement("input");
     input.style.display = "none";
     input.type = "file";
@@ -31,18 +31,35 @@ export async function uploadFile(allowedFiles: string): Promise<ArrayBuffer | nu
     input.accept = allowedFiles;
 
     document.body.appendChild(input);
-    input.click();
     const onChange = getPromiseFromEvent(input, "change");
+    input.click();
     await onChange;
 
     if (input.files !== null) {
         const file = input.files[0];
-        console.log(file);
         if (file !== null) {
-            console.log(file.name);
             document.body.removeChild(input);
-            return await file.arrayBuffer();
+            return file;
         }
+    }
+
+    return null;
+}
+
+export async function uploadDirectory(): Promise<FileList | null> {
+    const input = document.createElement("input");
+    input.style.display = "none";
+    input.type = "file";
+    input.multiple = false;
+    input.webkitdirectory = true;
+
+    document.body.appendChild(input);
+    const onChange = getPromiseFromEvent(input, "change");
+    input.click();
+    await onChange;
+
+    if (input.files !== null) {
+        return input.files;
     }
 
     return null;

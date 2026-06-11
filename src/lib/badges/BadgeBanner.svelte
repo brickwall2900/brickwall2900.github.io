@@ -5,7 +5,7 @@
     import { giveBadge, setBadgeNotifyHandler, type Badge } from "./badges";
     import { settings } from "$lib/common/settings";
 
-    const BADGE_ASSET_URL = "assets/badges/";
+    const BADGE_ASSET_URL = "/assets/badges/";
     type ActiveNotification = Badge & { uid: number };
     
     let bannerShowing = $state(false);

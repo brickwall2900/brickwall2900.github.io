@@ -6,6 +6,7 @@
     import { getContext } from 'svelte';
     import { header } from '../WriteupContent.svelte';
     import type { PageProps } from './$types';
+    import Link from '$lib/components/Link.svelte';
 
     let { data }: PageProps = $props();
 
@@ -71,9 +72,9 @@
     project</strong>.</p>
 <p><em>And Math lords, please forgive me if my definitions seem incorrect.
     Provide valid criticism, as long as it&#39;s <strong>constructive</strong>,
-    and scream at my <a
+    and scream at my <Link
       href="https://github.com/brickwall2900/brickwall2900.github.io/issues">GitHub
-      Issues</a> if anything is wrong.</em></p>
+      Issues</Link> if anything is wrong.</em></p>
 {@render header(3, "Functions")}
 <p>A function takes an input, transforms it through an expression, and whatever
   returns from that expression is the output. They are typically one-to-one
@@ -422,8 +423,8 @@ public class Main {
 <p>Using the 13 bytes we have, $f(0)$ will now be <code>ceil(13 / 4) * 4</code>
   or <code>16</code>; Let&#39;s keep that in a temporary variable.</p>
 <p>Now we need to pack the actual data into <code>int</code>s. The bytes from
-  <code>Hello, world!</code> are ASCII codepoints. Refer to the <a
-    href="https://www.asciitable.com/">ASCII Table</a> to see an entire table
+  <code>Hello, world!</code> are ASCII codepoints. Refer to the <Link
+    href="https://www.asciitable.com/">ASCII Table</Link> to see an entire table
   full of ASCII codepoints.<br>Pack the first 4 bytes: <code>[0x48, 0x65, 0x6C,
     0x6C] -&gt; 1214606444</code><br>Pack the next 4 bytes: <code>[0x6F, 0x2C,
     0x20, 0x77] -&gt; 1865162871</code><br>Pack the next 4 bytes: <code>[0x6F,

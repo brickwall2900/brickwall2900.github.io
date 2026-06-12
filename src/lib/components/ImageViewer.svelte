@@ -7,7 +7,7 @@
 
 </script>
 
-<dialog class="fixed w-full h-full mx-auto my-auto inset-0 bg-black/70 flex items-center justify-center z-50">
+<dialog class="fixed w-full h-full mx-auto my-auto py-8 inset-0 bg-black/70 flex items-center justify-center z-50">
     <div class="relative w-full h-full flex items-center justify-center p-2">
         <Button class="absolute left-2 top-2 opacity-40 bg-transparent text-white p-2 z-30" onclick={() => {giveBadge("img_viewer_boo")}}>boo! 👻</Button>
         <p class="absolute w-full top-1 text-center text-white mix-blend-exclusion p-2 z-20">Hello!! You're in an image viewer. Drag to pan the image around, pinch or mouse wheel to scroll.</p>

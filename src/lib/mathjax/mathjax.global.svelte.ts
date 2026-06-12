@@ -26,9 +26,10 @@ export function unloadMathJax() {
 }
 
 function doTypeset() {
-    const MathJax: any = (globalThis as any[any])["MathJax"];
+    const MathJax: any = (window as any[any])["MathJax"];
     if (browser && mathjaxLoaded && mathjaxScript && MathJax && MathJax["typeset"]) {
         MathJax.typeset();
+        console.log("Typeset in MathJax invoked");
     }
 }
 

@@ -57,11 +57,11 @@
 
 {#snippet badgeRender(badgeId: string, badgeInfo: Badge | undefined)}
     <button 
-        class="cursor-pointer"
+        class="aspect-square cursor-pointer"
         onclick={() => showBadge(badgeId)} 
         title={(!badgeInfo?.isSecret || hasBadge(badgeId)) ? badgeId : "secret!!"}>
         <enhanced:img 
-            class={"h-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
+            class={"h-16 w-16 pointer-events-none " + (hasBadge(badgeId) ? "" : "grayscale blur-xs")} 
             src={(!badgeInfo?.isSecret || hasBadge(badgeId)) ? asset(BADGE_ASSET_URL + badgeId + ".png") : asset(BADGE_ASSET_URL + "mystery.png")} 
             alt={(!badgeInfo?.isSecret || hasBadge(badgeId)) ? badgeInfo?.name : "secret!!"}/>
     </button>
@@ -81,7 +81,7 @@
                 max="100"></progress>
         {/if}
         
-        <section class="border border-gray-300 dark:border-gray-500 grid auto-rows-auto auto-cols-auto grid-flow-col justify-center gap-2 p-2">
+        <section class="border border-button-border flex flex-row flex-wrap justify-center gap-2 p-2">
             {#each badges as badgeId}
                 {@render badgeRender(badgeId, getBadgeInfo(badgeId))}
             {/each}

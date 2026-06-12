@@ -66,7 +66,7 @@
 	{@render newNavItem("/writeups", "Writeups", transferPortal)}
 {/snippet}
 
-<nav class="fixed left-0 top-0 px-2 bg-navbar w-full">
+<nav class="fixed left-0 top-0 px-2 bg-navbar w-full z-100">
 	<div class="flex flex-wrap items-center justify-between mx-auto">
 		<div class="items-center justify-between flex w-auto md:order-1">
 			<ul class="hidden font-medium sm:flex p-0 flex-row space-x-2 rtl:space-x-reverse mt-0">

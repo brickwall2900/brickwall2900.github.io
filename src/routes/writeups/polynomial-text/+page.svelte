@@ -7,6 +7,8 @@
     import { header } from '../WriteupContent.svelte';
     import type { PageProps } from './$types';
     import Link from '$lib/components/Link.svelte';
+    import Spoiler from '$lib/components/Spoiler.svelte';
+    import { giveBadge } from '$lib/badges/badges';
 
     let { data }: PageProps = $props();
 
@@ -30,6 +32,7 @@
                 && hasCorrectMath === undefined || hasCorrectMath === false) {
             // they got the righjt answer wohoo
             hasCorrectMath = true;
+            giveBadge("math_genius");
         } else {
             hasCorrectMath = false;
         }
@@ -43,12 +46,12 @@
 <p>I consider my Math teacher really good at teaching! I&#39;m really, really
   glad to have such a teacher that <strong>actually</strong> teaches a subject
   with such intent of actually learning and using our critical thinking skills.
-  Trust me, our standards were low -- there were teachers that did NOT even
+  Trust me, our expectations were low -- there were teachers that did NOT even
   teach the subject they were supposed to teach at all.</p>
-<p>But anyway, we were in the middle of learning about trying to construct a
-  polynomial from system of equations, you know, constructing a polynomial from
+<p>But anyway, we were in the middle of learning about trying to derive a
+  polynomial from system of equations, you know, deriving a polynomial from
   given a set of points $(x, f(x))$. At this point, I think I&#39;m just getting
-  shown pretty cool tricks and it amazed me that I could construct a polynomial
+  shown pretty cool tricks and it amazed me that I could derive a polynomial
   myself from a set of any given points.</p>
 <p><em>By the way, I just want to stress out, I am recalling the past which I
     might gaslight myself leading to false information about my memories.
@@ -58,7 +61,7 @@
   would do to get home, what to program next... </p>
 <p>Based on what I just learned now, what if I put &quot;data&quot; inside a
   polynomial? What if I put a file in a polynomial? Would that work?</p>
-<p>Me in January 2024 was about to find this out and how I achieved such result!
+<p>Me in January 2024 was about to try this and I actually got it to work!
 </p>
 <p>But first, how this this all work?</p>
 {@render header(2, "Prerequisite Knowledge")}
@@ -112,14 +115,14 @@
 {@render header(2, "How on earth do I get a polynomial given a list of $x$ and $f(x)$?")}
 {/if}
 <p>This is a pretty important part of storing data into polynomials. We would
-  like to be able to <strong>&quot;construct&quot;</strong> a polynomial by
+  like to be able to <strong>&quot;derive&quot;</strong> a polynomial by
   having numbers $x$ and retrieve some data from $f(x)$. </p>
-<p>In other words, <strong>construct</strong> a polynomial from a set of points
+<p>In other words, <strong>derive</strong> a polynomial from a set of points
   $(x, f(x))$, such that $f(x_1)=x_1$, $f(x_2)=x_2$, and so on in however many
   points are in that set.</p>
 <p>You think $f(x)$ returns a number from $x$ being transformed as such by an
   expression, well, we can interpret it as a data point via however we can
-  imagine. We&#39;ll first learn how to construct a polynomial though.</p>
+  imagine. We&#39;ll first learn how to derive a polynomial though.</p>
 {@render header(3, "First Example")}
 <p>Lets... think of this first in the most simplest way possible. Given a
   polynomial $f(x)$:<br>$$f(x)=4x+6$$<br>It has two terms, takes any value of
@@ -138,7 +141,7 @@
   there&#39;s a proper mathematical way to do this.</p>
 <p><em>We won&#39;t do the $y=mx+b$ stuff here or pull out any linear equation
     tricks, since even though it&#39;s a linear equation, we want to solve this
-    in a polynomial like way.</em></p>
+    in a polynomial {#if options.swearing} ahh {:else} like {/if} way.</em></p>
 <p>We know we&#39;ve been given two inputs, $6$ and $7$. We can extract a
   <strong>binomial</strong> here, since two inputs = two terms. If we were given
   three inputs, then we get a <strong>trinomial</strong> or three terms of
@@ -146,7 +149,7 @@
   a_0$$<br>The variable $x$ is just already there, we only need to solve the
   coefficients such that these inputs could be made true. $a_1$ and $a_0$ are
   both missing variables here.</p>
-<p>Introducing: <strong>Systems of Equations</strong>!!</p>
+<p>Introducing: <Spoiler><strong>Systems of Equations</strong></Spoiler>!!</p>
 <p>We could express both inputs and output as equations that we need to be solve
   to solve for the coefficients:<br>$$34=a_1 \cdot 7 + a_0$$<br>$$30=a_1 \cdot 6
   + a_0$$<br>Again, $a_1$ and $a_0$ are both missing variables here. Using the
@@ -155,8 +158,8 @@
 <p>Eliminating $a_0$ through subtracting the two equations, we are left with the
   result<br>$$4=a_1$$<br>And there we go! $a_1$ was solved!<br>Time to solve for
   $a_0$:<br>$$34=4(7)+a_0$$<br>$$34=28+a_0$$<br>$$6=a_0$$<br>And there we go!
-  Plugging those coefficients back into our binomial form gives
-  us:<br>$$f(x)=4x+6$$<br>Just like our original given polynomial. We solved it!
+  Substituting those coefficients back into our binomial form gives
+  us:<br>$$f(x)=4x+6$$<br>Looks just like our original given polynomial. We solved it!
 </p>
 <hr>
 {@render header(3, "Second Example")}
@@ -173,19 +176,19 @@
 <p>$$2=a_2 \cdot 0^2 + a_1 \cdot 0 + a_0$$<br>can be simplified to
   $2=a_0$<br>$$122=a_2 \cdot 6^2 + a_1 \cdot 6 + a_0$$<br>$$170=a_2 \cdot 7^2 +
   a_1 \cdot 7 + a_0$$<br>This isn&#39;t the systems of linear equations we did
-  earlier, those are like quadratic equations.</p>
+  earlier, these are like quadratic equations this time.</p>
 <p>Anyway, attempting to write here on how I solved the systems of equations feels
   like I&#39;m writing homework, so I&#39;ll make it YOUR homework. Please solve
   these systems of equations, to get absolutely nothing in return.</p>
 <p>Please write the answer:</p>
 <div class="grid grid-cols-2 gap-2">
-    <p>$a_2$</p>
+    <p tabindex="-1">$a_2$</p>
     <TextField bind:value={a_2} />
     
-    <p>$a_1$</p>
+    <p tabindex="-1">$a_1$</p>
     <TextField bind:value={a_1} />
 
-    <p>$a_0$</p>
+    <p tabindex="-1">$a_0$</p>
     <TextField bind:value={a_0} />
 
     <Button class="col-span-2" onclick={onMathSubmit}>Submit</Button>
@@ -394,7 +397,7 @@ public class Main {
 {@render header(3, "Encoding the Polynomial")}
 <p>Given a message <code>Hello, world!</code>, we need to encode a polynomial
   containing this message such that we can decode from it.</p>
-<p>The polynomial I would be constructing looks like
+<p>The polynomial I would be deriving looks like
   this:<br>$f(0)=$<code>aligned length of the data</code><br>$f(1 \ldots n)=$
   <code>data itself, bytes packed in integers</code></p>
 <p>The <code>bytes packed in integers</code> part means 4 bytes are packed in
@@ -439,7 +442,7 @@ public class Main {
   $f(2)$, and so on.</p>
 <p>Technically, we already have the inputs of the polynomial function too, that
   being the indices of the array, from <code>0</code> to
-  <code>a.length - 1</code>.<br>It&#39;s now time to construct a polynomial with
+  <code>a.length - 1</code>.<br>It&#39;s now time to derive a polynomial with
   what we already have!</p>
 <pre><code>DecompositionSolver mSolver = new LUDecomposition(mCoefficients,0).getSolver();  
 ...
@@ -447,7 +450,7 @@ RealVector mEq = new ArrayRealVector(eq, false);
 RealVector mSolution = mSolver.solve(mEq);  
 </code></pre>
 <p>Being honest with you, I have no idea what this all does. Even though I
-  explained how to construct a polynomial with given inputs and outputs, I
+  explained how to derive a polynomial with given inputs and outputs, I
   don&#39;t know what an <code>LUDecomposition</code> does, all I know is that
   it does some magic stuff with matrices and it solves the systems of equations
   for me.</p>
@@ -489,7 +492,8 @@ RealVector mSolution = mSolver.solve(mEq);
 {@render header(3, "Limitations and Room for Improvement")}
 <p>This algorithm I have of encoding and decoding bytes by all means, has a lot
   more room for improvement. The length of actual data may be stored in the
-  first term, similar to how I pack 4 bytes to an <code>int</code>. </p>
+  first term, similar to how I pack 4 bytes to an <code>int</code> so we can
+  avoid NUL bytes at the end of the message. </p>
 <p>And putting long text into this algorithm completely breaks it actually...
 </p>
 <p>Due to what I believe is floating-point imprecision, the results of what you
@@ -677,13 +681,13 @@ Maximum: 31; Iteration: 100
   data. So we&#39;d be wasting more data as we have to store <code>8 *
     length_of_data</code> bytes we need for the polynomial.</p>
 {@render header(2, "Conclusion")}
-<p>All of this started because I got curious during a Math lesson in school. I
+<p>All of this started because I was curious during a Math lesson in school. I
   had my hypothesis, tested it, experimented with it, and was successful with
-  it. But not everything I had is perfect, as you can see with the limitations.
+  it. But not everything I had was perfect, as you can see with the limitations.
 </p>
 <p>I was considering implementing some sort of a &quot;real number&quot; system
   in Java, but I just couldn&#39;t allocate time into it.</p>
-<p>I would consider this as one of a magic tricks you could show to your friends
+<p>I would consider this as a little magic trick you could show to your friends
   to show how good your math skills are. Just explain how it works and have them
   magically decode their data and unpacking <code>int</code>s.</p>
 <p>I could store secret little hidden messages on it, like how I did on the

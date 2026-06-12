@@ -54,6 +54,12 @@
         "hint": "Toggle the swearing option in one of my writeups."
     },
     {
+        "id": "math_genius",
+        "name": "Math Genius",
+        "description": "You have better math skills than a coughing baby.",
+        "hint": "Solve my math homework in one of my writeups."
+    },
+    {
         "id": "china",
         "name": "Digging to China",
         "description": "You could've used the scrollbar on the right? You did? You cheater!",

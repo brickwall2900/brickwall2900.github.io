@@ -7,7 +7,7 @@
     import { BlobReader, ZipReader } from '@zip.js/zip.js';
     import type { PageProps } from './$types';
     import UploadBox from '$lib/components/UploadBox.svelte';
-    import { generateWriteup } from '$lib/common/writeups';
+    import { generateWriteup } from '$lib/writeups/writeups';
 
     let { data }: PageProps = $props();
 

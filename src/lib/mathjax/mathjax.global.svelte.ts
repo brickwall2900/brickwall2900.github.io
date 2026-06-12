@@ -35,7 +35,7 @@ function doTypeset() {
 
 function doLoad() {
     if (browser && !mathjaxLoaded) {
-        console.log("Installing MathJax");
+        console.trace("Installing MathJax");
         mathjaxScript = document.createElement("script");
         mathjaxScript.src = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js";
         mathjaxScript.async = true;
@@ -57,7 +57,7 @@ function doLoad() {
 
 function doUnload() {
     if (browser && mathjaxLoaded && mathjaxScript) {
-        console.log("Uninstalling MathJax");
+        console.trace("Uninstalling MathJax");
         document.body.removeChild(mathjaxScript);
 
         // clear mathjax context

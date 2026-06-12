@@ -1,6 +1,7 @@
 <script lang="ts">
     import Content from '$lib/components/Content.svelte';
     import Link from '$lib/components/Link.svelte';
+    import { getWriteupInfoList } from '$lib/writeups/writeups';
     import type { PageProps } from './$types';
 
     let { data }: PageProps = $props();
@@ -29,9 +30,13 @@
 <Content title="Writeups">
     <p>Welcome to my writeups, where I just write about random stuff whenever I feel like it.</p>
     <hr />
-    <article class="flex flex-col gap-2">
+    <article class="flex flex-col gap-2 my-4">
         <ul>
-            {@render entry("linux-first-experience", "My First Linux Experience", "I tried Linux for the first time. How did it go?", new Date("June 12, 2026"))}
+            {#each getWriteupInfoList() as writeup}
+                {@render entry(writeup.id, writeup.name, writeup.description, writeup.modified ? writeup.modified : writeup.created)}
+            {/each}
         </ul>
     </article>
+    <hr />
+    <p>None of my writeups are AI generated nor assisted. All created by brickwall2900.</p>
 </Content>

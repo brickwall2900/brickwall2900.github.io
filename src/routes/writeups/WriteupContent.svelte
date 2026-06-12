@@ -31,7 +31,6 @@
     let actualDescription = $derived(description + "\n" + `Created on ${dateCreated.toDateString()}`);
     let optionsToModify: number = $derived(hasSwearing ? 1 : 0);
 
-
     $effect(() => {
         if (hasSwearing && canSwear) {
             giveBadge("swear_word");

@@ -10,7 +10,9 @@ export interface WriteupInfo {
     description: string,
     created: Date,
     modified?: Date,
+
     hasSwearing: boolean,
+    usesMathJax: boolean,
 }
 
 const WRITEUP_REGISTRY: Map<string, WriteupInfo> = readWriteupData();
@@ -24,7 +26,8 @@ function readWriteupData(): Map<string, WriteupInfo> {
             description: value.description,
             created: new Date(value.created),
             modified: value.modified ? new Date(value.modified) : undefined,
-            hasSwearing: value.hasSwearing || false
+            hasSwearing: value.hasSwearing || false,
+            usesMathJax: value.usesMathJax || false,
         });
     });
     return registry;

@@ -11,6 +11,7 @@
         "name": "Encoding and Decoding Text in a Polynomial Function",
         "description": "Has ANYONE ever wondered... if we can store hidden messages in polynomial functions? or is it just me?",
         "created": 1781283600000,
-        "hasSwearing": true
+        "hasSwearing": true,
+        "usesMathJax": true
     }
 ]

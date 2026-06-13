@@ -39,6 +39,7 @@ function doLoad() {
         mathjaxScript = document.createElement("script");
         mathjaxScript.src = "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js";
         mathjaxScript.async = true;
+        mathjaxScript.defer = true;
         mathjaxScript.onload = () => {
             console.log("MathJax loaded!");
         };
@@ -48,9 +49,10 @@ function doLoad() {
             },
             output: {
                 displayOverflow: "linebreak"
-            }
+            },
+            loader: {load: ['ui/lazy']}
         };
-        document.body.append(mathjaxScript);
+        document.head.append(mathjaxScript);
         mathjaxLoaded = true;
     }
 }
@@ -58,7 +60,7 @@ function doLoad() {
 function doUnload() {
     if (browser && mathjaxLoaded && mathjaxScript) {
         console.trace("Uninstalling MathJax");
-        document.body.removeChild(mathjaxScript);
+        document.head.removeChild(mathjaxScript);
 
         // clear mathjax context
         (window as any[any])["MathJax"] = undefined;

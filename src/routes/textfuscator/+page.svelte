@@ -11,12 +11,14 @@
     import Content from "$lib/components/Content.svelte";
 </script>
 
-<Content title="Textfuscator">
-    <p>
-        Textfuscator is a tool to merge text strings together into a single output,
-        given a pair of "keys" and "inputs".
-        Each input can be decoded from output from a key.
-    </p>
+<Content title="Textfuscator" description={"Textfuscator is a tool to merge text strings together into a single output, given a pair of \"keys\" and \"inputs\". Each input can be decoded from output from a key."}>
+
+    <noscript>
+        <p class="text-red-500 font-bold w-full text-center">
+            Textfuscator cannot run without executing JavaScript.
+            Textfuscator runs entirely in client-side.
+        </p>
+    </noscript>
 
     <hr>
     <div class="flex flex-col lg:flex-row gap-4">

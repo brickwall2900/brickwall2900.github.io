@@ -13,8 +13,15 @@
 </script>
 
 {#if !spoilerShown}
+    <noscript>
+        <style>
+            .maybe-no-script:hover {
+                filter: none;
+            }
+        </style>
+    </noscript>
     <Button 
-        class="blur-[6px] hover:blur-xs text-left cursor-pointer" 
+        class="blur-[6px] hover:blur-xs text-left cursor-pointer maybe-no-script" 
         title="View spoiler"
         onclick={onSpoilerClicked}>
         {@render children?.()}

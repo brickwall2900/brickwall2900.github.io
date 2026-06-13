@@ -73,6 +73,10 @@
         description="Badges are little special awards when you complete a task. There are currently {badges?.length} badge(s) and there will be more to come. There MIGHT be a badge for almost everything. Can you get them all?">
         <p class="self-center w-full text-center"><strong>NOTE: These are saved LOCALLY on your browser.</strong></p>
 
+        <noscript>
+            <p class="text-red-500 font-bold w-full text-center">Badges are impossible to be obtained without executing JavaScript.</p>
+        </noscript>
+
         <span>Badges completed:</span>
         {#if badgesCompleted !== null && badges !== null}
             <progress 

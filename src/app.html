@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,10 +7,10 @@
 	</head>
 	<script>
 		const theme = localStorage.theme;
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
-		if (theme === 'dark' || (!theme && prefersDark)) {
-			document.documentElement.setAttribute("data-theme", "dark");
+		if (theme === 'light' || (!theme && prefersLight)) {
+			document.documentElement.setAttribute("data-theme", "light");
 		}
 	</script>
 	<body data-sveltekit-preload-data="hover" class="m-2 p-2 bg-white dark:bg-black text-black dark:text-white scrollbar-track-button scrollbar-thumb-button-active">

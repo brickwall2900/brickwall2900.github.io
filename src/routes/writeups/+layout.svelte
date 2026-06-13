@@ -26,7 +26,9 @@
     <title>{writeupInfo ? writeupInfo.name : "Writeups"}</title>
 </svelte:head>
 
-<MathJaxScript />
+{#if writeupInfo && writeupInfo.usesMathJax}
+    <MathJaxScript />
+{/if}
 
 {#if writeupInfo}
     <WriteupContent 

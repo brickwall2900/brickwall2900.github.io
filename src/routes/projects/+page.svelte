@@ -8,6 +8,7 @@
     import Image from "$lib/components/Image.svelte";
     import Content from "$lib/components/Content.svelte";
     import Link from "$lib/components/Link.svelte";
+    import Codeblock from "$lib/components/Codeblock.svelte";
 
 </script>
 
@@ -42,7 +43,7 @@
         <ProjectItem name="brickwall2900.github.io" links={["https://github.com/brickwall2900/brickwall2900.github.io", "https://brickwall2900.github.io"]}>
             <p>Yes. It's the website you're looking at right now. I consider this as one of my projects.</p>
             <p>My own personal website that I can throw anything in.</p>
-            <p>Current built in Svelte and hosted on GitHub Pages.</p>
+            <p>Current built in Svelte and hosted on GitHub Pages. Everything here is ran client-sided, no server is being involved except for GitHub who's hosting the Pages for this website.</p>
         </ProjectItem>
         <ProjectItem name="Textfuscator" links={["https://brickwall2900.github.io/textfuscator"]}>
             <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
@@ -52,6 +53,19 @@
                 </div>
                 <Image src={asset("/assets/projects/textfuscator.png")} alt="Textfuscator" requiresImageViewer class="place-self-end" />
             </div>
+        </ProjectItem>
+        <ProjectItem name="Whipser" links={["https://github.com/brickwall2900/Whisper"]}>
+            <p>A Java IPC (interprocess communication) utility that *hopefully* makes it easier to communicate between processes in Java.</p>
+            <p>It uses Netty under the hood, with TLS encryption.</p>
+            <Codeblock language="java" filename="snippet.java" copyEnabled={false} code={`
+import io.github.brickwall2900.processing.ProcessManager;
+
+ProcessManager manager = ProcessManager.getInstance();`} />
+            <p>Easy child process communication with <code>Messenger</code>:</p>
+            <Codeblock language="java" filename="snippet.java" copyEnabled={false} code={`
+processManager.asMaster().getMessenger().mesageBroadcast("Hello!");
+
+processManager.asChild().getMessenger().on(( ... ) -> { System.out.println(message); });`} />
         </ProjectItem>
     </Content>
 
@@ -78,7 +92,7 @@
     </Content>
 
     <Content 
-        title="Projects I'm Working On" 
+        title="Projects I want to work on but I don't want to" 
         description="These are projects that have never (yet) seen the light of day ever. 
             One day, these may go public if I wish so (and if there's a use case for it).
             Projects here MAY get shelved or will be forever abandoned... Please bug me if that's the case.">

@@ -444,11 +444,12 @@ public class Main {
   being the indices of the array, from <code>0</code> to
   <code>a.length - 1</code>.<br>It&#39;s now time to derive a polynomial with
   what we already have!</p>
-<pre><code>DecompositionSolver mSolver = new LUDecomposition(mCoefficients,0).getSolver();  
+<Codeblock language="java" filename="snippet.java" code={`
+DecompositionSolver mSolver = new LUDecomposition(mCoefficients,0).getSolver();  
 ...
 RealVector mEq = new ArrayRealVector(eq, false);  
 RealVector mSolution = mSolver.solve(mEq);  
-</code></pre>
+`} />
 <p>Being honest with you, I have no idea what this all does. Even though I
   explained how to derive a polynomial with given inputs and outputs, I
   don&#39;t know what an <code>LUDecomposition</code> does, all I know is that

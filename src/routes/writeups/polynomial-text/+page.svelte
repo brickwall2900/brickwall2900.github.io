@@ -444,7 +444,7 @@ public class Main {
   being the indices of the array, from <code>0</code> to
   <code>a.length - 1</code>.<br>It&#39;s now time to derive a polynomial with
   what we already have!</p>
-<Codeblock language="java" filename="snippet.java" code={`
+<Codeblock language="java" filename="snippet.java" copyEnabled={false} code={`
 DecompositionSolver mSolver = new LUDecomposition(mCoefficients,0).getSolver();  
 ...
 RealVector mEq = new ArrayRealVector(eq, false);  

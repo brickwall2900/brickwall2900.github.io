@@ -36,19 +36,19 @@
 
 {#if showing}
     <dialog 
-        class="fixed w-full h-full mx-auto my-auto inset-0 bg-black/70 flex items-center justify-center z-50"
+        class="fixed w-full h-full mx-auto my-auto inset-0 bg-black/70 flex items-center justify-center z-150"
         onclick={tryClosingTheDamnDialog}
         in:fade={{duration: 250}}
         out:fade={{duration: 250}}>
         <section 
-            class="rounded bg-white dark:bg-gray-950 text-black dark:text-white"
+            class="bg-white dark:bg-gray-950 text-black dark:text-white"
             in:fly={{duration: 250, y: -100}}
             out:fly={{duration: 250, y: 100}}>
-            <nav class="w-full bg-gray-300 dark:bg-gray-600 px-2 py-1 rounded-tl rounded-tr flex flex-row justify-between">
+            <nav class="w-full bg-gray-300 dark:bg-gray-600 px-2 py-1 flex flex-row justify-between">
                 <p class="font-bold text-lg">{title}</p>
                 {#if hasCloseButton}
                     <Button 
-                        class="rounded-full bg-red-500 hover:bg-red-700 active:bg-red-800 text-white px-2"
+                        class="bg-red-500 hover:bg-red-700 active:bg-red-800 text-white px-2"
                         onclick={tryClosingTheDamnDialog}>
                         Close
                     </Button>

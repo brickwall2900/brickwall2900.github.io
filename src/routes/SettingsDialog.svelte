@@ -42,7 +42,7 @@
             <CheckBox class="row-start-3" bind:value={alwaysOpenLinksInNewTab} />
             <p class="row-start-4 row-end-4 col-span-2 text-center">(*): please refresh the page to take effect</p>
             <p class="row-start-5 text-center" title={`The BuildID changes during development, while on production build, it stays the same.
-The format for the BuildID is: (random id)::(build UTC timestamp in base16)`}>
+The format for the BuildID is: (random id)::(build unix timestamp in base16)`}>
                 Build ID: {buildId}
             </p>
             <Button class="row-start-5" onclick={getBuildId}>Fetch</Button>

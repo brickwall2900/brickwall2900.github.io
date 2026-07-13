@@ -13,6 +13,7 @@
         title: string,
         description: string,
         dateCreated: Date,
+        dateEdited?: Date,
         hasSwearing?: boolean,
 
         canSwear?: boolean
@@ -23,12 +24,16 @@
         title,
         description,
         dateCreated,
+        dateEdited,
         hasSwearing = false,
 
         canSwear = $bindable(false)
     }: Props = $props();
 
-    let actualDescription = $derived(description + "\n" + `Created on ${dateCreated.toDateString()}`);
+    let actualDescription = $derived(description 
+            + "\n" 
+            + `Created on ${dateCreated.toDateString()}`
+            + (dateEdited ? ` | Edited on ${dateEdited.toDateString()}` : ""));
     let optionsToModify: number = $derived(hasSwearing ? 1 : 0);
 
     $effect(() => {

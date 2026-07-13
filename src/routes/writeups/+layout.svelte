@@ -34,7 +34,8 @@
     <WriteupContent 
         title={writeupInfo.name} 
         description={writeupInfo.description}
-        dateCreated={writeupInfo.modified || writeupInfo?.created} 
+        dateCreated={writeupInfo.created} 
+        dateEdited={writeupInfo.modified}
         hasSwearing={writeupInfo.hasSwearing}
         bind:canSwear={options.swearing}>
         {@render children?.()}

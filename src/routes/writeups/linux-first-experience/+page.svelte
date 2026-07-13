@@ -19,7 +19,7 @@
 <Image 
     src="/assets/writeups/linux-first-experience/photo1.png"
     alt="My Linux Mint Cinammon desktop"
-    caption="My Linux Desktop"
+    caption="My Linux Desktop as of the latest"
     requiresImageViewer={true} />
 <p>I've switched to Linux since mid-April of 2026 and it's been quite great so far! Coming from Windows, I can confidently say that I'm never going back again, and that I'm willing to install Linux again in another machine if I had one.</p>
 <p>But how is the overall experience like? How was your installation? Did everything from your Windows installation work as well as it did in Linux?</p>
@@ -182,7 +182,7 @@ echo "signing successful for $1!!"
 <Image 
     src="/assets/writeups/linux-first-experience/photo3.png"
     alt="My Linux Mint Cinammon desktop, open with applications showing the capabilities of my computer"
-    caption="My Linux Desktop, again"
+    caption="My Linux Desktop, again (an older screenshot)"
     requiresImageViewer={true} />
 <p>All my Java applications work on Linux ;)<br>
 It's fantastic, write once and run anywhere!!</p>

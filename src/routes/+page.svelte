@@ -6,8 +6,6 @@
 
 <!-- lowkey TODO: make this more professional for smth like a j*b -->
 <main>
-    <h1 class="text-xl font-bold">six seven</h1>
-
     <Content>
         <p>I am <code>Marsh (brickwall2900)</code>, someone who actively develops stuff... because they love it.</p>
         <!-- okay what the hell -->
@@ -98,12 +96,13 @@
         <Dropdown title="Where can you find my social media?">
             <LinkList links={["https://github.com/brickwall2900"]} />
             <p>My other social media are kept private.</p>
+            <p>Any attempt to try and stalk my other social media will be <strong>blocked</strong>!!!</p>
         </Dropdown>
         <Dropdown title="Do I vibecode?">
             <!-- ts getting removed when i need to get into a j*b, corporations suuuuck i hope the ai bubble bursts -->
-            <span>No AI involved for projects I make</span> 
-            <span><small class="inline">except for the parts that I wanted assistance.</small></span>
             <p><strong>I don't vibecode ENTIRE projects and I am against AI art!</strong></p>
+            <p>Therefore, AI is involved for projects I make as a <strong>tool</strong>.</p> 
+            <p>Never will a robot try to replicate my shitty, unique coding style.</p>
             <!-- HAHAHAHAHAHAHAHAA yessir -->
         </Dropdown>
         <Dropdown title="Why list X programming language?">
@@ -151,6 +150,19 @@
                 </p>
                 <em><p>I never got past making the kernel though.</p></em>
             </Dropdown>
+        </Dropdown>
+        <Dropdown title="How the hell do you navigate this website?">
+            <Dropdown title="Computer/Desktop">
+                <p>If your screen is larger than a phone let's say, you'll see a navigation bar on the very top of the website. Click around the buttons to go around!</p>
+            </Dropdown>
+            <Dropdown title="Anything smaller than a Computer/Desktop">
+                <p>See that one little "hamburger" button up there on the top-left corner? Click it to open the "Transfer Gadget" and click the different buttons to go around!</p>
+            </Dropdown>
+        </Dropdown>
+        <Dropdown title="Where are you academically?">
+            <p>I'm a first-year freshman in <Spoiler><p>the University of the Philippines Los Baños (UPLB)</p></Spoiler>!</p>
+            <br>
+            <p>I'm attempting to navigate life by myself and I'm getting comfortable with it. I wish to <b>survive</b> college (╯°□°)╯︵ ┻━┻</p>
         </Dropdown>
         <Button class="rounded bg-red-600 text-white p-1 px-4 cursor-not-allowed" disabled>Okay, quiz me about the fun facts! (WIP)</Button>
     </Content>

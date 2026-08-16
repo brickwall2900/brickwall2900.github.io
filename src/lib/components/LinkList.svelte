@@ -16,7 +16,7 @@
 </script>
 
 {#if links.length > 0}
-    <nav class="flex flex-row gap-2 mt-2 items-center">
+    <nav class="flex flex-row gap-2 mt-2 mb-2 items-center">
         <p class="inline mr-2">Links:</p>
         {#each links as link}
             <a 

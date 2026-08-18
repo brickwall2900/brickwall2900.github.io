@@ -94,7 +94,7 @@
             <p>please don't expect me to be lvl 100 in any programming language /ᐠ｡ꞈ｡ᐟ\... maybe except Java.</p>
         </Dropdown>
         <Dropdown title="Where can you find my social media?">
-            <LinkList links={["https://github.com/brickwall2900"]} />
+            <LinkList links={["https://github.com/brickwall2900", "https://codeberg.org/brickwall2900"]} />
             <p>My other social media are kept private.</p>
             <p>Any attempt to try and stalk my other social media will be <strong>blocked</strong>!!!</p>
         </Dropdown>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>for my favorite person?</title>
+        <style>
+            .content {
+                width: max-content;
+                height: max-content;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="content" class="content"></canvas>
+    </body>
+
+    <script lang="javscript">
+        const canvas = document.getElementById("content");
+        let lastTimestamp;
+
+        function getWidth() {
+            return canvas.clientWidth;
+        }
+
+        function getHeight() {
+            return canvas.clientHeight;
+        }
+
+        function tick(delta) {
+            const context = canvas.getContext("2d");
+        }
+        
+        function step(timestamp) {
+            const delta = (performance.now() - lastTimestamp) / 1e3;
+            lastTimestamp = timestamp;
+            tick(delta);
+            requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    </script>
+</html>

@@ -6,7 +6,7 @@
     import type { Snippet } from "svelte";
     import type { Action } from "svelte/action";
 
-    //export { header };
+    ///export { header };
 
     interface Props {
         children?: Snippet,

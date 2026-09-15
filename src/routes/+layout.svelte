@@ -15,6 +15,7 @@
     import SettingsDialog from './SettingsDialog.svelte';
     import { loadSettings } from '$lib/common/settings';
     import ModalDialog from '$lib/components/ModalDialog.svelte';
+    import Link from '$lib/components/Link.svelte';
 
 	let { children } = $props();
 	let showingSettings = $state(false);
@@ -108,5 +109,15 @@
 <SettingsDialog bind:showing={showingSettings} />
 
 <div class="p-4"></div>
+
+<p class="bg-amber-300 text-center text-black px-8">
+	HELLO!! I am moving from GitHub Pages to CloudFlare Pages.
+	What you are seeing is the final version of my website before moving to CloudFlare Pages.
+</p>
+
+<p class="bg-green-300 text-center text-black px-8">
+	If you are not aware yet, I have moved to a new domain! 
+	(<Link href="https://marsh.is-a.dev" class="text-black visited:text-black dark:text-black dark:visited:text-black" newtab>https://marsh.is-a.dev</Link>)
+</p>
 
 {@render children()}

@@ -28,15 +28,14 @@
 	if (browser) {
 		// ermmmm
 		setTimeout(() => giveBadge("welcome"), 1000);
-
-		function onOfflineMode(e: Event) { 
-			giveBadge("offline");
-		}
-		addEventListener("offline", onOfflineMode);
 	}
 
 	function onResize(e: UIEvent) {
 		giveBadge("window_resize");
+	}
+
+	function onOfflineMode(e: Event) { 
+		giveBadge("offline");
 	}
 
 	// load settings early step;
@@ -49,7 +48,7 @@
 	});
 </script>
 
-<svelte:window onresize={onResize} />
+<svelte:window onresize={onResize} onoffline={onOfflineMode} />
 
 {#snippet newNavItem(link: string, name: string, isTransferPortal?: boolean)}
 	{#if !isTransferPortal}
@@ -120,4 +119,6 @@
 	(<Link href="https://marsh.is-a.dev" class="text-black visited:text-black dark:text-black dark:visited:text-black" newtab>https://marsh.is-a.dev</Link>)
 </p>
 
-{@render children()}
+<svelte:boundary>
+	{@render children()}
+</svelte:boundary>

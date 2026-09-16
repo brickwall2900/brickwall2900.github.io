@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { base } from '$app/paths';
     import IconGithub from '~icons/mdi/github'
     import IconGlobe from '~icons/mdi/globe'
     
@@ -10,6 +11,9 @@
     HOSTNAMES.set("GitHub", "github.com");
 
     function isHostNameSame(hostnameKey: string, urlString: string) {
+        if (urlString.startsWith(".") || urlString.startsWith("/")) {
+            urlString = ((base.charAt(0) != "." && base.length > 0) ? base : "http://localhost" ) + urlString.substring(1);
+        }
         const url = new URL(urlString);
         return url.hostname === HOSTNAMES.get(hostnameKey);
     }

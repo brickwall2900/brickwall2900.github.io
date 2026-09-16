@@ -14,7 +14,9 @@
     </Content>
 
     <Content>
-        <p>Message of the day: {motd}</p>
+        <p title="The message of the day is a message set by me on a NOT daily basis. I can put anything I want in here.">
+            <strong>Message of the day:</strong> {motd}
+        </p>
     </Content>
 
     <Content title="Hosted Projects" description="so far i just have a few things here...">

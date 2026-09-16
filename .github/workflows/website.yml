@@ -5,7 +5,7 @@ name: Svelte Build to GitHub Pages
 
 on:
   push:
-    branches: 'main'
+    branches: 'gh-pages'
 
 jobs:
   build_site:

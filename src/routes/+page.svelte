@@ -13,6 +13,10 @@
         <p>I use Java as my main programming language, but I also use Python, JavaScript/TypeScript, Lua... maybe even a bit of C if I feel like it.</p>
     </Content>
 
+    <Content>
+        <p>Message of the day: {motd}</p>
+    </Content>
+
     <Content title="Hosted Projects" description="so far i just have a few things here...">
         <ul class="list-disc ml-8">
             <li><Link href={doResolve("/textfuscator")}>Textfuscator</Link></li>
@@ -177,6 +181,7 @@
     import Link from '$lib/components/Link.svelte';
     import LinkList from '$lib/components/LinkList.svelte';
     import Spoiler from '$lib/components/Spoiler.svelte';
+    import { onMount } from 'svelte';
 
     let mari = $state(0);
     function onMariClick() {
@@ -184,4 +189,10 @@
             giveBadge("mari_my_beloved");
         }
     }
+
+    onMount(async () => {
+        motd = await (await fetch("/api/motd")).text();
+    })
+
+    let motd = $state("--< ... PLEASE WAIT ... >--");
 </script>

@@ -28,6 +28,11 @@
 	if (browser) {
 		// ermmmm
 		setTimeout(() => giveBadge("welcome"), 1000);
+
+		function onOfflineMode(e: Event) { 
+			giveBadge("offline");
+		}
+		addEventListener("offline", onOfflineMode);
 	}
 
 	function onResize(e: UIEvent) {

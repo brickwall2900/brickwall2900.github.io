@@ -60,6 +60,12 @@
         "hint": "Solve my math homework in one of my writeups."
     },
     {
+        "id": "offline",
+        "name": "Offline Mode",
+        "description": "",
+        "hint": ""
+    },
+    {
         "id": "china",
         "name": "Digging to China",
         "description": "You could've used the scrollbar on the right? You did? You cheater!",

@@ -9,6 +9,7 @@
     import Content from "$lib/components/Content.svelte";
     import Link from "$lib/components/Link.svelte";
     import Codeblock from "$lib/components/Codeblock.svelte";
+    import { doResolve } from "$lib/common/doresolve";
 
 </script>
 
@@ -45,7 +46,7 @@
             <p>My own personal website that I can throw anything in.</p>
             <p>Current built in Svelte and hosted on GitHub Pages. Everything here is ran client-sided, no server is being involved except for GitHub who's hosting the Pages for this website.</p>
         </ProjectItem>
-        <ProjectItem name="Textfuscator" links={["https://brickwall2900.github.io/textfuscator"]}>
+        <ProjectItem name="Textfuscator" links={[doResolve("/textfuscator")]}>
             <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">
                 <div class="sm:col-span-2">
                     <p>A text obfuscation tool designed to obfuscate MULTIPLE texts onto a SINGLE text by a key-based retrival system.</p>

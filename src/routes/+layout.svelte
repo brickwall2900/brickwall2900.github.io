@@ -41,7 +41,7 @@
 		giveBadge("offline");
 	}
 
-	let mouseX: number, mouseY: number;
+	let mouseX: number = 30, mouseY: number = 30;
 
 	function onMouseMoved(e: MouseEvent) {
 		mouseX = e.clientX;

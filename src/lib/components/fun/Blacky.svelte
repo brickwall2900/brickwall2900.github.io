@@ -39,15 +39,16 @@
 
     /// Blacky goes towards the specified point
     export function moveTo(x: number, y: number) {
-        xDest = x;
-        yDest = y;
-        if (!pathfindState) {
-            pathfindState = true;
-            catState.walkStartTs = performance.now();
-            lastTick = performance.now();
-            requestAnimationFrame(pathfindTick);
+        if (xDest !== x || yDest !== y) {
+            xDest = x;
+            yDest = y;
+            if (!pathfindState) {
+                pathfindState = true;
+                catState.walkStartTs = performance.now();
+                lastTick = performance.now();
+                requestAnimationFrame(pathfindTick);
+            }
         }
-        pathfindState = true;
     }
 
     /// Blacky teleports to that specified point

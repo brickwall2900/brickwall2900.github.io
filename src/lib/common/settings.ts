@@ -47,7 +47,9 @@ function applyTheme() {
     let finalDataTheme = theme ? theme.dataName : "light";
     document.documentElement.setAttribute("data-theme", finalDataTheme);
     if (getFromLocalStorage("theme") && finalDataTheme !== getFromLocalStorage("theme")) {
-        giveBadge("dark_mode_toggle");
+        if (finalDataTheme === "light") {
+            giveBadge("dark_mode_toggle");
+        }
     }
     putToLocalStorage("theme", finalDataTheme);
 }

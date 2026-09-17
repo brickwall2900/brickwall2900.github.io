@@ -64,7 +64,7 @@
 	});
 </script>
 
-<svelte:window onresize={onResize} onoffline={onOfflineMode} onmousemove={onMouseMoved} />
+<svelte:window onresize={onResize} onoffline={onOfflineMode} onpointermove={onMouseMoved} />
 
 {#snippet newNavItem(link: string, name: string, isTransferPortal?: boolean)}
 	{#if !isTransferPortal}

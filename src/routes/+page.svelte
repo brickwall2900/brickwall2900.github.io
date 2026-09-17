@@ -7,10 +7,12 @@
 <!-- lowkey TODO: make this more professional for smth like a j*b -->
 <main>
     <Content>
-        <p>I am <code>Marsh (brickwall2900)</code>, someone who actively develops stuff... because they love it.</p>
+        <p>I am Marsh <code>(brickwall2900)</code>!</p>
         <!-- okay what the hell -->
-
+        <p>I like to do programming and all sorts of things. I love to learn and learn more!</p>
         <p>I use Java as my main programming language, but I also use Python, JavaScript/TypeScript, Lua... maybe even a bit of C if I feel like it.</p>
+        <hr class="my-5">
+        <q class="italic">All it costs is your love!</q><p>— me</p>
     </Content>
 
     <Content>
@@ -166,7 +168,7 @@
             </Dropdown>
         </Dropdown>
         <Dropdown title="Where are you academically?">
-            <p>I'm a first-year freshman in <Spoiler><p>the University of the Philippines Los Baños (UPLB)</p></Spoiler>!</p>
+            <p>I'm a first-year freshman in <Spoiler>the University of the Philippines Los Baños (UPLB)</Spoiler>!</p>
             <br>
             <p>I'm attempting to navigate life by myself and I'm getting comfortable with it. I wish to <b>survive</b> college (╯°□°)╯︵ ┻━┻</p>
         </Dropdown>

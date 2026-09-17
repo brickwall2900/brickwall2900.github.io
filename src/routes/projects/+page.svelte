@@ -64,8 +64,10 @@ import io.github.brickwall2900.processing.ProcessManager;
 ProcessManager manager = ProcessManager.getInstance();`} />
             <p>Easy child process communication with <code>Messenger</code>:</p>
             <Codeblock language="java" filename="snippet.java" copyEnabled={false} code={`
+// Master Process
 processManager.asMaster().getMessenger().mesageBroadcast("Hello!");
 
+// Child Process
 processManager.asChild().getMessenger().on(( ... ) -> { System.out.println(message); });`} />
         </ProjectItem>
     </Content>

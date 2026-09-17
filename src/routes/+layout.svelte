@@ -16,10 +16,13 @@
     import { loadSettings } from '$lib/common/settings';
     import ModalDialog from '$lib/components/ModalDialog.svelte';
     import Link from '$lib/components/Link.svelte';
+    import Blacky from '$lib/components/fun/Blacky.svelte';
 
 	let { children } = $props();
 	let showingSettings = $state(false);
 	let transferPortalShowing = $state(false);
+	let blacky: Blacky;
+	let blackyFollowInterval: any;
 	
 	function showSettingsMenu() {
 		showingSettings = true;
@@ -38,6 +41,17 @@
 		giveBadge("offline");
 	}
 
+	let mouseX: number, mouseY: number;
+
+	function onMouseMoved(e: MouseEvent) {
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+	}
+
+	function blackyFollowMouse() {
+		blacky.moveTo(mouseX, mouseY);
+	}
+
 	// load settings early step;
 	// i do this so that SettingsDialog's effect() will save the loaded settings
 	// without this, everything will go back to the default settings in settings.ts
@@ -45,10 +59,12 @@
 
 	$effect(() => {
 		loadSettings();
+		blackyFollowInterval = setInterval(blackyFollowMouse, 200);
+		return () => clearInterval(blackyFollowInterval);
 	});
 </script>
 
-<svelte:window onresize={onResize} onoffline={onOfflineMode} />
+<svelte:window onresize={onResize} onoffline={onOfflineMode} onmousemove={onMouseMoved} />
 
 {#snippet newNavItem(link: string, name: string, isTransferPortal?: boolean)}
 	{#if !isTransferPortal}
@@ -111,6 +127,7 @@
 
 <BadgeBanner />
 <SettingsDialog bind:showing={showingSettings} />
+<Blacky bind:this={blacky} />
 
 <div class="p-4"></div>
 

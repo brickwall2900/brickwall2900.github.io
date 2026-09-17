@@ -27,12 +27,12 @@
         "id": "dark_mode_toggle",
         "name": "Light Switched",
         "description": "A light switch toggle, wonder what it doe- AHH PLEASEE TURN IT OFF!!",
-        "hint": "Toggle dark mode on/off"
+        "hint": "Set your theme to light"
     },
     {
         "id": "spoiler",
         "name": "Decoding the Files",
-        "description": "At least my content is less censored than someone's certain files.",
+        "description": "At least my content can be uncovered than someone's certain files.",
         "hint": "Reveal a spoiler tag."
     },
     {
@@ -61,9 +61,9 @@
     },
     {
         "id": "offline",
-        "name": "Offline Mode",
-        "description": "",
-        "hint": ""
+        "name": "Remote Island",
+        "description": "What would you prefer? Slow internet or no internet at all?",
+        "hint": "Go offline."
     },
     {
         "id": "china",

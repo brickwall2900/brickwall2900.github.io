@@ -41,10 +41,10 @@
                 <Image src={asset("/assets/projects/foxy.png")} alt="Birthday Reminder's window." requiresImageViewer class="place-self-end" />
             </div>
         </ProjectItem>
-        <ProjectItem name="brickwall2900.github.io" links={["https://github.com/brickwall2900/brickwall2900.github.io", "https://brickwall2900.github.io"]}>
+        <ProjectItem name="marsh.is-a.dev (formerly brickwall2900.github.io)" links={["https://github.com/brickwall2900/brickwall2900.github.io", "https://marsh.is-a.dev", "https://brickwall2900.github.io"]}>
             <p>Yes. It's the website you're looking at right now. I consider this as one of my projects.</p>
             <p>My own personal website that I can throw anything in.</p>
-            <p>Current built in Svelte and hosted on GitHub Pages. Everything here is ran client-sided, no server is being involved except for GitHub who's hosting the Pages for this website.</p>
+            <p>Current built in Svelte and hosted on CloudFlare Pages.</p>
         </ProjectItem>
         <ProjectItem name="Textfuscator" links={[doResolve("/textfuscator")]}>
             <div class="grid sm:grid-cols-3 sm:grid-rows-1 grid-cols-1 grid-rows-1 gap-2">

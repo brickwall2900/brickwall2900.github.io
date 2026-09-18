@@ -2,9 +2,10 @@
 	import { fade, fly, slide } from "svelte/transition";
     import Button from "./Button.svelte";
     import type { Snippet } from "svelte";
+    import Window from "./Window.svelte";
 
     interface Props {
-        ondialogclosed?: ((e: Event) => boolean),
+        ondialogclosing?: (() => boolean),
         title?: string,
         showing?: boolean,
         hasCloseButton?: boolean,
@@ -12,25 +13,20 @@
     }
 
     let { 
-        ondialogclosed,
-        title = "Dialog",
+        ondialogclosing,
+        title = $bindable("Dialog"),
         showing = $bindable(false),
         hasCloseButton = $bindable(true),
         children
     }: Props = $props();
+    
+    let dialogElement: HTMLDialogElement | undefined = $state();
+    let windowComponent: Window | undefined = $state();
 
     function tryClosingTheDamnDialog(e: Event) {
-        if (e.target !== e.currentTarget) {
-            return;
+        if (e.target === dialogElement) {
+            windowComponent?.onCloseRequest();
         }
-
-        if (ondialogclosed) {
-            if (!ondialogclosed(e)) {
-                return;
-            }
-        }
-        
-        showing = false;
     }
 </script>
 
@@ -39,24 +35,16 @@
         class="fixed w-full h-full mx-auto my-auto inset-0 bg-black/70 flex items-center justify-center z-150"
         onclick={tryClosingTheDamnDialog}
         in:fade={{duration: 250}}
-        out:fade={{duration: 250}}>
-        <section 
-            class="bg-white dark:bg-gray-950 text-black dark:text-white"
-            in:fly={{duration: 250, y: -100}}
-            out:fly={{duration: 250, y: 100}}>
-            <nav class="w-full bg-gray-300 dark:bg-gray-600 px-2 py-1 flex flex-row justify-between">
-                <p class="font-bold text-lg">{title}</p>
-                {#if hasCloseButton}
-                    <Button 
-                        class="bg-red-500 hover:bg-red-700 active:bg-red-800 text-white px-2"
-                        onclick={tryClosingTheDamnDialog}>
-                        Close
-                    </Button>
-                {/if}
-            </nav>
-            <article class="p-2 flex flex-row gap-2">
+        out:fade={{duration: 250}}
+        bind:this={dialogElement}>
+        <Window 
+            onwindowclosing={ondialogclosing}
+            bind:title={title}
+            bind:showing={showing}
+            bind:hasCloseButton={hasCloseButton}
+            bind:this={windowComponent}
+            canDrag={false}>
                 {@render children?.()}
-            </article>
-        </section>
+        </Window>
     </dialog>
 {/if}

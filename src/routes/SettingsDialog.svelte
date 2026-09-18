@@ -23,6 +23,11 @@
         buildId = await (await fetch("/api/buildid")).text();
     }
 
+    function onDialogClosing() {
+        showing = false;
+        return true;
+    }
+
     $effect(() => {
         settings.theme = theme;
         settings.bagdeNotifications = badgeNotifs;
@@ -31,7 +36,7 @@
     });
 </script>
 
-<ModalDialog bind:showing={showing} title="Settings">
+<ModalDialog ondialogclosing={onDialogClosing} bind:showing={showing} title="Settings">
     <main class="flex flex-col gap-2">
         <div class="grid grid-cols-2 grid-rows-5 gap-2 items-center">
             <p>Theme:</p>

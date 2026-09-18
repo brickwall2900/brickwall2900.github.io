@@ -27,11 +27,6 @@
         }
     }
 
-    function closeBadge(e: Event): boolean {
-        showingBadgeDetails = false;
-        return true;
-    }
-
     function confirmRevokeBadge(badgeId: string) {
         if (confirm("Are you sure? Revoking a badge removes it and you would have to complete it again.")) {
             showingBadgeDetails = false;
@@ -106,7 +101,7 @@
     </div>
 </main>
 
-<ModalDialog bind:showing={showingBadgeDetails} ondialogclosed={closeBadge} title="Badge Viewer">
+<ModalDialog bind:showing={showingBadgeDetails} title="Badge Viewer">
     <aside>
         <enhanced:img 
             class={"h-16 w-16 m-2 border pointer-events-none dark:border-white " + (hasBadge(showingBadgeId) ? "" : "grayscale blur-xs")} 

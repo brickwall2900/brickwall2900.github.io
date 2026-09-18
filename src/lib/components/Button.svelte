@@ -16,17 +16,23 @@
         class: className = undefined,
         ...others
     }: Props = $props();
+    let theButton: HTMLButtonElement;
 
     function onActualClick(e: Event) {
         if (onclick) {
             onclick(e);
         }
     }
+
+    export function getButton() {
+        return theButton;
+    }
 </script>
 
 <button onclick={onActualClick} 
         disabled={disabled}
         class={appendClassname("bg-button border-2 border-button-border hover:bg-button-hover active:bg-button-active disabled:bg-button-disabled", className)}
+        bind:this={theButton}
         {...others}>
         {@render children?.()}
 </button>

@@ -526,7 +526,7 @@
     <canvas bind:this={canvas} class="w-full h-full block"></canvas>
 </main>
 
-<ModalDialog bind:showing={dialogShowing} title={dialogTitle} hasCloseButton={false} ondialogclosed={function () { return false; }}>
+<ModalDialog bind:showing={dialogShowing} title={dialogTitle} hasCloseButton={false} ondialogclosing={function () { return false; }}>
     <div class="flex flex-col gap-4">
         <div class="flex flex-row gap-4">
             <p>{dialogContent}</p>

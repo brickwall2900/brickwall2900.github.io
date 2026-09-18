@@ -10,6 +10,8 @@
         hasCloseButton?: boolean,
         canMove?: boolean,
         canDrag?: boolean,
+        initialX?: number
+        initialY?: number,
         children: Snippet
     }
 
@@ -20,11 +22,13 @@
         hasCloseButton = $bindable(true),
         canMove = $bindable(false),
         canDrag = $bindable(true),
+        initialX = $bindable(0),
+        initialY = $bindable(0),
         children
     }: Props = $props();
 
     let titlebarPressed = $state(false);
-    let offsetX = $state(0), offsetY = $state(0);
+    let offsetX = $state(initialX), offsetY = $state(initialY);
     let closeButton: Button | undefined = $state(undefined);
 
     export function onCloseRequest() {

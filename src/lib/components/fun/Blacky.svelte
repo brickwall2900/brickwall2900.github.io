@@ -4,18 +4,11 @@
     import { appendClassname } from "$lib/common/classname";
     import { MathHelper } from "$lib/common/mathCommon";
     import { Vector2, ReactiveVector2, type Vector2Type } from "$lib/types.svelte";
+    import Button from "../Button.svelte";
+    import section from "../Content.svelte";
     import Image from "../Image.svelte";
-
-    interface BlackyState {
-        moving: boolean,
-        facingRight: boolean,
-        position: Vector2Type,
-        speedMultiplier: number,
-        maxSpeed: number,
-        walkStartTs: DOMHighResTimeStamp,
-        turnSpeed: number
-        currentAngle: number
-    };
+    import Window from "../Window.svelte";
+    import { Action, type BlackyState } from "./BlackyTypes";
 
     let catState = $state<BlackyState>(
         { 
@@ -25,7 +18,7 @@
             speedMultiplier: 0,
             maxSpeed: 200,
             walkStartTs: 0,
-            turnSpeed: Math.PI,
+            turnSpeed: Math.PI * 2,
             currentAngle: 0
         }
     );
@@ -35,7 +28,8 @@
     let yDest = $state(0);
     let lastTick: DOMHighResTimeStamp = performance.now();
     let catMeowAudio: HTMLAudioElement;
-    
+
+    let actionWindowVisible = $state(false);
 
     /// Blacky goes towards the specified point
     export function moveTo(x: number, y: number) {
@@ -56,9 +50,15 @@
         catState.position.set(x, y);
     }
 
+    export function doAction(actionId: Action) {
+        actionWindowVisible = false;
+    }
+
     function onMouseClicked(e: MouseEvent) {
         catMeowAudio.currentTime = 0;
         catMeowAudio.play();
+
+        actionWindowVisible = true;
     }
 
     function pathfindTick(timestamp: DOMHighResTimeStamp) {
@@ -100,7 +100,7 @@
         catState.position.x = newX;
         catState.position.y = newY;
         catState.moving = Math.abs(dx) > 0 || Math.abs(dy) > 0;
-        catState.facingRight = Math.cos(angle) > 0;
+        catState.facingRight = prevX - xDest < 0;
 
         requestAnimationFrame(pathfindTick);
     }
@@ -108,10 +108,22 @@
 
 <div>
     <Image
-        class={"fixed z-3000 " + (!catState.moving ? "w-10 h-10" : "w-16 h-10")}
+        class={"fixed z-3000 select-none " + (!catState.moving ? "w-10 h-10" : "w-16 h-10")}
         style="top: {catState.position.y}px; left: {catState.position.x}px; transform: scaleX({catState.facingRight ? -1 : 1}); -webkit-transform: scaleX({catState.facingRight ? -1 : 1})" 
         onclick={onMouseClicked}
         src={!catState.moving ? asset("/assets/blacky/cat2.gif") : asset("/assets/blacky/final-cat.gif")}>
     </Image>
     <audio src={asset("/assets/blacky/meow.mp3")} bind:this={catMeowAudio}></audio>
 </div>
+{#if actionWindowVisible}
+    <Window title="Blacky - Actions" initialX={catState.position.x} initialY={catState.position.y} bind:showing={actionWindowVisible}>
+        <div class="flex flex-col gap-2 w-full">
+            {#snippet defineAction(name: string, id: Action, desc?: string)}
+                <Button title={desc} onclick={() => doAction(id)}>{name}</Button>
+            {/snippet}
+
+            {@render defineAction("Pet", Action.PET, "Pet the cat.")}
+            {@render defineAction("Cat", Action.CAT, "Press CAT to CAT.")}
+        </div>
+    </Window>
+{/if}

@@ -2,6 +2,7 @@
     <title>Home</title> 
     <!-- google SEO verification heheheheehhe -->
     <meta name="google-site-verification" content="ft2V6Ak_UxJv8bkfeytbSQ3X4Q1NlqIe2ghcMLLT8Ss" />
+    <meta name="google-site-verification" content="fTxE-lTx5pKOI_UdLiq5mLH8Rtwz3H06OEwLHzS8jDg" />
 </svelte:head>
 
 <!-- lowkey TODO: make this more professional for smth like a j*b -->

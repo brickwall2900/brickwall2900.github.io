@@ -29,6 +29,7 @@
 
     let titlebarPressed = $state(false);
     let offsetX = $state(initialX), offsetY = $state(initialY);
+    let touchOffsetX = $state(0), touchOffsetY = $state(0);
     let closeButton: Button | undefined = $state(undefined);
 
     export function onCloseRequest() {
@@ -37,7 +38,7 @@
         }
     }
 
-    function onMousePressed(e: Event) {
+    function onMousePressed(e: MouseEvent) {
         if (!canDrag) {
             return;
         }
@@ -48,6 +49,8 @@
 
         e.preventDefault();
         titlebarPressed = true;
+        touchOffsetX = e.offsetX;
+        touchOffsetY = e.offsetY;
     }
 
     function onMouseReleased(e: Event) {
@@ -55,28 +58,53 @@
     }
 
     function onMouseMoved(e: MouseEvent) {
-        if (titlebarPressed) {
-            offsetX += e.movementX;
-            offsetY += e.movementY;
-        }
-
         if (!canDrag) {
             titlebarPressed = false;
             return;
         }
+
+        if (titlebarPressed) {
+            offsetX += e.movementX;
+            offsetY += e.movementY;
+            e.preventDefault();
+        }
+    }
+
+    function onTouchDragged(e: TouchEvent) {
+        const touch = e.touches.item(e.touches.length - 1);
+        if (!touch) {
+            return;
+        }
+
+        if (!canDrag) {
+            titlebarPressed = false;
+            return
+        }
+
+        if (titlebarPressed) {
+            offsetX = touch.clientX - touchOffsetX;
+            offsetY = touch.clientY - touchOffsetY;
+            
+        }
+    }
+
+    function onScroll(e: Event) {
+        if (titlebarPressed) {
+            e.preventDefault();
+        }
     }
 </script>
 
-<svelte:window onpointermove={onMouseMoved} onpointerup={onMouseReleased} />
+<svelte:window onpointermove={onMouseMoved} ontouchmove={onTouchDragged} onscroll={onScroll} onpointerup={onMouseReleased} />
 
 <section 
-    class={"w-fit absolute bg-window text-content-text border-4 border-button-border"}
+    class={"w-fit fixed bg-window text-content-text border-4 border-button-border"}
     in:fly={{duration: 250, y: -100}}
     out:fly={{duration: 250, y: 100}}
-    style="transform: translate3d({offsetX}px, {offsetY}px, 0);" >
+    style="transform: translate3d({offsetX}px, {offsetY}px, 0); touch-action: {titlebarPressed ? "none" : "auto"}" >
     <div>
         <nav 
-            class={"w-full bg-window-titlebar px-2 py-1 flex flex-row shrink-0 justify-between " + (canDrag ? "cursor-move" : "")}
+            class={"w-full bg-window-titlebar px-2 py-1 flex flex-row shrink-0 justify-between touch-none " + (canDrag ? "cursor-move" : "")}
             onpointerdown={onMousePressed}
             onpointerup={onMouseReleased}>
             <p class="font-bold text-lg">{title}</p>
@@ -89,7 +117,7 @@
                 </Button>
             {/if}
         </nav>
-        <article class="p-2 flex flex-row gap-2">
+        <article class="p-2 flex flex-row gap-2 touch-none">
             {@render children?.()}
         </article>
     </div>

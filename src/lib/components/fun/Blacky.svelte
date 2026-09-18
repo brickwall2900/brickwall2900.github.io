@@ -73,8 +73,8 @@
         const dy = yDest - prevY;
         const distance = Math.hypot(dx, dy);
 
-        const stopDistance = 60;
-        const slowDownDist = 120;
+        const stopDistance = 100;
+        const slowDownDist = 140;
         const accelTimeSec = 0.4;
 
         if (distance <= stopDistance) {

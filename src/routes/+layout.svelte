@@ -17,6 +17,8 @@
     import ModalDialog from '$lib/components/ModalDialog.svelte';
     import Link from '$lib/components/Link.svelte';
     import Blacky from '$lib/components/fun/Blacky.svelte';
+    import Content from '$lib/components/Content.svelte';
+    import Button from '$lib/components/Button.svelte';
 
 	let { children } = $props();
 	let showingSettings = $state(false);
@@ -138,4 +140,16 @@
 
 <svelte:boundary>
 	{@render children()}
+
+	{#snippet failed(error, reset)}
+		<Content title="Oh no!">
+			<p>
+				If you're seeing this right now, something happened.
+				I've temporarily removed whatever you're seeing right now. It's causing unexpected problems and I don't know why.
+			</p>
+			<q>{error}</q>
+			<hr>
+			<Button onclick={reset}>Retry...</Button>
+		</Content>
+	{/snippet}
 </svelte:boundary>

@@ -66,7 +66,7 @@
 <svelte:window onpointermove={onMouseMoved} onpointerup={onMouseReleased} />
 
 <section 
-    class={"w-fit bg-white dark:bg-gray-950 text-black dark:text-white"}
+    class={"w-fit absolute bg-white dark:bg-gray-950 text-black dark:text-white"}
     in:fly={{duration: 250, y: -100}}
     out:fly={{duration: 250, y: 100}}
     style="transform: translate3d({offsetX}px, {offsetY}px, 0);" >

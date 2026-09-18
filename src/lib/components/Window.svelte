@@ -66,13 +66,13 @@
 <svelte:window onpointermove={onMouseMoved} onpointerup={onMouseReleased} />
 
 <section 
-    class={"w-fit absolute bg-white dark:bg-gray-950 text-black dark:text-white"}
+    class={"w-fit absolute bg-window text-content-text border-4 border-button-border"}
     in:fly={{duration: 250, y: -100}}
     out:fly={{duration: 250, y: 100}}
     style="transform: translate3d({offsetX}px, {offsetY}px, 0);" >
     <div>
         <nav 
-            class={"w-full bg-gray-300 dark:bg-gray-600 px-2 py-1 flex flex-row shrink-0 justify-between " + (canDrag ? "cursor-move" : "")}
+            class={"w-full bg-window-titlebar px-2 py-1 flex flex-row shrink-0 justify-between " + (canDrag ? "cursor-move" : "")}
             onpointerdown={onMousePressed}
             onpointerup={onMouseReleased}>
             <p class="font-bold text-lg">{title}</p>

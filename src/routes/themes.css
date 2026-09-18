@@ -22,6 +22,10 @@
     --navbar-bg-col: var(--color-gray-300);
     --navbar-button-bg-col: var(--color-gray-300);
     --navbar-button-bg-hover-col: var(--color-gray-400);
+
+    --window-bg-col: var(--color-white);
+    --window-border-col: var(--color-gray-400);
+    --window-titlebar-col: var(--color-gray-300);
 }
 
 [data-theme="dark"] {
@@ -47,4 +51,8 @@
     --navbar-bg-col: var(--color-gray-800);
     --navbar-button-bg-col: var(--color-gray-800);
     --navbar-button-bg-hover-col: var(--color-gray-600);
+
+    --window-bg-col: var(--color-gray-950);
+    --window-border-col: var(--color-gray-800);
+    --window-titlebar-col: var(--color-gray-600);
 }

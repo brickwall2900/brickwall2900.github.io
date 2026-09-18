@@ -28,6 +28,10 @@
     --color-navbar: var(--navbar-bg-col);
     --color-navbar-button: var(--navbar-button-bg-col);
     --color-navbar-button-hover: var(--navbar-button-bg-hover-col);
+
+    --color-window: var(--window-bg-col);
+    --color-window-border: var(--window-border-col);
+    --color-window-titlebar: var(--window-titlebar-col);
 }
 
 @layer components {

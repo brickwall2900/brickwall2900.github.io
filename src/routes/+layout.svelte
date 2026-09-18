@@ -45,7 +45,7 @@
 
 	let mouseX: number = 30, mouseY: number = 30;
 
-	function onMouseMoved(e: MouseEvent) {
+	function onMouseMoved(e: PointerEvent) {
 		mouseX = e.clientX;
 		mouseY = e.clientY;
 	}
@@ -66,7 +66,7 @@
 	});
 </script>
 
-<svelte:window onresize={onResize} onoffline={onOfflineMode} onpointermove={onMouseMoved} />
+<svelte:window onresize={onResize} onoffline={onOfflineMode} onpointermove={onMouseMoved}/>
 
 {#snippet newNavItem(link: string, name: string, isTransferPortal?: boolean)}
 	{#if !isTransferPortal}

@@ -79,36 +79,51 @@ export class ReactiveVector2 implements Vector2Type {
     y: number = $state(0);
 }
 
-export class Rectangle {
+export interface RectangleType {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+    getTop(): number;
+    getBottom(): number;
+    getLeft(): number;
+    getRight(): number;
+    getX(): number;
+    getY(): number;
+    getWidth(): number;
+    getHeight(): number;
+}
+
+export class Rectangle implements RectangleType {
     constructor(top: number, bottom: number, left: number, right: number) {
-        this.#top = top;
-        this.#bottom = bottom;
-        this.#left = left;
-        this.#right = right;
+        this.top = top;
+        this.bottom = bottom;
+        this.left = left;
+        this.right = right;
     }
 
     public static ofBounds(top: number, bottom: number, left: number, right: number): Rectangle {
         return new Rectangle(top, bottom, left, right);
     }
 
-    public static ofWidthHeight(x: number, y: number, width: number, height: number) {
+    public static ofWidthHeight(x: number, y: number, width: number, height: number): Rectangle {
         return new Rectangle(y, y + height, x, x + width);
     }
 
     public getTop(): number {
-        return this.#top;
+        return this.top;
     }
 
     public getBottom(): number {
-        return this.#bottom;
+        return this.bottom;
     }
 
     public getLeft(): number {
-        return this.#left;
+        return this.left;
     }
 
     public getRight(): number {
-        return this.#right;
+        return this.right;
     }
 
     public getX(): number {
@@ -127,8 +142,68 @@ export class Rectangle {
         return this.getBottom() - this.getTop();
     }
 
-    #top: number;
-    #bottom: number;
-    #left: number;
-    #right: number;
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+}
+
+export class ReactiveRectangle implements RectangleType {
+    constructor(top: number, bottom: number, left: number, right: number) {
+        this.top = top;
+        this.bottom = bottom;
+        this.left = left;
+        this.right = right;
+    }
+
+    public static ofBounds(top: number, bottom: number, left: number, right: number): ReactiveRectangle {
+        return new ReactiveRectangle(top, bottom, left, right);
+    }
+
+    public static ofWidthHeight(x: number, y: number, width: number, height: number): ReactiveRectangle {
+        return new ReactiveRectangle(y, y + height, x, x + width);
+    }
+
+    public getTop(): number {
+        return this.top;
+    }
+
+    public getBottom(): number {
+        return this.bottom;
+    }
+
+    public getLeft(): number {
+        return this.left;
+    }
+
+    public getRight(): number {
+        return this.right;
+    }
+
+    public getX(): number {
+        return this.getLeft();
+    }
+
+    public getY(): number {
+        return this.getTop();
+    }
+
+    public getWidth(): number {
+        return this.getRight() - this.getLeft();
+    }
+
+    public getHeight(): number {
+        return this.getBottom() - this.getTop();
+    }
+
+    top: number = $state(0);
+    bottom: number = $state(0);
+    left: number = $state(0);
+    right: number = $state(0);
+}
+
+export class TypesHelper {
+    public static domRectToRectangle(given: DOMRect): RectangleType {
+        return new Rectangle(given.top, given.bottom, given.left, given.right);
+    }
 }

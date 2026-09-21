@@ -20,4 +20,8 @@ export class MathHelper {
         }
         return current + Math.sign(diff) * maxStep;
     }
+
+    public static clamp(value: number, min: number, max: number): number {
+        return Math.min(Math.max(value, min), max);
+    }
 }

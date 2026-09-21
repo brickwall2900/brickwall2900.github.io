@@ -4,6 +4,7 @@
     import type { Snippet } from "svelte";
     import { MathHelper } from "$lib/common/mathCommon";
     import { Rectangle, TypesHelper, type RectangleType } from "$lib/types.svelte";
+    import { appendClassname } from "$lib/common/classname";
 
     export interface Props {
         onwindowclosing?: (() => boolean),
@@ -15,6 +16,7 @@
         initialX?: number,
         initialY?: number,
         globalParent?: boolean,
+        class?: string,
         children: Snippet
     }
 
@@ -28,6 +30,7 @@
         initialX = $bindable(0),
         initialY = $bindable(0),
         globalParent = $bindable(false),
+        class: className = $bindable(""),
         children
     }: Props = $props();
 
@@ -134,7 +137,7 @@
 
 <section 
     bind:this={theWindowItself}
-    class={"w-fit fixed bg-window text-content-text border-4 border-button-border"}
+    class={appendClassname("w-fit fixed bg-window text-content-text border-4 border-button-border", className)}
     in:fly={{duration: 250, y: -100}}
     out:fly={{duration: 250, y: 100}}
     style="transform: translate3d({offsetX}px, {offsetY}px, 0); touch-action: {titlebarPressed ? "none" : "auto"}" >

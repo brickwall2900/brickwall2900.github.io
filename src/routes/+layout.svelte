@@ -102,8 +102,11 @@
 				</li>
 				{@render renderNavItems(false)}
 			</ul>
-			<button onclick={() => transferPortalShowing = true} class="inline sm:hidden px-3 py-2 h-10 select-none bg-navbar-button hover:bg-navbar-button-hover">
-				<HamburgerMenuIcon />
+			<button 
+				onclick={() => transferPortalShowing = true}
+				title="Opens the transfer gadget"
+				class="sm:hidden flex flex-row items-center gap-3 px-3 py-2 h-10 select-none bg-navbar-button hover:bg-navbar-button-hover">
+				<HamburgerMenuIcon class="inline" /> <span>Navigate</span>
 			</button>
 		</div>
 		<div class="md:order-2">

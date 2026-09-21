@@ -4,7 +4,7 @@
     import Image from '$lib/components/Image.svelte';
     import Link from '$lib/components/Link.svelte';
     import Spoiler from '$lib/components/Spoiler.svelte';
-    import WriteupContent from '../WriteupContent.svelte';
+    import WriteupContent, { copyright } from '../WriteupContent.svelte';
     import { header } from '../WriteupContent.svelte';
     import type { PageProps } from './$types';
     import { getContext, setContext } from 'svelte';
@@ -200,3 +200,5 @@ It's fantastic, write once and run anywhere!!</p>
 <p>Thank you for reading my first writeup! It's my first and I want to write more of these, more about my experiences overall. Maybe I have to keep this talent hidden because it's {options.swearing ? "so shit" : "painful"} to even comprehend. Eh... we'll {options.swearing ? "fuck" : "mess"} around and find out and maybe learn.</p>
 {@render header(2, "References")}
 <p>Desktop Operating System Market Share Worldwide | Statcounter Global Stats. (n.d.). StatCounter Global Stats. Retrieved June 6, 2026, from <Link href="https://gs.statcounter.com/os-market-share/desktop/worldwide/">https://gs.statcounter.com/os-market-share/desktop/worldwide/</Link></p>
+
+{@render copyright()}

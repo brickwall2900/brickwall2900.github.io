@@ -3,6 +3,8 @@
 
     import CheckBox from "$lib/components/CheckBox.svelte";
     import Content from "$lib/components/Content.svelte";
+    import Image from "$lib/components/Image.svelte";
+    import Link from "$lib/components/Link.svelte";
     import type { Snippet } from "svelte";
     import type { Action } from "svelte/action";
 
@@ -44,7 +46,7 @@
 </script>
 
 <script module>
-    export { header };
+    export { header, copyright };
 </script>
 
 <Content title={title} description={actualDescription} class="gap-4">
@@ -93,4 +95,9 @@
     {:else}
         <h4 class="text-md font-bold">{text}</h4>
     {/if}
+{/snippet}
+
+{#snippet copyright()}
+    <hr>
+    <p>This work is licensed under <Link href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</Link><Image src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" class="max-w-4 max-h-4 inline ml-2" /><Image src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" class="max-w-4 max-h-4 inline ml-2" /></p>
 {/snippet}

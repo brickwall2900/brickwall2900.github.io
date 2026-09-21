@@ -4,11 +4,12 @@
     import TextField from '$lib/components/TextField.svelte';
     import { mathJaxTypeset } from '$lib/mathjax/mathjax.global.svelte';
     import { getContext } from 'svelte';
-    import { header } from '../WriteupContent.svelte';
+    import { header, copyright } from '../WriteupContent.svelte';
     import type { PageProps } from './$types';
     import Link from '$lib/components/Link.svelte';
     import Spoiler from '$lib/components/Spoiler.svelte';
     import { giveBadge } from '$lib/badges/badges';
+    import Image from '$lib/components/Image.svelte';
 
     let { data }: PageProps = $props();
 
@@ -28,13 +29,9 @@
     });
 
     function onMathSubmit() {
-        if (a_2 === "4" && a_1 === "-4" && a_0 === "2"
-                && hasCorrectMath === undefined || hasCorrectMath === false) {
+        if (a_2 === "4" && a_1 === "-4" && a_0 === "2") {
             // they got the righjt answer wohoo
-            hasCorrectMath = true;
             giveBadge("math_genius");
-        } else {
-            hasCorrectMath = false;
         }
     };
 </script>
@@ -700,3 +697,5 @@ Maximum: 31; Iteration: 100
   document my programming and life experiences within it, maybe to go into depth
   about this cool project I made, or the intricate technical details of what I
   just built, or about me if I feel like it.</p>
+
+{@render copyright()}

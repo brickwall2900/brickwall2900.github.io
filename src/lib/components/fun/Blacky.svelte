@@ -116,7 +116,7 @@
     <audio src={asset("/assets/blacky/meow.mp3")} bind:this={catMeowAudio}></audio>
 </div>
 {#if actionWindowVisible}
-    <Window title="Blacky - Actions" initialX={catState.position.x} initialY={catState.position.y} bind:showing={actionWindowVisible}>
+    <Window title="Blacky - Actions" class="z-2999" globalParent initialX={catState.position.x} initialY={catState.position.y} bind:showing={actionWindowVisible}>
         <div class="flex flex-col gap-2 w-full">
             {#snippet defineAction(name: string, id: Action, desc?: string)}
                 <Button title={desc} onclick={() => doAction(id)}>{name}</Button>

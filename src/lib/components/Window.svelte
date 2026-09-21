@@ -47,7 +47,7 @@
         }
     }
 
-    function onMousePressed(e: MouseEvent) {
+    function onMousePressed(e: PointerEvent) {
         if (!canDrag) {
             return;
         }
@@ -58,15 +58,15 @@
 
         e.preventDefault();
         titlebarPressed = true;
-        touchOffsetX = e.offsetX;
-        touchOffsetY = e.offsetY;
+        touchOffsetX = e.screenX;
+        touchOffsetY = e.screenY;
     }
 
     function onMouseReleased(e: Event) {
         titlebarPressed = false;
     }
 
-    function onMouseMoved(e: MouseEvent) {
+    function onMouseMoved(e: PointerEvent) {
         if (!canDrag) {
             titlebarPressed = false;
             return;
@@ -76,13 +76,13 @@
             const castedWindowElement = (theWindowItself as HTMLElement | undefined);
             const theParent = castedWindowElement?.parentElement;
             if (castedWindowElement && theParent) {
-                console.log(theParent);
                 viewportBounds = !globalParent ? TypesHelper.domRectToRectangle(theParent.getBoundingClientRect()) : Rectangle.ofWidthHeight(0, 0, window.innerWidth, window.innerHeight);
                 windowBounds = TypesHelper.domRectToRectangle(castedWindowElement.getBoundingClientRect());
-                console.log(viewportBounds, windowBounds);
 
-                offsetX += MathHelper.clamp(windowBounds.left + e.movementX, viewportBounds.left, viewportBounds.right - windowBounds.getWidth()) - windowBounds.left;
-                offsetY += MathHelper.clamp(windowBounds.top + e.movementY, viewportBounds.top, viewportBounds.bottom - windowBounds.getHeight()) - windowBounds.top;
+                offsetX += MathHelper.clamp(windowBounds.left + (e.screenX - touchOffsetX), viewportBounds.left, viewportBounds.right - windowBounds.getWidth()) - windowBounds.left;
+                offsetY += MathHelper.clamp(windowBounds.top + (e.screenY - touchOffsetY), viewportBounds.top, viewportBounds.bottom - windowBounds.getHeight()) - windowBounds.top;
+                touchOffsetX = e.screenX;
+                touchOffsetY = e.screenY;
             }
             e.preventDefault();
         }
@@ -100,8 +100,17 @@
         }
 
         if (titlebarPressed) {
-            offsetX = touch.clientX - touchOffsetX;
-            offsetY = touch.clientY - touchOffsetY;
+            const castedWindowElement = (theWindowItself as HTMLElement | undefined);
+            const theParent = castedWindowElement?.parentElement;
+            if (castedWindowElement && theParent) {
+                viewportBounds = !globalParent ? TypesHelper.domRectToRectangle(theParent.getBoundingClientRect()) : Rectangle.ofWidthHeight(0, 0, window.innerWidth, window.innerHeight);
+                windowBounds = TypesHelper.domRectToRectangle(castedWindowElement.getBoundingClientRect()); 
+
+                offsetX += MathHelper.clamp(windowBounds.left + (touch.clientX - touchOffsetX), viewportBounds.left, viewportBounds.right - windowBounds.getWidth()) - windowBounds.left;
+                offsetY += MathHelper.clamp(windowBounds.top + (touch.clientY - touchOffsetY), viewportBounds.top, viewportBounds.bottom - windowBounds.getHeight()) - windowBounds.top;
+                touchOffsetX = touch.clientX;
+                touchOffsetY = touch.clientY;
+            }
         }
     }
 
@@ -118,7 +127,7 @@
 
 <svelte:window 
     onpointermove={onMouseMoved} 
-    ontouchmove={onTouchDragged} 
+    //ontouchmove={onTouchDragged} 
     onscroll={onScroll} 
     onpointerup={onMouseReleased}
     onresize={onResized} />

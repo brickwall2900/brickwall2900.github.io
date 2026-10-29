@@ -15,6 +15,7 @@
         // wordle game context
         // must be kept by someone to persist game data
         won?: boolean,
+        lost?: boolean,
         words?: string[],
         results?: WordleResult[]
         badLetters?: string[]
@@ -25,6 +26,7 @@
         chances = 6,
         endpoint,
         won = $bindable(false),
+        lost = $bindable(false),
         words = $bindable([]),
         results = $bindable([]),
         badLetters = $bindable([])
@@ -132,7 +134,7 @@
     
     <form class="flex flex-col items-center gap-2" onsubmit={onWordleSubmit}>
         <TextField bind:value={input} bind:theInputBox={theInputBox} />
-        <Button class="p-1 w-full" type="submit" disabled={won}>Submit</Button>
+        <Button class="p-1 w-full" type="submit" disabled={won || lost}>Submit</Button>
         <p>{message}</p>
     </form>    
 </section>

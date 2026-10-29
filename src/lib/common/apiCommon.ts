@@ -41,10 +41,10 @@ export function makeResponse<T>(result: ApiResult<T>, httpCode: number = 200, ca
     });
 }
 
-export function makeResultResponse<T>(result: T, httpCode?: number) {
-    return makeResponse({ result: result }, httpCode);
+export function makeResultResponse<T>(result: T, httpCode?: number, cacheControl: CacheStrategy = NO_CACHING) {
+    return makeResponse({ result: result }, httpCode, cacheControl);
 }
 
-export function makeErrorResponse(reason: string, httpCode: number): Response {
-    return makeResponse({ error: { message: reason } }, httpCode);
+export function makeErrorResponse(reason: string, httpCode: number, cacheControl: CacheStrategy = NO_CACHING): Response {
+    return makeResponse({ error: { message: reason } }, httpCode, cacheControl);
 }

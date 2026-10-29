@@ -91,7 +91,6 @@
     }
 
     function determineBackgroundColor(result?: WordleLetterResult) {
-        console.log(result);
         if (result === WordleLetterResult.CORRECT) {
             return "#538d4e";
         } else if (result === WordleLetterResult.FOUND) {

@@ -28,7 +28,7 @@ export const GET: RequestHandler = async (event: RequestEvent) => {
             const result = await decode(input, key);
             return makeResultResponse(result);
         } catch (e) {
-            console.log(e);
+            console.error(e);
             return makeErrorResponse((e as Error).message, 500);
         }
     } else if (func === "encode") {
@@ -50,6 +50,7 @@ export const GET: RequestHandler = async (event: RequestEvent) => {
                 const result = await encode(keyInputPairParsed);
                 return makeResultResponse(result);
             } catch (e) {
+                console.error(e);
                 return makeErrorResponse((e as Error).message, 500);
             }
         } else {

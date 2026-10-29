@@ -5,6 +5,7 @@
         value?: string,
         placeholder?: string,
         class?: string,
+        theInputBox?: HTMLInputElement,
         [key: string]: any
     }
 
@@ -14,8 +15,9 @@
         value = $bindable(),
         placeholder = "Input",
         class: className,
+        theInputBox = $bindable(),
         ...others
     }: Props = $props();
 </script>
 
-<input bind:value={value} class={appendClassname("bg-input-bg border border-input-border p-1", className)} placeholder={placeholder} type="text" {...others}>
+<input bind:value={value} bind:this={theInputBox} class={appendClassname("bg-input-bg border border-input-border p-1", className)} placeholder={placeholder} type="text" {...others}>

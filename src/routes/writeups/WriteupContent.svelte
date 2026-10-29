@@ -45,10 +45,6 @@
     });
 </script>
 
-<script module>
-    export { header, copyright };
-</script>
-
 <Content title={title} description={actualDescription} class="gap-4">
     <hr />
 
@@ -101,3 +97,7 @@
     <hr>
     <p>This work is licensed under <Link href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</Link><Image src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" class="max-w-4 max-h-4 inline ml-2" /><Image src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" class="max-w-4 max-h-4 inline ml-2" /></p>
 {/snippet}
+
+<script module>
+    export { header, copyright };
+</script>

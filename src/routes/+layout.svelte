@@ -51,7 +51,7 @@
 	}
 
 	function blackyFollowMouse() {
-		blacky.moveTo(mouseX, mouseY);
+		blacky.followTo(mouseX, mouseY);
 	}
 
 	// load settings early step;

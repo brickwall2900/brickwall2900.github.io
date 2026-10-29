@@ -8,7 +8,11 @@ export interface BlackyState {
     maxSpeed: number,
     walkStartTs: DOMHighResTimeStamp,
     turnSpeed: number
-    currentAngle: number
+    currentAngle: number,
+    isDragging: boolean,
+    dragFinishTs: DOMHighResTimeStamp,
+    dragPos: Vector2Type,
+    willFollowCursor: boolean,
 };
 
 export enum Mode {
@@ -17,5 +21,8 @@ export enum Mode {
 
 export enum Action {
     PET = "pet",
-    CAT = "cat"
+    CAT = "cat",
+    SIT = "sit",
+    STAND = "stand",
+    ASK_HELP = "ask_help",
 };

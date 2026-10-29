@@ -19,7 +19,11 @@
             maxSpeed: 200,
             walkStartTs: 0,
             turnSpeed: Math.PI * 2,
-            currentAngle: 0
+            currentAngle: 0,
+            isDragging: false,
+            dragFinishTs: 0,
+            dragPos: new ReactiveVector2(0, 0),
+            willFollowCursor: true
         }
     );
 
@@ -28,12 +32,27 @@
     let yDest = $state(0);
     let lastTick: DOMHighResTimeStamp = performance.now();
     let catMeowAudio: HTMLAudioElement;
+    let longPressTimer = $state<any>();
 
     let actionWindowVisible = $state(false);
 
     /// Blacky goes towards the specified point
     export function moveTo(x: number, y: number) {
         if (xDest !== x || yDest !== y) {
+            xDest = x;
+            yDest = y;
+            if (!pathfindState) {
+                pathfindState = true;
+                catState.walkStartTs = performance.now();
+                lastTick = performance.now();
+                requestAnimationFrame(pathfindTick);
+            }
+        }
+    }
+
+    /// Blacky goes towards the specified point, unless if he doesn't want to.
+    export function followTo(x: number, y: number) {
+        if ((xDest !== x || yDest !== y) && catState.willFollowCursor) {
             xDest = x;
             yDest = y;
             if (!pathfindState) {
@@ -52,13 +71,61 @@
 
     export function doAction(actionId: Action) {
         actionWindowVisible = false;
+
+        if (actionId === Action.SIT) {
+            catState.willFollowCursor = false;
+        } else if (actionId === Action.STAND) {
+            catState.willFollowCursor = true;
+        }
     }
 
     function onMouseClicked(e: MouseEvent) {
-        catMeowAudio.currentTime = 0;
-        catMeowAudio.play();
+        e.preventDefault();
 
         actionWindowVisible = true;
+    }
+
+    function onMouseDown(e: MouseEvent) {
+        if (e.button === 0) {
+            catMeowAudio.currentTime = 0;
+            catMeowAudio.play();
+            catState.isDragging = true;
+            catState.dragPos = new ReactiveVector2(e.pageX, e.pageY);
+
+            longPressTimer = setTimeout(() => {
+                actionWindowVisible = true;
+            }, 1000);
+        }
+    }
+
+    function onMouseUp(e: PointerEvent) {
+        if (e.button === 0) {
+            catState.isDragging = false;
+            catState.dragFinishTs = performance.now();
+            catState.dragPos = new ReactiveVector2(e.pageX, e.pageY);
+
+            if (longPressTimer !== undefined) {
+                clearTimeout(longPressTimer);
+                longPressTimer = undefined;
+            }
+        }
+    }
+
+    function onMouseMoved(e: PointerEvent) {
+        if (catState.isDragging) {
+            const pageX = e.pageX;
+            const pageY = e.pageY;
+
+            catState.position.x = pageX;
+            catState.position.y = pageY;
+            
+            if (new Vector2(pageX, pageY).scalarDistanceFrom(catState.dragPos) <= 50) {
+                if (longPressTimer !== undefined) {
+                    clearTimeout(longPressTimer);
+                    longPressTimer = undefined;
+                }
+            }
+        }
     }
 
     function pathfindTick(timestamp: DOMHighResTimeStamp) {
@@ -97,20 +164,33 @@
         const newX = prevX + speedX;
         const newY = prevY + speedY; 
 
-        catState.position.x = newX;
-        catState.position.y = newY;
-        catState.moving = Math.abs(dx) > 0 || Math.abs(dy) > 0;
-        catState.facingRight = prevX - xDest < 0;
+        if (!catState.isDragging) {
+            catState.position.x = newX;
+            catState.position.y = newY;
+            catState.moving = Math.abs(dx) > 0 || Math.abs(dy) > 0;
+            catState.facingRight = prevX - xDest < 0;
+        }
 
         requestAnimationFrame(pathfindTick);
     }
+
+    $effect(() => {
+        document.addEventListener("pointermove", onMouseMoved);
+        document.addEventListener("pointerup", onMouseUp);
+        return () => {
+            document.removeEventListener("pointermove", onMouseMoved);
+            document.removeEventListener("pointerup", onMouseUp);
+        };
+    });
 </script>
 
 <div>
     <Image
         class={"fixed z-3000 select-none " + (!catState.moving ? "w-10 h-10" : "w-16 h-10")}
         style="top: {catState.position.y}px; left: {catState.position.x}px; transform: scaleX({catState.facingRight ? -1 : 1}); -webkit-transform: scaleX({catState.facingRight ? -1 : 1})" 
-        onclick={onMouseClicked}
+        oncontextmenu={onMouseClicked}
+        onpointerdown={onMouseDown}
+        draggable={false}
         src={!catState.moving ? asset("/assets/blacky/cat2.gif") : asset("/assets/blacky/final-cat.gif")}>
     </Image>
     <audio src={asset("/assets/blacky/meow.mp3")} bind:this={catMeowAudio}></audio>
@@ -124,6 +204,9 @@
 
             {@render defineAction("Pet", Action.PET, "Pet the cat.")}
             {@render defineAction("Cat", Action.CAT, "Press CAT to CAT.")}
+            {@render defineAction("Sit", Action.SIT, "Makes him stay in his position.")}
+            {@render defineAction("Stand", Action.STAND, "Makes him follow your cursor.")}
+            {@render defineAction("Ask for Help", Action.ASK_HELP, "He might not be Verity but he can try to help! He'll describe the current page.")}
         </div>
     </Window>
 {/if}

@@ -8,7 +8,7 @@ export const GET: RequestHandler = async (event: RequestEvent) => {
 
     const func: string | null = params.get("function");
 
-    if (func == null) {
+    if (func === null) {
         return makeErrorResponse("No function", 400);
     }
    
@@ -16,11 +16,11 @@ export const GET: RequestHandler = async (event: RequestEvent) => {
         const key: string | null = params.get("key");
         const input: string | null = params.get("input");
 
-        if (key == null) {
+        if (key === null) {
             return makeErrorResponse("Missing key", 400);
         }
 
-        if (input == null) {
+        if (input === null) {
             return makeErrorResponse("Missing input", 400);
         }
 
@@ -34,7 +34,7 @@ export const GET: RequestHandler = async (event: RequestEvent) => {
     } else if (func === "encode") {
         // the input must be in json format
         const keyInputPair: string | null = params.get("keyInputPairs");
-        if (keyInputPair == null) {
+        if (keyInputPair === null) {
             return makeErrorResponse("Missing key/input pair", 400);
         }
 

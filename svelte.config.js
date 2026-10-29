@@ -17,16 +17,16 @@ const config = {
 			base: process.env.BASE_PATH || '',
 			assets: process.env.ASSET_PATH || ''
 		},
-		// typescript: {
-		// 	config: (config) => {
-		// 		config.exclude = config.exclude.concat([
-		// 			"../private/**/*.js",
-		// 			"../private/**/*.ts",
-		// 			"../private/**/*.svelte"
-		// 		]);
-		// 		return config;
-		// 	}
-		// },	
+		typescript: {
+			config: (config) => {
+				config.exclude = config.exclude.concat([
+					"../private/**/*.js",
+					"../private/**/*.ts",
+					"../private/**/*.svelte"
+				]);
+				return config;
+			}
+		},	
 	},
 	extensions: ['.svelte', '.svx', '.md']
 };

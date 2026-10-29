@@ -20,7 +20,7 @@
     }: Props = $props();
 </script>
 
-<select bind:value={value} class={appendClassname("bg-input-bg border hover:bg-input-hover active:bg-input-active border-input-border col-start-2 col-end-4 p-1", className)} {...others}>
+<select bind:value={value} class={appendClassname("bg-input-bg border hover:bg-input-hover active:bg-input-active border-input-border p-1", className)} {...others}>
     {#each options as option}
         <option value={option}>{option}</option>
     {/each}

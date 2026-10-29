@@ -22,7 +22,7 @@
     <TextBox bind:value={input} placeholder="Input"></TextBox>
     <div class="grid grid-cols-3 grid-flow-col auto-cols-auto items-center">
         <p class="col-start-1 col-end-2">Obfuscation mode:</p>
-        <ComboBox bind:value={mode} options={["XOR", "AES_GCM", "AES_GCM_PBKDF2"]} />
+        <ComboBox class="col-start-2 col-end-4" bind:value={mode} options={["XOR", "AES_GCM", "AES_GCM_PBKDF2"]} />
     </div>
     <div class="grid grid-cols-3 grid-flow-col auto-cols-auto items-center">
         <p class="col-start-1 col-end-2">Compressed:</p>

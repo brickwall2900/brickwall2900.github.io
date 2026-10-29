@@ -45,6 +45,9 @@
 
     async function onWordleSubmit(e: SubmitEvent) {
         e.preventDefault();
+        if (won || lost) {
+            return;
+        }
 
         const value = input.toUpperCase();
 
@@ -79,6 +82,10 @@
             if (good) {
                 won = true;
                 message = "You won!";
+            }
+
+            if (words.length >= chances) {
+                lost = true;
             }
         }
     }
@@ -118,7 +125,7 @@
 
 <!-- the board -->
 <section class="flex flex-col items-center gap-2">
-    <div class="flex flex-col gap-1" onclick={forceFocusOnInput} onkeydown={forceFocusOnInput} role="button" tabindex="0">
+    <div class="flex flex-col gap-1 cursor-pointer" onclick={forceFocusOnInput} onkeydown={forceFocusOnInput} role="button" tabindex="0">
         {#each new Array(chances) as _, i}
             {#if words.length > i}
                 {@render box(words[i], results[i])}

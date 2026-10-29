@@ -19,6 +19,7 @@
         ...others
     }: Props = $props();
 </script>
+// TODO: please get rid of this label shit and make it another input wrapper
 
 {#if label}
     <label class={appendClassname("flex flex-row gap-2 items-center justify-center", className)} {...others}>

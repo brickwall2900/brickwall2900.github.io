@@ -186,7 +186,7 @@
 
 <div>
     <Image
-        class={"fixed z-3000 select-none " + (!catState.moving ? "w-10 h-10" : "w-16 h-10")}
+        class={"fixed z-3000 select-none touch-none " + (!catState.moving ? "w-10 h-10" : "w-16 h-10")}
         style="top: {catState.position.y}px; left: {catState.position.x}px; transform: scaleX({catState.facingRight ? -1 : 1}); -webkit-transform: scaleX({catState.facingRight ? -1 : 1})" 
         oncontextmenu={onMouseClicked}
         onpointerdown={onMouseDown}

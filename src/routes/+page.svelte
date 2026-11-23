@@ -18,7 +18,7 @@
 
     <Content>
         <p title="The message of the day is a message set by me on a NOT daily basis. I can put anything I want in here.">
-            <strong>Message of the day:</strong> {motd}
+            <strong>Message of the day:</strong> {data.motd}
         </p>
     </Content>
 
@@ -178,6 +178,7 @@
 </main>
 
 <script lang="ts">
+    import type { PageProps } from './$types'
     import { giveBadge } from '$lib/badges/badges';
     import { doResolve } from '$lib/common/doresolve';
     import Button from '$lib/components/Button.svelte';
@@ -186,7 +187,8 @@
     import Link from '$lib/components/Link.svelte';
     import LinkList from '$lib/components/LinkList.svelte';
     import Spoiler from '$lib/components/Spoiler.svelte';
-    import { onMount } from 'svelte';
+
+    let { data }: PageProps = $props();
 
     let mari = $state(0);
     function onMariClick() {
@@ -194,10 +196,4 @@
             giveBadge("mari_my_beloved");
         }
     }
-
-    onMount(async () => {
-        motd = await (await fetch("/api/motd")).text();
-    })
-
-    let motd = $state("--< ... PLEASE WAIT ... >--");
 </script>

@@ -23,7 +23,7 @@
 	let { children } = $props();
 	let showingSettings = $state(false);
 	let transferPortalShowing = $state(false);
-	let blacky: Blacky;
+	let blacky: Blacky | undefined = $state(undefined);
 	let blackyFollowInterval: any;
 	
 	function showSettingsMenu() {
@@ -51,7 +51,9 @@
 	}
 
 	function blackyFollowMouse() {
-		blacky.followTo(mouseX, mouseY);
+		if (blacky !== undefined) {
+			blacky.followTo(mouseX, mouseY);
+		}		
 	}
 
 	// load settings early step;
@@ -132,7 +134,9 @@
 
 <BadgeBanner />
 <SettingsDialog bind:showing={showingSettings} />
-<Blacky bind:this={blacky} />
+{#if browser}
+	<Blacky bind:this={blacky} />
+{/if}
 
 <div class="p-4"></div>
 

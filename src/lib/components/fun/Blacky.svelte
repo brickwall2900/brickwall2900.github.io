@@ -85,12 +85,12 @@
         actionWindowVisible = true;
     }
 
-    function onMouseDown(e: MouseEvent) {
+    function onMouseDown(e: PointerEvent) {
         if (e.button === 0) {
             catMeowAudio.currentTime = 0;
             catMeowAudio.play();
             catState.isDragging = true;
-            catState.dragPos = new ReactiveVector2(e.pageX, e.pageY);
+            catState.dragPos = new ReactiveVector2(e.clientX, e.clientY);
 
             longPressTimer = setTimeout(() => {
                 actionWindowVisible = true;
@@ -102,7 +102,7 @@
         if (e.button === 0) {
             catState.isDragging = false;
             catState.dragFinishTs = performance.now();
-            catState.dragPos = new ReactiveVector2(e.pageX, e.pageY);
+            catState.dragPos = new ReactiveVector2(e.clientX, e.clientY);
 
             if (longPressTimer !== undefined) {
                 clearTimeout(longPressTimer);
@@ -113,8 +113,8 @@
 
     function onMouseMoved(e: PointerEvent) {
         if (catState.isDragging) {
-            const pageX = e.pageX;
-            const pageY = e.pageY;
+            const pageX = e.clientX;
+            const pageY = e.clientY;
 
             catState.position.x = pageX;
             catState.position.y = pageY;
